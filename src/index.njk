@@ -1,0 +1,21 @@
+---
+layout: base.njk
+bodyClass: is-home
+---
+{# The grid of all projects, newest first (sorted in _data/projects.js).
+   Without JavaScript this is a simple CSS grid; script.js rearranges the
+   cards into masonry columns (each card goes into the shortest column, so
+   the date order still reads left to right). #}
+<ul class="grid" data-masonry>
+  {% for p in projects %}
+  <li class="card" data-ratio="{{ p.ratio }}">
+    <a href="/work/{{ p.id }}/">
+      {% if p.cover %}
+      <img src="{{ p.cover }}" alt="{{ p.title }}" sizes="(min-width: 1200px) 25vw, (min-width: 800px) 33vw, 50vw"{% if loop.index <= 4 %} loading="eager"{% endif %}>
+      {% endif %}
+      <span class="card-title">{{ p.title }}</span>
+      <span class="card-tags">{{ p.tags | join(" | ") }}{% if p.year %} — {{ p.year }}{% endif %}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

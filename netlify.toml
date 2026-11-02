@@ -1,0 +1,25 @@
+# Netlify reads this file on every deploy: it runs the build command and
+# publishes the folder Eleventy writes to.
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The old links page now lives on the Info page.
+[[redirects]]
+  from = "/links.html"
+  to = "/info/"
+  status = 301
+
+# Fonts, videos and resized images never change under the same name, so
+# browsers may keep them for a long time.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

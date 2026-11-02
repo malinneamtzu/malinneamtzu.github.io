@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} / {% endif %}{{ site.name }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+
+  {# Link previews (Instagram, LinkedIn, WhatsApp…) read these tags. #}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{% if title %}{{ title }} / {% endif %}{{ site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/media/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  {# Start downloading the font right away, so the name does not flash. #}
+  <link rel="preload" href="/fonts/Segmentor.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="{{ bodyClass }}">
+  <header class="site-header">
+    <a class="site-name seg" href="/" aria-label="{{ site.name }}, home">{{ site.name }}</a>
+    <div class="site-bar">
+      <span class="site-tagline">{{ site.tagline }}, {{ site.location }}</span>
+      <nav class="site-nav">
+        <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Work</a>
+        <a href="/info/"{% if page.url == "/info/" %} aria-current="page"{% endif %}>Info</a>
+        <button class="motion-btn" type="button" hidden>Tilt to play</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <span>© {{ year }} {{ site.name }}</span>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

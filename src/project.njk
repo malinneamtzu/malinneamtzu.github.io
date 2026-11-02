@@ -1,0 +1,46 @@
+---
+layout: base.njk
+bodyClass: is-project
+pagination:
+  data: projects
+  size: 1
+  alias: p
+permalink: "/work/{{ p.id }}/"
+eleventyComputed:
+  title: "{{ p.title }}"
+  description: "{{ p.intro[0] | striptags }}"
+---
+<article class="project">
+  <h1 class="project-title seg">{{ p.title }}</h1>
+
+  <div class="project-info">
+    <dl class="project-meta">
+      {% if p.year %}<dt>Year</dt><dd>{{ p.year }}</dd>{% endif %}
+      {% if p.client %}<dt>Client</dt><dd>{{ p.client }}</dd>{% endif %}
+      {% if p.role %}<dt>Role</dt><dd>{{ p.role }}</dd>{% endif %}
+      <dt>Field</dt><dd>{{ p.tags | join(", ") }}</dd>
+    </dl>
+    <div class="project-text">
+      {% for para in p.intro %}<p>{{ para | safe }}</p>{% endfor %}
+      {% if p.links %}
+      <ul class="project-links">
+        {% for l in p.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }} ↗</a></li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="gallery">
+    {% for img in p.gallery %}
+    <img src="{{ img }}" alt="{{ p.title }}, image {{ loop.index }}"{% if loop.first %} loading="eager"{% endif %}>
+    {% endfor %}
+  </div>
+
+  {% set prev = projects | neighbour(p.id, -1) %}
+  {% set next = projects | neighbour(p.id, 1) %}
+  <nav class="project-pager">
+    <a href="/work/{{ prev.id }}/">← {{ prev.title }}</a>
+    <a href="/">All work</a>
+    <a href="/work/{{ next.id }}/">{{ next.title }} →</a>
+  </nav>
+</article>

@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: Info
+bodyClass: is-info
+permalink: /info/
+---
+{# The video background from the original site, kept for the Info page. #}
+<video class="video-bg" autoplay muted loop playsinline preload="metadata"
+  poster="/media/bg-desktop-poster.jpg"
+  data-src-desktop="/media/bg-desktop.mp4" data-src-mobile="/media/bg-mobile.mp4"
+  data-poster-mobile="/media/bg-mobile-poster.jpg"></video>
+
+<div class="info">
+  <section class="info-bio seg">
+    {% for para in site.bio %}<p>{{ para }}</p>{% endfor %}
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+      {% for l in site.social %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Links</h2>
+    <ul>
+      {% for l in site.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+    </ul>
+  </section>
+</div>
