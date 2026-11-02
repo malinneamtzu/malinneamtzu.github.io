@@ -1,0 +1,92 @@
+// CV shown on the Info page, copied from CV-MalinNeamtu-2026.pdf
+// (~/Desktop/work/Malin/CV-Portofolio/2026/CV/PDF/). Sections appear in this
+// order; entries inside a section are shown as written (newest first).
+// `when` is free text ("2025", "2020 — present"); `what` may contain HTML.
+
+export default [
+  {
+    title: "Awards",
+    items: [
+      { when: "2026", what: "TDC72: Type High Gold Award in Type Design — Text + Display Typefaces, Multiple Axis Type Family. New York City, USA." },
+      { when: "2026", what: "European Design Awards: Bronze in Original Display Typeface. Sofia, Bulgaria." },
+      { when: "2026", what: "NewOneAwards: Gold Award in Type Design. Shanghai, China." },
+      { when: "2025", what: "Local Design Awards for three books: “Soft Migraine by The Lake”, “Large Drawing I II”, “Cyborg Dolphin Tears”. Bucharest, Romania." },
+      { when: "2019", what: "Most Beautiful Books in Romania Award. Bucharest, Romania." },
+    ],
+  },
+  {
+    title: "Education",
+    items: [
+      { when: "2024 — 2025", what: "MA in Type Design, Type and Media, Royal Academy of Art (KABK), The Hague, NL." },
+      { when: "2020 — 2021", what: "Type@Cooper Extended Program, Cooper Union, New York City, USA." },
+      { when: "2016 — 2019", what: "BA in Graphic Design, National University of Fine Arts Bucharest, RO." },
+      { when: "2017 — 2018", what: "Scholarship for Type Design, Hochschule für Grafik und Buchkunst Leipzig, DE. FK TYPE: FACES, specimen series, group project. ADOBE HIDDEN TREASURES – BAUHAUS, typeface revival: numbers and alternates." },
+      { when: "2013 — 2016", what: "Graphic Arts, “Nicolae Tonitza” Fine Arts High School, Bucharest, RO." },
+    ],
+  },
+  {
+    title: "Experience",
+    items: [
+      { when: "2026", what: "MICROSOFT, with TYPETR, type designer. The Hague, NL." },
+      { when: "2020 — present", what: "CLUB GUESTHOUSE, creative director, graphic designer. Bucharest, RO." },
+      { when: "2026", what: "THE MAKERS CLUB, branding, visual identity and system. The Hague, NL." },
+      { when: "2025", what: "CRUDO by Tom Wilson, film, type direction, visual identity. Bucharest, RO." },
+      { when: "2020 — 2025", what: "STUDIO SHENTZU, founder, graphic designer, creative direction. Bucharest, RO." },
+      { when: "2025", what: "CATANE by Ioana Mischie, film, GFX, art direction, type design." },
+      { when: "2024", what: "SUBTERAN – Netflix, TV series, title sequence, type design." },
+      { when: "2023 — 2025", what: "ELECTRECORD, leading designer, reissues, creative direction, visual communication." },
+      { when: "2023", what: "SPY/MASTER – HBO Max, TV series, title sequence, type design." },
+      { when: "2022", what: "ONE TRUE SINGER – HBO Max, TV series, GFX, art direction." },
+      { when: "2022", what: "BOSS by Bogdan Mirică, film, type direction." },
+      { when: "2022", what: "DARK AGES by Tom Wilson, film, type direction." },
+      { when: "2022", what: "ILOVEUIHATEU by Tudor Ciurescu, exhibition, visual identity." },
+      { when: "2021", what: "RUXX – HBO Max, TV series, type design and art direction." },
+      { when: "2019", what: "OTTO BARBARUL by Ruxandra Ghițescu, film, graphic and type direction. Bucharest, RO." },
+      { when: "2018", what: "LA NAVE VA by Lisandru Neamțu, exhibition, visual identity. Bucharest, RO." },
+      { when: "2018", what: "NIKE STREICHER – ENJOY THE SILENCE by Jenny Schreiter, book, photography contribution. Leipzig, DE." },
+      { when: "2018", what: "THIS IS RACING by Andrei Mîndru, documentary, graphic and type direction. Bucharest, RO." },
+    ],
+  },
+  {
+    title: "Talks & teaching",
+    items: [
+      { when: "2026", what: "TYPOGRAPHIC NIGHTS, guest speaker, Page Not Found, Den Haag, NL." },
+      { when: "2026", what: "LEIPZIGER TYPOTAGE, guest speaker, Museum für Druckkunst, Leipzig, DE." },
+      { when: "2026", what: "SEGMENTOR, guest lecture, type design class, HGB Leipzig, DE." },
+      { when: "2026", what: "ZEFIR7: Type on Tuesday, speaker, Stroom, Den Haag, NL." },
+      { when: "2026", what: "SEGMENTOR, guest lecture, typography & innovation class, École de design UQÀM, Montreal, CA." },
+      { when: "2026", what: "SEGMENTOR, guest lecture, typography class, Aalto University, Helsinki, FI." },
+      { when: "2025", what: "RESOLUME, talk, Den Haag, NL." },
+      { when: "2020", what: "FORMATYPE, workshop, organiser and leader, Bucharest, RO." },
+    ],
+  },
+  {
+    title: "Exhibitions",
+    items: [
+      { when: "2025", what: "Framing the [electrical], Den Haag, NL." },
+      { when: "2025", what: "De Situatie book launch, live performance at PIP, Den Haag, NL." },
+      { when: "2025", what: "OYO 9, Den Haag, NL." },
+      { when: "2023", what: "Art Safari, Bucharest, RO." },
+      { when: "2019", what: "DIPLOMA, Bucharest, RO." },
+      { when: "2019", what: "XX, Bucharest, RO." },
+      { when: "2019", what: "Live performance at MNAC, Bucharest, RO." },
+      { when: "2018", what: "Rundgang, HGB Leipzig, DE." },
+      { when: "2017", what: "GOODBYE BLUE SKY, Leipzig, DE." },
+    ],
+  },
+  {
+    title: "Press",
+    items: [
+      { when: "2026", what: "Plain Text 3, Focus n.3 “Playing the alphabet”: type design projects tuned to rhythm, drums and improvisation." },
+    ],
+  },
+  {
+    title: "Workshops attended",
+    items: [
+      { when: "2025", what: "Python for Designers with Roberto Arista, Den Haag, NL." },
+      { when: "2022", what: "Building Upon Broken Spaces with Ludovic Balland & Mihai Șovăială, Bucharest, RO." },
+      { when: "2020", what: "ALUO – Type Days Ljubljana with Gerry Leonidas, Ljubljana, SI." },
+      { when: "2018", what: "Serigrafie, participant and zine cover designer, Primitiv Print, Bucharest, RO." },
+    ],
+  },
+];

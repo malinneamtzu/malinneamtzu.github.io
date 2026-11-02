@@ -11,22 +11,38 @@ permalink: /info/
   data-poster-mobile="/media/bg-mobile-poster.jpg"></video>
 
 <div class="info">
-  <section class="info-bio seg">
-    {% for para in site.bio %}<p>{{ para }}</p>{% endfor %}
-  </section>
+  <div class="info-top">
+    <section class="info-bio seg">
+      {% for para in site.bio %}<p>{{ para }}</p>{% endfor %}
+    </section>
 
-  <section>
-    <h2>Contact</h2>
-    <ul>
-      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-      {% for l in site.social %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
-    </ul>
-  </section>
+    <section>
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        {% for l in site.social %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+      </ul>
+    </section>
 
-  <section>
-    <h2>Links</h2>
-    <ul>
-      {% for l in site.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
-    </ul>
-  </section>
+    <section>
+      <h2>Links</h2>
+      <ul>
+        {% for l in site.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+      </ul>
+    </section>
+  </div>
+
+  {# CV: sections and entries come from src/_data/cv.js #}
+  <div class="cv" id="cv">
+    {% for section in cv %}
+    <section>
+      <h2>{{ section.title }}</h2>
+      <ul class="cv-list">
+        {% for item in section.items %}
+        <li><span class="when">{{ item.when }}</span><span class="what">{{ item.what | safe }}</span></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  </div>
 </div>

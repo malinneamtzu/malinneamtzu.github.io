@@ -17,7 +17,7 @@ Mălin (repo owner, type and graphic designer, Type and Media graduate) is a rel
 
 Portfolio website of Mălin Neamțu, live at https://malinneamtzu.com. Built with **Eleventy 3** (Nunjucks templates) into plain static HTML, deployed on **Netlify**. No tests or linter.
 
-Design: a white masonry grid of project covers (inspired by eloileco.xyz) under the name set in Mălin's own variable typeface **Segmentor**, which reacts to the mouse (desktop) or phone tilt (mobile). The Info page keeps the black background video from the original 2026 splash site.
+Design: a masonry grid of project covers (layout inspired by eloileco.xyz) styled after Mălin's 2026 portfolio PDF: black pages, light grey text, thin 1px outlines around images, narrow margins, small letter-spaced capitals, magenta (`--accent`) links and the "— " dash before titles. **Every letter on the site is Segmentor-03**, Mălin's own variable typeface. Text with class `.seg` (the name, project titles, the Info bio) reacts to the mouse (desktop) or phone tilt (mobile); all other text stays at the default shape so it remains readable. The Info page keeps the background video from the original 2026 splash site, dimmed behind the bio and CV.
 
 ## Commands
 
@@ -40,6 +40,7 @@ npm run build    # outputs the finished site to _site/ (gitignored)
   - `check:` on a project is a private to-do note (never rendered). Search for `check:` to see what still needs Mălin's confirmation.
   - `source:` records where the content came from (`pdf` or `instagram`).
 - **`src/_data/site.js`**: name, tagline, email, bio (Info page), external links and social links.
+- **`src/_data/cv.js`**: the CV on the Info page (Awards, Education, Experience, Talks & teaching, Exhibitions, Press, Workshops attended), copied from `~/Desktop/work/Malin/CV-Portofolio/2026/CV/PDF/CV-MalinNeamtu-2026.pdf`. The phone number is deliberately left off the website. When the CV PDF changes, update this file to match.
 - **`src/_includes/base.njk`**: the one layout: header (name + bar + nav), `<main>`, footer, meta tags for link previews (Open Graph image is `src/media/og-image.jpg`).
 - **`src/index.njk`**: home grid. **`src/project.njk`**: paginates over `projects` to make `/work/<id>/`. **`src/info.njk`**: bio, contact, links, video. **`src/404.njk`**.
 - **`eleventy.config.js`**: the image plugin turns every `<img>` into a `<picture>` with 600/1200/2000px WebP + JPEG in `_site/img/`, so `src/assets/` is never copied as-is. Add `eleventy:ignore` to an `<img>` to skip it. Also: the `neighbour` filter (prev/next project) and the `year` global.
@@ -48,7 +49,7 @@ npm run build    # outputs the finished site to _site/ (gitignored)
   2. `fitName()` scales the header name to fill the width.
   3. Masonry: cards are dealt into the shortest of 2/3/4 columns (by window width) using `data-ratio`, so date order reads left to right. Without JS the grid is a plain CSS grid.
   4. Info video: mobile vs desktop file; skipped under `prefers-reduced-motion`.
-- **`src/style.css`**: single stylesheet, tokens in `:root` (`--bg`, `--fg`, `--muted`, `--line`, `--pad`, `--gap`, `--radius`, text sizes). `body.is-info` swaps the tokens to dark.
+- **`src/style.css`**: single stylesheet, tokens in `:root` (`--bg`, `--fg`, `--muted`, `--line`, `--accent`, `--pad`, `--gap`, `--tracking`, text sizes). Labels (nav, card titles, meta, CV headings, footer) share one rule: small, uppercase, `letter-spacing: var(--tracking)`. To make *all* text move with the mouse, add `.seg` to `<body>` in `base.njk`.
 - **Font**: `src/fonts/Segmentor.woff2` is what the site loads (converted from `Segmentor-03.ttf`, which is kept as the source and not deployed). Segmentor has 9 axes (`AAAA`–`IIII`, 0–1000); the site uses the first four. To update the font, convert the new TTF with fontTools: `f = TTFont(path); f.flavor = "woff2"; f.save("src/fonts/Segmentor.woff2")`. It has no `Ţ/ţ` (cedilla) or arrows; use `Ț/ț` (comma below).
 
 ## Adding or editing a project
@@ -60,7 +61,7 @@ npm run build    # outputs the finished site to _site/ (gitignored)
 ## Content sources
 
 - **Portfolio PDF**: `~/Desktop/work/2026/Portfolio-CV-2026/Portfolio/PDF/MalinNeamtzu-Portofolio-2026-25mb.pdf` (102 slides, 1920×1080). Current images were exported from it: covers are the original embedded images, galleries are full slides rendered at 2400px. Which slides belong to which project is listed in `scripts/export_from_pdf.py`; re-run it to re-export.
-- **Instagram** `@malin.neamtzu`: needs a logged-in browser (the public API refuses without login). Use Claude in Chrome with Mălin's session, or ask Mălin to export/save posts into the project folders. Mark such entries `source: "instagram"`.
+- **Instagram** `@malin.neamtzu`: needs a logged-in browser (the public API refuses without login and rate-limits quickly). What worked: Claude in Chrome on Mălin's logged-in profile, scroll the grid and read each tile's link + `alt` text (the alt is the caption); the post date can be decoded from the shortcode (`id >> 23` + 1314220021721 ms). Full-size images: open each post, click through the carousel and collect the `<img>` sources. Instagram's CSP blocks sending data to localhost via fetch/iframe/popup, but navigating the tab to `http://127.0.0.1:<port>/#<data>` works. Mark entries `source: "instagram"` and keep the post link in `links`. Many posts in the grid are collaborations owned by other accounts (Type and Media, Page Not Found, Zefir7…); those fed the CV, not projects.
 
 ## Gotchas
 
