@@ -1,4 +1,5 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import links from "./src/_data/links.js";
 
 export default function (eleventyConfig) {
   // Files copied to the site as they are.
@@ -29,6 +30,49 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("neighbour", (list, id, step) => {
     const i = list.findIndex((p) => p.id === id);
     return list[(i + step + list.length) % list.length];
+  });
+
+  // "2020–2025" → two buttons that open the timeline at that year.
+  // Words like "present" stay plain text.
+  eleventyConfig.addFilter("yearLinks", (text) =>
+    String(text || "").replace(/\d{4}/g, (y) => `<a class="year-btn" href="/timeline/#y${y}">${y}</a>`)
+  );
+
+  // Turns every name listed in src/_data/links.js into a link. Text that is
+  // already inside a link is left alone; longer names are matched first, so
+  // "Royal Academy of Art (KABK)" wins over "Royal Academy of Art".
+  eleventyConfig.addFilter("autolink", (html) => {
+    const names = Object.keys(links).sort((a, b) => b.length - a.length);
+    const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    // Split into [text, <a…>…</a>, text, …] so existing links are skipped.
+    const parts = String(html || "").split(/(<a\b[^>]*>.*?<\/a>)/s);
+    for (const name of names) {
+      const re = new RegExp(`(?<![\\p{L}\\p{N}@.])${escape(name)}(?![\\p{L}\\p{N}])`, "u");
+      for (let i = 0; i < parts.length; i += 2) {
+        if (re.test(parts[i])) {
+          const [before, ...rest] = parts[i].split(re);
+          const link = `<a href="${links[name]}" target="_blank" rel="noopener">${name}</a>`;
+          parts.splice(i, 1, before, link, rest.join(name));
+          break; // one link per name per text is enough
+        }
+      }
+    }
+    return parts.join("");
+  });
+
+  // Projects grouped by year for the timeline, newest year first. A project
+  // spanning several years appears in each of them. Undated ones come last.
+  eleventyConfig.addFilter("byYear", (projects) => {
+    const map = new Map();
+    for (const p of projects) {
+      for (const y of p.years.length ? p.years : ["Undated"]) {
+        if (!map.has(y)) map.set(y, []);
+        map.get(y).push(p);
+      }
+    }
+    return [...map.entries()]
+      .sort(([a], [b]) => (a === "Undated") - (b === "Undated") || b - a)
+      .map(([year, items]) => ({ year, items }));
   });
 
   return {

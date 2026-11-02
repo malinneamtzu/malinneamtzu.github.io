@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Timeline
+bodyClass: is-timeline
+permalink: /timeline/
+---
+{% set groups = projects | byYear %}
+{# Year buttons: jump to a year. They stay at the top while scrolling. #}
+<nav class="timeline-years" aria-label="Years">
+  {% for g in groups %}<a class="year-btn" href="#y{{ g.year }}">{{ g.year }}</a>{% endfor %}
+</nav>
+
+{% for g in groups %}
+<section class="timeline-year" id="y{{ g.year }}">
+  <h2 class="timeline-label seg">{{ g.year }}</h2>
+  <ul class="timeline-row">
+    {% for p in g.items %}
+    <li>
+      <a href="/work/{{ p.id }}/">
+        {% if p.cover %}<img src="{{ p.cover }}" alt="{{ p.title }}" sizes="240px">{% endif %}
+        <span class="card-title">{{ p.title }}</span>
+      </a>
+      <span class="card-tags">{{ p.tags | join(" | ") }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}

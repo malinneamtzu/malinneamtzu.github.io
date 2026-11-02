@@ -27,7 +27,8 @@
     <div class="site-bar">
       <span class="site-tagline">{{ site.tagline }}<span class="site-location">, {{ site.location }}</span></span>
       <nav class="site-nav">
-        <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Work</a>
+        <a href="/work/"{% if page.url.startsWith("/work/") %} aria-current="page"{% endif %}>Work</a>
+        <a href="/timeline/"{% if page.url == "/timeline/" %} aria-current="page"{% endif %}>Timeline</a>
         <a href="/info/"{% if page.url == "/info/" %} aria-current="page"{% endif %}>Info</a>
         <button class="motion-btn" type="button" hidden>Tilt to play</button>
       </nav>

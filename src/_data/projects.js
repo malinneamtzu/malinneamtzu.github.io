@@ -55,7 +55,8 @@ const projects = [
     intro: [
       "Segmentor is an exploration of what playing drums and designing typefaces have in common, and what links could be brought forward.",
       "During my year at Type and Media in The Hague I combined both practices into a live visual tool that renders experimental typographic animations for any show I play. Every letter on this website is set in Segmentor.",
-      "Since then I have played live demos, such as the launch of De Situatie #2 at PIP Den Haag (2025), and released a 100 × 70 cm six-colour silkscreen specimen poster (2026).",
+      "Since then I have played live demos, such as the launch of De Situatie #2 at PIP Den Haag (2025), and released a 100 x 70 cm six-colour silkscreen specimen poster (2026).",
+      "Segmentor won a TDC72 Type High Gold Award (Type Design, Multiple Axis Type Family) and a Bronze at the European Design Awards, both in 2026.",
     ],
     links: [
       { label: "Watch the demo", url: "https://www.youtube.com/watch?v=4W-PnDmmwX8" },
@@ -314,6 +315,15 @@ export default async function () {
     if (cover) {
       const meta = await Image(path.join(dir, cover), { widths: ["auto"], formats: ["jpeg"], dryRun: true });
       p.ratio = meta.jpeg[0].height / meta.jpeg[0].width;
+    }
+
+    // Every year the project covers, for the timeline: "2020–present" gives
+    // 2020, 2021 … this year. A project with no `year` gets none.
+    const nums = (p.year || "").match(/\d{4}/g)?.map(Number) || [];
+    if (/present/i.test(p.year || "")) nums.push(new Date().getFullYear());
+    p.years = [];
+    if (nums.length) {
+      for (let y = Math.max(...nums); y >= Math.min(...nums); y--) p.years.push(y);
     }
   }
 

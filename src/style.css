@@ -16,7 +16,9 @@
   --bg: #000000;
   --fg: #d9d9d9;
   --muted: #8a8a8a;
-  --line: rgba(255, 255, 255, 0.35);  /* rules and image outlines */
+  --line: rgba(255, 255, 255, 0.35);  /* thin rules between sections */
+  --stroke: 1.333px;                  /* image outlines: 1pt, as in InDesign (1pt = 1.333 CSS px) */
+  --stroke-color: rgba(255, 255, 255, 0.6);
   --accent: #e01ee0;                  /* the magenta of the PDF links */
 
   --pad: clamp(8px, 1vw, 16px);       /* page edge: thin, like the PDF */
@@ -140,20 +142,20 @@ main { padding: var(--pad); }
 .grid.is-masonry { display: flex; gap: var(--gap); align-items: flex-start; }
 .grid-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: calc(var(--gap) * 2); }
 
-.card a { display: block; }
+.card-link { display: block; }
 .card img {
   width: 100%;
-  outline: 1px solid var(--line);
-  outline-offset: -1px;
+  outline: var(--stroke) solid var(--stroke-color);
+  outline-offset: calc(var(--stroke) * -1);
   transition: opacity 0.2s;
 }
-.card a:hover img { opacity: 0.8; }
+.card-link:hover img { opacity: 0.8; }
 
 .card-title,
 .card-tags { display: block; line-height: 1.35; }
 .card-title { margin-top: 0.45rem; }
 .card-title::before { content: "— "; }
-.card a:hover .card-title { color: var(--accent); }
+.card-link:hover .card-title { color: var(--accent); }
 .card-tags { font-size: var(--text-xs); color: var(--muted); }
 
 /* --- Project page -------------------------------------------------------- */
@@ -196,7 +198,7 @@ main { padding: var(--pad); }
 .project-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .gallery { display: grid; gap: var(--gap); }
-.gallery img { width: 100%; outline: 1px solid var(--line); outline-offset: -1px; }
+.gallery img { width: 100%; outline: var(--stroke) solid var(--stroke-color); outline-offset: calc(var(--stroke) * -1); }
 
 .project-pager {
   display: flex;
@@ -206,6 +208,152 @@ main { padding: var(--pad); }
   padding-top: 0.6rem;
   border-top: 1px solid var(--line);
 }
+
+/* --- Year buttons ---------------------------------------------------------
+   Every year on the site opens the timeline at that year. */
+.year-btn {
+  display: inline-block;
+  padding: 0 0.3em;
+  border: 1px solid var(--line);
+  line-height: 1.35;
+  color: var(--fg);
+}
+.year-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* --- Timeline ---------------------------------------------------------------- */
+
+.timeline-years {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.6rem 0;
+  margin-bottom: 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-s);
+}
+.timeline-year {
+  display: grid;
+  gap: var(--gap);
+  padding: 1rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 3.5rem; /* so the sticky year bar does not cover it */
+}
+@media (min-width: 900px) {
+  .timeline-year { grid-template-columns: 17rem minmax(0, 1fr); }
+}
+.timeline-label {
+  margin: 0;
+  font-weight: normal;
+  font-size: clamp(56px, 5.5vw, 90px);
+  line-height: 0.9;
+}
+.timeline-year:target .timeline-label { color: var(--accent); }
+.timeline-row {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+.timeline-row li { flex: 0 0 auto; width: clamp(150px, 16vw, 240px); scroll-snap-align: start; }
+.timeline-row img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  outline: var(--stroke) solid var(--stroke-color);
+  outline-offset: calc(var(--stroke) * -1);
+}
+.timeline-row a:hover img { opacity: 0.8; }
+.timeline-row a:hover .card-title { color: var(--accent); }
+.timeline-row .card-title { display: block; margin-top: 0.45rem; }
+
+/* --- Splash ---------------------------------------------------------------- */
+
+body.is-splash { overflow: hidden; height: 100vh; height: 100dvh; }
+.is-splash main { padding: 0; }
+.is-splash .site-footer { display: none; }
+.is-splash .site-header { pointer-events: none; z-index: 10; }
+.is-splash .site-header a,
+.is-splash .site-header button { pointer-events: auto; }
+
+/* Without JavaScript: a simple wrap of covers. */
+.splash-stage { display: flex; flex-wrap: wrap; gap: var(--gap); padding: var(--pad); }
+.splash-item img { width: 140px; }
+
+/* With JavaScript (script.js adds .is-live): a 3D stage filling the screen. */
+.splash.is-live {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;   /* keeps the 3D covers below the header and menu */
+  overflow: hidden;
+  perspective: 1100px;
+  touch-action: none;   /* the page handles swipes itself */
+  cursor: grab;
+  user-select: none;
+}
+.splash.is-live:active { cursor: grabbing; }
+.is-live .splash-stage {
+  position: absolute;
+  left: 50%;
+  top: 57%;
+  width: 0;
+  height: 0;
+  padding: 0;
+  transform-style: preserve-3d;
+}
+.is-live .splash-item {
+  position: absolute;
+  width: var(--splash-size, 128px);
+  left: calc(var(--splash-size, 128px) / -2);
+  top: calc(var(--splash-size, 128px) / -2);
+  will-change: transform, opacity;
+}
+.is-live .splash-item img {
+  width: 100%;
+  outline: var(--stroke) solid var(--stroke-color);
+  outline-offset: calc(var(--stroke) * -1);
+  -webkit-user-drag: none;
+  transition: outline-color 0.15s;
+}
+.is-live .splash-item:hover img,
+.is-live .splash-item:focus-visible img { outline-color: var(--accent); }
+@media (max-width: 700px) { .splash { --splash-size: 92px; } }
+
+.splash-caption,
+.splash-hint {
+  position: fixed;
+  left: var(--pad);
+  right: var(--pad);
+  z-index: 10;
+  margin: 0;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+  pointer-events: none;
+}
+.splash-caption { bottom: 3rem; text-align: center; color: var(--fg); min-height: 1.4em; }
+.splash-hint {
+  bottom: var(--pad);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+.splash-hint a { pointer-events: auto; color: var(--fg); }
+.splash-hint a:hover { color: var(--accent); }
+.hint-touch { display: none; }
+@media (pointer: coarse) { .hint-touch { display: inline; } .hint-desktop { display: none; } }
+.splash:not(.is-live) .splash-caption,
+.splash:not(.is-live) .splash-hint { position: static; }
 
 /* --- Info page ------------------------------------------------------------- */
 
@@ -248,12 +396,18 @@ main { padding: var(--pad); }
 @media (min-width: 900px) { .cv { grid-template-columns: 1fr 1fr; } }
 .cv-list li {
   display: grid;
-  grid-template-columns: 8.5em 1fr;
+  grid-template-columns: 11em 1fr;
   gap: 1rem;
   font-size: var(--text-s);
   margin-bottom: 0.55rem;
 }
 .cv-list .when { color: var(--muted); }
+.cv-list .what a,
+.project-text a:not(.year-btn),
+.project-meta dd a:not(.year-btn) { color: var(--accent); }
+.cv-list .what a:hover,
+.project-text a:hover,
+.project-meta dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* --- 404 ----------------------------------------------------------------- */
 

@@ -15,16 +15,16 @@ eleventyComputed:
 
   <div class="project-info">
     <dl class="project-meta">
-      {% if p.year %}<dt>Year</dt><dd>{{ p.year }}</dd>{% endif %}
-      {% if p.client %}<dt>Client</dt><dd>{{ p.client }}</dd>{% endif %}
+      {% if p.year %}<dt>Year</dt><dd>{{ p.year | yearLinks | safe }}</dd>{% endif %}
+      {% if p.client %}<dt>Client</dt><dd>{{ p.client | autolink | safe }}</dd>{% endif %}
       {% if p.role %}<dt>Role</dt><dd>{{ p.role }}</dd>{% endif %}
       <dt>Field</dt><dd>{{ p.tags | join(", ") }}</dd>
     </dl>
     <div class="project-text">
-      {% for para in p.intro %}<p>{{ para | safe }}</p>{% endfor %}
+      {% for para in p.intro %}<p>{{ para | autolink | safe }}</p>{% endfor %}
       {% if p.links %}
       <ul class="project-links">
-        {% for l in p.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }} ↗</a></li>{% endfor %}
+        {% for l in p.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
       </ul>
       {% endif %}
     </div>
@@ -39,8 +39,8 @@ eleventyComputed:
   {% set prev = projects | neighbour(p.id, -1) %}
   {% set next = projects | neighbour(p.id, 1) %}
   <nav class="project-pager">
-    <a href="/work/{{ prev.id }}/">← {{ prev.title }}</a>
-    <a href="/">All work</a>
-    <a href="/work/{{ next.id }}/">{{ next.title }} →</a>
+    <a href="/work/{{ prev.id }}/">« {{ prev.title }}</a>
+    <a href="/work/">All work</a>
+    <a href="/work/{{ next.id }}/">{{ next.title }} »</a>
   </nav>
 </article>

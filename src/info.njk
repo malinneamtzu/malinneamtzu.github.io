@@ -39,7 +39,7 @@ permalink: /info/
       <h2>{{ section.title }}</h2>
       <ul class="cv-list">
         {% for item in section.items %}
-        <li><span class="when">{{ item.when }}</span><span class="what">{{ item.what | safe }}</span></li>
+        <li><span class="when">{{ item.when | yearLinks | safe }}</span><span class="what">{{ item.what | autolink | safe }}</span></li>
         {% endfor %}
       </ul>
     </section>
