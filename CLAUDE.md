@@ -71,7 +71,8 @@ Decap CMS 3 (`src/admin/index.html` loads it from unpkg, pinned version; `src/ad
 - **Live site**: backend `github`, repo `malinneamtzu/malinneamtzu.github.io`, `branch: portfolio` (switch to `main` after the merge). Sign-in goes through Netlify's built-in GitHub OAuth provider (`https://api.netlify.com/auth`), so only GitHub accounts with write access to the repo can log in and save. One-time setup: a GitHub OAuth App (callback `https://api.netlify.com/auth/done`) whose client ID/secret are added in Netlify → Site configuration → Access & security → OAuth → GitHub. Each Publish is a commit; Netlify rebuilds.
 - **Locally**: `npm start` + `npm run cms` (decap-server on :8081, `local_backend: true`), open `/admin/`, click Login (no password locally). Edits write straight to the files.
 - In `config.yml`, quote any label containing a comma (`label: "a, b"`); inside `{ … }` an unquoted comma breaks the YAML and the fields silently show up empty.
-- A font uploaded in Theme only shows in the dashboard preview after Publish (the preview loads it from the site).
+- **Text font field** is a custom widget `fontdrop` (registered in `src/admin/index.html`): real drag-and-drop or click, checks the file is a readable font (FontFace API), renames it to lowercase-dashes, hands it to Decap's `onPersistMedia` (committed together with the entry on save) and stores `/fonts/uploads/<name>`. New fonts preview at once via blob URLs kept in `window.fontPreviews`. Decap's stock file widget had no drag-and-drop and could not preview unpublished fonts.
+- **Button wording**: a custom locale `site` (`locale: site` in config.yml, `CMS.registerLocale` in index.html) renames Publish → "Save to website", Published → "Saved ✓", Unsaved changes → "Not saved yet". It merges over Decap's English, so only the changed strings are listed.
 - When adding a field to the JSON, add it to `config.yml` too, or the dashboard will not show it.
 
 ## Adding or editing a project

@@ -21,6 +21,9 @@ backend:
 # directly instead of GitHub. Ignored on the live site.
 local_backend: true
 
+# Button wording ("Save to website" instead of "Publish"), set in index.html.
+locale: site
+
 site_url: https://malinneamtzu.com
 display_url: https://malinneamtzu.com
 logo_url: /favicon.svg
@@ -195,10 +198,9 @@ collections:
           - { label: "Highlight (links, hover, active page)", name: highlight, widget: color, allowInput: true }
           - label: Text font
             name: textFont
-            widget: file
+            widget: fontdrop
             required: false
-            choose_url: false
             media_folder: /src/fonts/uploads
             public_folder: /fonts/uploads
-            hint: "Drop a .woff2, .woff, .otf or .ttf file. Used for all text except the big titles, which stay in Segmentor-03. Remove it to go back to Segmentor."
+            hint: "Used for all text except the big titles, which stay in Segmentor-03. Shows in the preview straight away; press Publish to put it on the site."
           - { label: Font name (for your reference), name: textFontName, widget: string, required: false }

@@ -12,13 +12,125 @@
        this file. Version pinned so updates never surprise you. -->
   <script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
   <script>
+    // Clearer words on the save button (config.yml sets locale: site).
+    // Anything not listed here keeps Decap's English wording.
+    CMS.registerLocale("site", {
+      editor: {
+        editorToolbar: {
+          publish: "Save to website",
+          publishNow: "Save now",
+          publishing: "Saving…",
+          published: "Saved ✓",
+          unsavedChanges: "Not saved yet",
+          changesSaved: "Everything saved",
+          publishAndCreateNew: "Save and create new",
+          publishAndDuplicate: "Save and duplicate",
+        },
+      },
+    });
+
+    // ------------------------------------------------------------------
+    // Font drop: a custom field for the text font. Drag a .woff2, .woff,
+    // .otf or .ttf onto it (or click to choose). The file is checked in
+    // the browser, shown at once in the field and in the live preview,
+    // and saved to src/fonts/uploads/ through the dashboard's normal
+    // upload. The field stores the public path, e.g. /fonts/uploads/x.otf.
+    // ------------------------------------------------------------------
+    window.fontPreviews = window.fontPreviews || {};   // path → blob URL, for the preview
+    const FONT_EXT = /\.(woff2?|otf|ttf)$/i;
+    const PUBLIC_FOLDER = "/fonts/uploads";
+
+    CMS.registerWidget("fontdrop", createClass({
+      getInitialState() { return { over: false, busy: false, error: "", family: "" }; },
+      componentDidMount() { this.loadFamily(this.props.value); },
+      componentDidUpdate(prev) { if (prev.value !== this.props.value) this.loadFamily(this.props.value); },
+
+      // Registers the current font in this page so the field can show a sample.
+      async loadFamily(path) {
+        if (!path) return this.setState({ family: "" });
+        const url = window.fontPreviews[path] || path;
+        const family = "Drop" + Math.abs([...path].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7));
+        try {
+          const face = new FontFace(family, `url("${url}")`);
+          document.fonts.add(await face.load());
+          this.setState({ family });
+        } catch (e) { this.setState({ family: "" }); }
+      },
+
+      async useFile(file) {
+        if (!file) return;
+        if (!FONT_EXT.test(file.name)) {
+          return this.setState({ error: "That is not a font file. Use .woff2, .woff, .otf or .ttf." });
+        }
+        this.setState({ busy: true, error: "" });
+        try {
+          // Make sure the browser can actually read it as a font.
+          await new FontFace("Check", await file.arrayBuffer()).load();
+        } catch (e) {
+          return this.setState({ busy: false, error: "This file could not be read as a font." });
+        }
+        // Simple file name: lowercase letters, numbers, dots and dashes.
+        const name = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^-+|-+$/g, "");
+        const clean = new File([file], name, { type: file.type || "font/" + name.split(".").pop() });
+        const path = `${PUBLIC_FOLDER}/${name}`;
+        window.fontPreviews[path] = URL.createObjectURL(clean);
+        try {
+          await this.props.onPersistMedia(clean, { field: this.props.field });
+        } catch (e) {
+          return this.setState({ busy: false, error: "Upload failed: " + e.message });
+        }
+        this.setState({ busy: false });
+        this.props.onChange(path);
+      },
+
+      render() {
+        const { value } = this.props;
+        const { over, busy, error, family } = this.state;
+        const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+        const box = {
+          border: `2px dashed ${over ? "#e01ee0" : "#c5c5c5"}`, borderRadius: 5, padding: "22px 16px",
+          textAlign: "center", cursor: "pointer", background: over ? "#fbeefb" : "#fff",
+          transition: "background .15s, border-color .15s", fontSize: 14, color: "#555",
+        };
+        return h("div", { className: this.props.classNameWrapper, style: { padding: 12 } },
+          h("label", {
+              style: box,
+              onDragEnter: (e) => { stop(e); this.setState({ over: true }); },
+              onDragOver: (e) => { stop(e); e.dataTransfer.dropEffect = "copy"; },
+              onDragLeave: (e) => { stop(e); this.setState({ over: false }); },
+              onDrop: (e) => { stop(e); this.setState({ over: false }); this.useFile(e.dataTransfer.files[0]); },
+            },
+            h("input", {
+              type: "file", accept: ".woff2,.woff,.otf,.ttf", style: { display: "none" },
+              onChange: (e) => { this.useFile(e.target.files[0]); e.target.value = ""; },
+            }),
+            busy ? "Uploading…" : value ? "Drop another font here to replace it, or click to choose"
+                                       : "Drop a font file here (.woff2 .woff .otf .ttf), or click to choose"
+          ),
+          error && h("p", { style: { color: "#c00", margin: "8px 0 0", fontSize: 13 } }, error),
+          value && h("div", { style: { marginTop: 12, display: "flex", alignItems: "center", gap: 12 } },
+            h("div", { style: { flex: 1 } },
+              h("div", { style: { fontSize: 12, color: "#888" } }, value.split("/").pop()),
+              h("div", { style: { fontFamily: family ? `"${family}"` : "inherit", fontSize: 26, lineHeight: 1.2 } },
+                family ? "Mălin Neamțu — Aa Bb 0123" : "(sample shows once the font loads)")
+            ),
+            h("button", {
+              type: "button", onClick: () => this.props.onChange(""),
+              style: { border: "1px solid #ccc", background: "#fff", borderRadius: 4, padding: "6px 10px", cursor: "pointer" },
+            }, "Remove (back to Segmentor)")
+          )
+        );
+      },
+    }));
+
     // Live preview for Theme: shows your colours, stroke and text font on a
     // small sample while you edit, so you can try fonts before publishing.
     CMS.registerPreviewTemplate("theme", createClass({
       render() {
         const get = (k, d) => this.props.entry.getIn(["data", k]) || d;
         const fontPath = get("textFont", "");
-        const fontUrl = fontPath ? this.props.getAsset(fontPath).toString() : "";
+        // A font dropped in just now is shown from memory; a published one from the site.
+        const fontUrl = fontPath ? (window.fontPreviews[fontPath] || fontPath) : "";
         const bg = get("background", "#000"), fg = get("text", "#d9d9d9"), muted = get("muted", "#8a8a8a");
         const line = get("lines", "#5c5c5c"), stroke = get("stroke", "#999"), hi = get("highlight", "#e01ee0");
         const w = (parseFloat(this.props.entry.getIn(["data", "strokeWidth"])) || 0) * 1.333;
