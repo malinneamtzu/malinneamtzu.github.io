@@ -29,6 +29,10 @@ logo_url: /favicon.svg
 media_folder: src/assets/uploads
 public_folder: /assets/uploads
 
+# Text boxes with a small toolbar: select words, press the link button
+# (chain icon), paste the address. Bold and italic are there too.
+# "Markdown" mode in the toolbar shows the raw text: [words](https://…).
+
 collections:
   # ---------------------------------------------------------------- Projects
   - name: projects
@@ -64,15 +68,17 @@ collections:
         widget: list
         required: false
         hint: "Separate with commas, e.g. Poster, Type design"
-      - { label: Client, name: client, widget: string, required: false }
-      - { label: Role, name: role, widget: string, required: false }
+      - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: Client, name: client, required: false }
+      - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: Role, name: role, required: false }
       - label: Text
         name: intro
-        label_singular: paragraph
-        widget: list
+        widget: markdown
+        buttons: [link, bold, italic]
+        editor_components: []
+        modes: [rich_text, raw]
+        minimal: true
         required: false
-        hint: "One box per paragraph. Names listed under “Words → links” become links automatically."
-        field: { label: Paragraph, name: paragraph, widget: text }
+        hint: "Press Enter for a new paragraph. To add a link: select the words, press the link button, paste the address."
       - label: Links under the text
         name: links
         label_singular: link
@@ -96,7 +102,7 @@ collections:
         summary: "{{fields.image}}"
         fields:
           - { label: Image, name: image, widget: image, choose_url: false }
-          - { label: Caption, name: caption, widget: string, required: false }
+          - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: Caption, name: caption, required: false }
       - label: Private notes (not shown on the site)
         name: notes
         widget: text
@@ -122,8 +128,12 @@ collections:
           - { label: "Description (search engines and link previews)", name: description, widget: text }
           - label: Bio (Info page)
             name: bio
-            widget: list
-            field: { label: Paragraph, name: paragraph, widget: text }
+            widget: markdown
+            buttons: [link, bold, italic]
+            editor_components: []
+            modes: [rich_text, raw]
+            minimal: true
+            hint: "Press Enter for a new paragraph. Select words and press the link button to add a link."
           - label: Links (Info page)
             name: links
             widget: list
@@ -157,21 +167,7 @@ collections:
                 summary: "{{fields.when}} — {{fields.what}}"
                 fields:
                   - { label: When, name: when, widget: string, hint: "e.g. 2025 or 2020 — present" }
-                  - { label: What, name: what, widget: text }
-
-      - name: links
-        label: Words → links
-        file: src/_data/links.json
-        format: json
-        fields:
-          - label: Links
-            name: links
-            widget: list
-            summary: "{{fields.name}} → {{fields.url}}"
-            hint: "Wherever this exact word or name appears in the CV or a project text, it becomes this link. Capitals must match."
-            fields:
-              - { label: Word or name, name: name, widget: string }
-              - { label: URL, name: url, widget: string, pattern: ['^https?://', "Start with https://"] }
+                  - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: What, name: what, hint: "Select words and press the link button to add a link." }
 
   # ---------------------------------------------------------- Appearance
   # Has a live preview on the right while you edit.

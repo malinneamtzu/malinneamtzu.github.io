@@ -5,6 +5,8 @@
 //   3. The home grid is arranged into masonry columns.
 //   4. The Info page picks the right background video.
 //   5. The splash page: project covers floating in 3D.
+//   6. Reveal: things fade and slide in as they scroll into view.
+//   7. Intro: the name runs through its shapes once per visit.
 // ===========================================================================
 
 const root = document.documentElement;
@@ -216,7 +218,12 @@ function initSplash(root) {
   items.forEach((a) => a.addEventListener("click", (e) => { if (dragged) e.preventDefault(); }));
 
   // Caption: title and year of the cover under the pointer (or in focus).
-  const show = (a) => { caption.textContent = a ? `— ${a.dataset.title}${a.dataset.year ? "   " + a.dataset.year : ""}` : ""; };
+  const show = (a) => {
+    caption.textContent = a ? `— ${a.dataset.title}${a.dataset.year ? "   " + a.dataset.year : ""}` : "";
+    // restart the small slide-up animation for each new title
+    caption.classList.remove("is-changing");
+    if (a) { void caption.offsetWidth; caption.classList.add("is-changing"); }
+  };
   items.forEach((a) => {
     a.addEventListener("mouseenter", () => show(a));
     a.addEventListener("focus", () => show(a));
@@ -224,8 +231,14 @@ function initSplash(root) {
   });
 
   const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
-  function frame() {
+  // Intro: covers fly in from far away, one after another, then settle
+  // into the sphere. Each starts a little later than the one before.
+  const start = performance.now();
+  const INTRO = reducedMotion ? 0 : 1400, STAGGER = reducedMotion ? 0 : 900 / n;
+
+  function frame(now) {
     progress += (aim - progress) * 0.07;
     rotX += (aimX - rotX) * 0.05;
     rotY += (aimY - rotY) * 0.05;
@@ -247,15 +260,23 @@ function initSplash(root) {
       const fz = (((field[i][2] * DEPTH + travel) % DEPTH) + DEPTH) % DEPTH - DEPTH * 0.8;
       const f = [field[i][0] * W * 0.62, field[i][1] * H * 0.5, fz];
 
-      const X = s[0] + (f[0] - s[0]) * open;
-      const Y = s[1] + (f[1] - s[1]) * open;
-      const Z = s[2] + (f[2] - s[2]) * open;
+      let X = s[0] + (f[0] - s[0]) * open;
+      let Y = s[1] + (f[1] - s[1]) * open;
+      let Z = s[2] + (f[2] - s[2]) * open;
+
+      // intro: 0 = far behind, 1 = in place
+      const t = INTRO ? Math.min(1, Math.max(0, (now - start - i * STAGGER) / INTRO)) : 1;
+      if (t < 1) {
+        const k = easeOut(t);
+        X *= k; Y *= k;
+        Z = Z * k - (1 - k) * 4000;
+      }
 
       // fade covers far away, and ones about to pass the viewer
       const fade = Z > 400 ? Math.max(0, 1 - (Z - 400) / 400) : Z < -DEPTH * 0.6 ? Math.max(0.15, 1 + (Z + DEPTH * 0.6) / 1200) : 1;
       const el = items[i];
       el.style.transform = `translate3d(${X.toFixed(1)}px, ${Y.toFixed(1)}px, ${Z.toFixed(1)}px)`;
-      el.style.opacity = fade.toFixed(2);
+      el.style.opacity = (fade * Math.min(1, t * 2.5)).toFixed(2);
       el.style.zIndex = String(Math.round(Z + 5000));
       el.style.pointerEvents = fade < 0.3 ? "none" : "";
     }
@@ -264,8 +285,56 @@ function initSplash(root) {
   requestAnimationFrame(frame);
 }
 
+// --- 6. Reveal on scroll ----------------------------------------------------------
+// Each element starts slightly lower and transparent (.reveal in style.css)
+// and settles when it scrolls into view. Elements arriving together get a
+// small delay one after another, so a row ripples in instead of popping.
+const REVEAL = [
+  ".card", ".gallery figure", ".project-info", ".project-pager",
+  ".timeline-label", ".timeline-row li", ".info-top > section", ".cv section",
+].join(",");
+
+function initReveal() {
+  if (reducedMotion || !("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    let k = 0;
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.style.setProperty("--d", Math.min(k++ * 0.07, 0.5) + "s");
+      e.target.classList.add("is-in");
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: "0px 0px -6% 0px" });
+  // Grid cards in reading order (left to right), not column by column.
+  const els = [...document.querySelectorAll(REVEAL)]
+    .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+  for (const el of els) { el.classList.add("reveal"); io.observe(el); }
+}
+
+// --- 7. Intro sweep -----------------------------------------------------------------
+// The first page of a visit: the name (and every .seg title) runs through
+// the four Segmentor shapes once, then the mouse or tilt takes over.
+function introSweep() {
+  if (reducedMotion || sessionStorage.getItem("introDone")) return;
+  sessionStorage.setItem("introDone", "1");
+  const DURATION = 1800, t0 = performance.now();
+  let stopped = false;
+  window.addEventListener("mousemove", () => { stopped = true; }, { once: true });
+  const step = (now) => {
+    if (stopped) return;
+    const t = Math.min(1, (now - t0) / DURATION);
+    const r = 0.5 * Math.sin(Math.PI * t);          // out and back to the centre
+    const a = t * Math.PI * 2;                      // one turn round the screen
+    updateFont(0.5 + Math.cos(a) * r, 0.5 + Math.sin(a) * r);
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
 // --- Start ------------------------------------------------------------------------
 layoutGrid();
+initReveal();
+introSweep();
 fitName();
 document.fonts.ready.then(fitName);
 window.addEventListener("resize", () => { layoutGrid(); fitName(); });

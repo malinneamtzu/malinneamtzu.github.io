@@ -12,7 +12,7 @@
 //   year     what visitors see: "2023", "2021–2025", "2020–present"
 //   tags     short labels under the card
 //   client, role   optional
-//   intro    paragraphs (HTML allowed; names from links.json become links)
+//   intro    the text. Blank line = new paragraph; links as [words](https://…)
 //   links    list of { label, url }
 //   cover    the card image
 //   gallery  list of { image, caption } shown on the project page, in order
@@ -31,7 +31,11 @@ export default async function () {
     const p = JSON.parse(fs.readFileSync(path.join(DIR, file), "utf8"));
     p.id = file.replace(/\.json$/, "");
     p.tags ||= [];
-    p.intro ||= [];
+    // Older files kept the text as a list of paragraphs.
+    if (Array.isArray(p.intro)) p.intro = p.intro.join("\n\n");
+    p.intro ||= "";
+    // First paragraph as plain text, for search engines and link previews.
+    p.summary = p.intro.split(/\n\s*\n/)[0].replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[*_]/g, "").trim();
     p.links ||= [];
     p.gallery = (p.gallery || []).filter((g) => g && g.image);
 

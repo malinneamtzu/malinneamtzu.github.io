@@ -149,9 +149,7 @@ main { padding: var(--pad); }
   width: 100%;
   outline: var(--stroke) solid var(--stroke-color);
   outline-offset: calc(var(--stroke) * -1);
-  transition: opacity 0.2s;
 }
-.card-link:hover img { opacity: 0.8; }
 
 .card-title,
 .card-tags { display: block; line-height: 1.35; }
@@ -197,7 +195,6 @@ main { padding: var(--pad); }
 
 .project-links { list-style: none; padding: 0; margin: 0; font-size: var(--text-s); }
 .project-links a { color: var(--accent); }
-.project-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .gallery { display: grid; gap: var(--gap); }
 .gallery figure { margin: 0; }
@@ -273,7 +270,6 @@ main { padding: var(--pad); }
   outline: var(--stroke) solid var(--stroke-color);
   outline-offset: calc(var(--stroke) * -1);
 }
-.timeline-row a:hover img { opacity: 0.8; }
 .timeline-row a:hover .card-title { color: var(--accent); }
 .timeline-row .card-title { display: block; margin-top: 0.45rem; }
 
@@ -409,9 +405,6 @@ body.is-splash { overflow: hidden; height: 100vh; height: 100dvh; }
 .cv-list .what a,
 .project-text a:not(.year-btn),
 .project-meta dd a:not(.year-btn) { color: var(--accent); }
-.cv-list .what a:hover,
-.project-text a:hover,
-.project-meta dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* --- 404 ----------------------------------------------------------------- */
 
@@ -430,6 +423,90 @@ body.is-splash { overflow: hidden; height: 100vh; height: 100dvh; }
   color: var(--muted);
 }
 
+/* ==========================================================================
+   Motion: small ins and outs. All timing lives here.
+   ========================================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);   /* fast start, soft landing */
+  --t-quick: 0.25s;
+  --t-slow: 0.8s;
+}
+
+/* Page changes: the header stays put, the page below fades and slides.
+   Works in Chrome, Edge and Safari 18+; other browsers just switch pages. */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: header; }
+::view-transition-old(root) { animation: page-out 0.22s ease-in both; }
+::view-transition-new(root) { animation: page-in 0.5s var(--ease-out) both; }
+@keyframes page-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(16px); } }
+
+/* Reveal on scroll: script.js adds .reveal, then .is-in when the element
+   comes into view. --d is a small per-element delay so rows ripple in. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* Images: lift a little and take the highlight colour on hover. */
+.card img,
+.timeline-row img,
+.gallery img {
+  transition: transform var(--t-quick) var(--ease-out), outline-color var(--t-quick);
+}
+.card-link:hover img,
+.timeline-row a:hover img { transform: translateY(-4px); outline-color: var(--accent); }
+
+/* Titles under images: the dash grows when hovered. */
+.card-title::before { display: inline-block; transition: transform var(--t-quick) var(--ease-out); }
+.card-link:hover .card-title::before,
+.timeline-row a:hover .card-title::before { transform: translateX(4px); }
+
+/* Links in text: an underline that draws itself in. */
+.cv-list .what a,
+.project-text a:not(.year-btn),
+.project-meta dd a:not(.year-btn),
+.info-bio a,
+.project-links a,
+.site-nav a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size var(--t-quick) var(--ease-out), color var(--t-quick);
+}
+.cv-list .what a:hover,
+.project-text a:hover,
+.project-meta dd a:hover,
+.info-bio a:hover,
+.project-links a:hover,
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { background-size: 100% 1px; text-decoration: none; }
+.info-bio a { color: var(--accent); }
+
+/* Year buttons fill in. */
+.year-btn { transition: background-color var(--t-quick), color var(--t-quick), border-color var(--t-quick); }
+.year-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+/* Pager: the arrows nudge outwards. */
+.project-pager a { transition: transform var(--t-quick) var(--ease-out), color var(--t-quick); }
+.project-pager a:first-child:hover { transform: translateX(-4px); }
+.project-pager a:last-child:hover { transform: translateX(4px); }
+
+/* Splash caption: each new title slides up. */
+.splash-caption.is-changing { animation: caption-in 0.35s var(--ease-out); }
+@keyframes caption-in { from { opacity: 0; transform: translateY(6px); } }
+
+/* The timeline year you jumped to pulses once. */
+.timeline-year:target .timeline-label { animation: year-flash 1.2s var(--ease-out); }
+@keyframes year-flash { 0% { opacity: 0; transform: translateX(-12px); } }
+
+/* Everything above switches off for people who ask for less motion. */
 @media (prefers-reduced-motion: reduce) {
-  .card img { transition: none; }
+  *, *::before, *::after, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
 }

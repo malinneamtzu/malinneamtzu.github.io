@@ -8,7 +8,7 @@ pagination:
 permalink: "/work/{{ p.id }}/"
 eleventyComputed:
   title: "{{ p.title }}"
-  description: "{{ p.intro[0] | striptags }}"
+  description: "{{ p.summary }}"
 ---
 <article class="project">
   <h1 class="project-title seg">{{ p.title }}</h1>
@@ -16,12 +16,12 @@ eleventyComputed:
   <div class="project-info">
     <dl class="project-meta">
       {% if p.year %}<dt>Year</dt><dd>{{ p.year | yearLinks | safe }}</dd>{% endif %}
-      {% if p.client %}<dt>Client</dt><dd>{{ p.client | autolink | safe }}</dd>{% endif %}
-      {% if p.role %}<dt>Role</dt><dd>{{ p.role }}</dd>{% endif %}
+      {% if p.client %}<dt>Client</dt><dd>{{ p.client | mdInline | safe }}</dd>{% endif %}
+      {% if p.role %}<dt>Role</dt><dd>{{ p.role | mdInline | safe }}</dd>{% endif %}
       <dt>Field</dt><dd>{{ p.tags | join(", ") }}</dd>
     </dl>
     <div class="project-text">
-      {% for para in p.intro %}<p>{{ para | autolink | safe }}</p>{% endfor %}
+      {{ p.intro | md | safe }}
       {% if p.links %}
       <ul class="project-links">
         {% for l in p.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
@@ -33,8 +33,8 @@ eleventyComputed:
   <div class="gallery">
     {% for g in p.gallery %}
     <figure>
-      <img src="{{ g.image }}" alt="{{ g.caption or (p.title + ', image ' + loop.index) }}"{% if loop.first %} loading="eager"{% endif %}>
-      {% if g.caption %}<figcaption>— {{ g.caption }}</figcaption>{% endif %}
+      <img src="{{ g.image }}" alt="{{ (g.caption | plain) or (p.title + ', image ' + loop.index) }}"{% if loop.first %} loading="eager"{% endif %}>
+      {% if g.caption %}<figcaption>— {{ g.caption | mdInline | safe }}</figcaption>{% endif %}
     </figure>
     {% endfor %}
   </div>
