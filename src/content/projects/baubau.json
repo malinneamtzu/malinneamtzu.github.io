@@ -1,0 +1,38 @@
+{
+  "title": "BAUBAU — Lurking / Forever",
+  "date": "2023-03",
+  "year": "2023",
+  "tags": [
+    "Cover art",
+    "Drawing",
+    "Music"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "BAUBAU, together with Anton Hoyer in Leipzig, was first recorded in 2018 and again in 2022. In 2023 we finally released “LURKING” and “FOREVER”: the original drawings and the two covers."
+  ],
+  "links": [
+    {
+      "label": "Instagram post",
+      "url": "https://www.instagram.com/p/CpxpFqHIVtN/"
+    }
+  ],
+  "cover": "/assets/baubau/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/baubau/baubau-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/baubau/baubau-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/baubau/baubau-03.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "instagram",
+  "notes": ""
+}

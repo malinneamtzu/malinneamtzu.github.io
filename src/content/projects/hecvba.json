@@ -1,0 +1,28 @@
+{
+  "title": "Hecvba",
+  "date": "",
+  "year": "",
+  "tags": [
+    "Typeface",
+    "Specimen"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Hecvba, a typeface shown with its specimen poster."
+  ],
+  "links": [],
+  "cover": "/assets/hecvba/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/hecvba/hecvba-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/hecvba/hecvba-02.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": "Add date, year and a real description."
+}

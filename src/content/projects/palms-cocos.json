@@ -1,0 +1,50 @@
+{
+  "title": "Palms Cocos",
+  "date": "2024",
+  "year": "2020–2024",
+  "tags": [
+    "Illustration",
+    "Streetwear",
+    "Collaboration"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Palms Cocos is an illustration duo that helps me keep the creative drive and flow I had as a kid. Over the past years we did capsule collections with streetwear brands: Sneaker Industry (2020) and RIP BANANAS (2024). All illustrations shown are my own."
+  ],
+  "links": [
+    {
+      "label": "Sneaker Industry teaser",
+      "url": "https://www.youtube.com/watch?v=NBqZvpIFIQQ"
+    },
+    {
+      "label": "Sneaker Industry behind the scenes",
+      "url": "https://www.youtube.com/watch?v=uESt1CJSw6s"
+    },
+    {
+      "label": "RIP BANANAS behind the scenes",
+      "url": "https://www.instagram.com/p/C4QNXjfIG4a/"
+    }
+  ],
+  "cover": "/assets/palms-cocos/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/palms-cocos/palms-cocos-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/palms-cocos/palms-cocos-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/palms-cocos/palms-cocos-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/palms-cocos/palms-cocos-04.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": ""
+}

@@ -31,8 +31,11 @@ eleventyComputed:
   </div>
 
   <div class="gallery">
-    {% for img in p.gallery %}
-    <img src="{{ img }}" alt="{{ p.title }}, image {{ loop.index }}"{% if loop.first %} loading="eager"{% endif %}>
+    {% for g in p.gallery %}
+    <figure>
+      <img src="{{ g.image }}" alt="{{ g.caption or (p.title + ', image ' + loop.index) }}"{% if loop.first %} loading="eager"{% endif %}>
+      {% if g.caption %}<figcaption>— {{ g.caption }}</figcaption>{% endif %}
+    </figure>
     {% endfor %}
   </div>
 

@@ -1,0 +1,62 @@
+{
+  "title": "Spy/Master",
+  "date": "2023-09",
+  "year": "2023",
+  "tags": [
+    "Title sequence",
+    "Custom typeface",
+    "HBO Max"
+  ],
+  "client": "HBO Max",
+  "role": "Title sequence and custom typeface",
+  "intro": [
+    "Spy/Master, a Berlinale-nominated HBO Max series, follows a defection from the communist bloc. I made the title sequence and a custom typeface. The font stands for the Cold War conflict, with two stylistic sets, West and East, reflecting the era."
+  ],
+  "links": [
+    {
+      "label": "Watch the title sequence",
+      "url": "https://vimeo.com/840816231"
+    }
+  ],
+  "cover": "/assets/spy-master/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/spy-master/spy-master-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-04.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-05.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-06.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-07.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-08.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/spy-master/spy-master-09.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": "Month (09) is the series release; confirm."
+}

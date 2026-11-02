@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard / Mălin Neamțu</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- The dashboard app (Decap CMS). Its settings are in config.yml next to
+       this file. Version pinned so updates never surprise you. -->
+  <script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+  <script>
+    // Live preview for Theme: shows your colours, stroke and text font on a
+    // small sample while you edit, so you can try fonts before publishing.
+    CMS.registerPreviewTemplate("theme", createClass({
+      render() {
+        const get = (k, d) => this.props.entry.getIn(["data", k]) || d;
+        const fontPath = get("textFont", "");
+        const fontUrl = fontPath ? this.props.getAsset(fontPath).toString() : "";
+        const bg = get("background", "#000"), fg = get("text", "#d9d9d9"), muted = get("muted", "#8a8a8a");
+        const line = get("lines", "#5c5c5c"), stroke = get("stroke", "#999"), hi = get("highlight", "#e01ee0");
+        const w = (parseFloat(this.props.entry.getIn(["data", "strokeWidth"])) || 0) * 1.333;
+        const css = `
+          @font-face { font-family: "Segmentor"; src: url("/fonts/Segmentor.woff2"); }
+          ${fontUrl ? `@font-face { font-family: "TextFont"; src: url("${fontUrl}"); }` : ""}
+          body { margin: 0; }
+          .p { background: ${bg}; color: ${fg}; min-height: 100vh; padding: 16px; font-family: ${fontUrl ? '"TextFont",' : ""} "Segmentor", monospace; }
+          .name { font-family: "Segmentor"; font-size: 64px; line-height: .9; margin: 0 0 12px; }
+          .bar { display: flex; justify-content: space-between; border-bottom: 1px solid ${line}; padding-bottom: 6px;
+                 font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+          .bar span { color: ${muted}; } .bar b { color: ${hi}; font-weight: normal; }
+          .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+          .img { aspect-ratio: 3/4; background: #444 linear-gradient(135deg, #666, #222); outline: ${w}px solid ${stroke}; outline-offset: -${w}px; }
+          .t { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; margin-top: 6px; }
+          .tag { font-size: 11px; color: ${muted}; }
+          p { font-size: 16px; line-height: 1.45; } a { color: ${hi}; }`;
+        return h("div", {},
+          h("style", {}, css),
+          h("div", { className: "p" },
+            h("div", { className: "name" }, "Mălin Neamțu"),
+            h("div", { className: "bar" }, h("span", {}, "Type & graphic designer"), h("b", {}, "Work   Timeline   Info")),
+            h("p", {}, "The quick brown fox jumps over the lazy dog. Since 2020 I have worked with ",
+              h("a", {}, "Club Guesthouse"), ", the best-known electronic music venue in Romania. 0123456789"),
+            h("div", { className: "grid" },
+              h("div", {}, h("div", { className: "img" }), h("div", { className: "t" }, "— Segmentor"), h("div", { className: "tag" }, "Variable font — 2025")),
+              h("div", {}, h("div", { className: "img" }), h("div", { className: "t" }, "— Records"), h("div", { className: "tag" }, "LP design — 2023–2025"))
+            ),
+            h("p", {}, fontUrl ? "Text font: " + (get("textFontName", "") || fontPath.split("/").pop()) : "Text font: Segmentor-03 (default)")
+          )
+        );
+      },
+    }));
+  </script>
+</body>
+</html>

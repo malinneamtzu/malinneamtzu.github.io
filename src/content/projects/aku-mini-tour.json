@@ -1,0 +1,37 @@
+{
+  "title": "AKU Mini Tour",
+  "date": "2023-07",
+  "year": "2023",
+  "tags": [
+    "Tour poster",
+    "Illustration"
+  ],
+  "client": "Of Bits and Pieces Records",
+  "role": "",
+  "intro": [
+    "Poster and mini illustration, made in house, for the AKU + Parking Lot + Snitsh Pitsh mini tour, July 2023: Leipzig, Zürich, Biel and Lormes."
+  ],
+  "links": [
+    {
+      "label": "Instagram post",
+      "url": "https://www.instagram.com/p/CvFk8dJo7gb/"
+    }
+  ],
+  "cover": "/assets/aku-mini-tour/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/aku-mini-tour/aku-mini-tour-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/aku-mini-tour/aku-mini-tour-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/aku-mini-tour/aku-mini-tour-03.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "instagram",
+  "notes": ""
+}

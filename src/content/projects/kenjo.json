@@ -1,0 +1,40 @@
+{
+  "title": "Kenjo",
+  "date": "",
+  "year": "",
+  "tags": [
+    "Typeface family",
+    "Specimen"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Kenjo, a typeface family from Regular to High Contrast, with Segment and Outline styles."
+  ],
+  "links": [],
+  "cover": "/assets/kenjo/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/kenjo/kenjo-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/kenjo/kenjo-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/kenjo/kenjo-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/kenjo/kenjo-04.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/kenjo/kenjo-05.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": "Add date and year (used for OYO 9 in 2025, so probably 2024–25?)."
+}

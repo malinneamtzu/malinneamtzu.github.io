@@ -1,0 +1,208 @@
+# Dashboard settings (Decap CMS). Open the dashboard at /admin.
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# Every "Publish" commits the change to GitHub; Netlify then rebuilds the
+# site (about a minute). Sign-in is with a GitHub account that has write
+# access to the repository, so nobody else can change anything.
+
+backend:
+  name: github
+  repo: malinneamtzu/malinneamtzu.github.io
+  # The branch Netlify deploys. Change to "main" once portfolio is merged.
+  branch: portfolio
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}” (via dashboard)"
+    update: "Update {{collection}} “{{slug}}” (via dashboard)"
+    delete: "Delete {{collection}} “{{slug}}” (via dashboard)"
+    uploadMedia: "Upload “{{path}}” (via dashboard)"
+    deleteMedia: "Delete “{{path}}” (via dashboard)"
+
+# On your own computer (npm run cms + npm start), edit the local files
+# directly instead of GitHub. Ignored on the live site.
+local_backend: true
+
+site_url: https://malinneamtzu.com
+display_url: https://malinneamtzu.com
+logo_url: /favicon.svg
+
+# Where uploaded images go, and how the website refers to them.
+media_folder: src/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  # ---------------------------------------------------------------- Projects
+  - name: projects
+    label: Projects
+    label_singular: Project
+    description: "Every project on the site. The order is automatic: newest first by Sort date."
+    folder: src/content/projects
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{fields.title}} — {{fields.year}}"
+    sortable_fields: [title, date]
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Sort date
+        name: date
+        widget: string
+        required: false
+        hint: "YYYY or YYYY-MM, e.g. 2025-06. Only used to order projects (newest first). Empty = shown at the end."
+        pattern: ['^(\d{4}(-(0[1-9]|1[0-2]))?)?$', "Write YYYY or YYYY-MM"]
+      - label: Year shown
+        name: year
+        widget: string
+        required: false
+        hint: "What visitors see, e.g. 2023, 2021–2025 or 2020–present. Each year becomes a button to the timeline."
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: "Separate with commas, e.g. Poster, Type design"
+      - { label: Client, name: client, widget: string, required: false }
+      - { label: Role, name: role, widget: string, required: false }
+      - label: Text
+        name: intro
+        label_singular: paragraph
+        widget: list
+        required: false
+        hint: "One box per paragraph. Names listed under “Words → links” become links automatically."
+        field: { label: Paragraph, name: paragraph, widget: text }
+      - label: Links under the text
+        name: links
+        label_singular: link
+        widget: list
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: URL, name: url, widget: string, pattern: ['^https?://', "Start with https://"] }
+      - label: Cover image (grid and splash)
+        name: cover
+        widget: image
+        required: false
+        choose_url: false
+      - label: Gallery
+        name: gallery
+        label_singular: image
+        widget: list
+        required: false
+        hint: "Drag the handles to reorder. Add, replace or remove images."
+        summary: "{{fields.image}}"
+        fields:
+          - { label: Image, name: image, widget: image, choose_url: false }
+          - { label: Caption, name: caption, widget: string, required: false }
+      - label: Private notes (not shown on the site)
+        name: notes
+        widget: text
+        required: false
+      - { label: Source (private), name: source, widget: hidden, default: "dashboard" }
+
+  # ------------------------------------------------------------ Site pages
+  - name: settings
+    label: Site
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: Info page & site texts
+        file: src/_data/site.json
+        format: json
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Location, name: location, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Site address, name: url, widget: string }
+          - { label: "Description (search engines and link previews)", name: description, widget: text }
+          - label: Bio (Info page)
+            name: bio
+            widget: list
+            field: { label: Paragraph, name: paragraph, widget: text }
+          - label: Links (Info page)
+            name: links
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+          - label: Contact / social (Info page)
+            name: social
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+
+      - name: cv
+        label: CV
+        file: src/_data/cv.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Drag to reorder sections and lines."
+            fields:
+              - { label: Section title, name: title, widget: string }
+              - label: Lines
+                name: items
+                widget: list
+                summary: "{{fields.when}} — {{fields.what}}"
+                fields:
+                  - { label: When, name: when, widget: string, hint: "e.g. 2025 or 2020 — present" }
+                  - { label: What, name: what, widget: text }
+
+      - name: links
+        label: Words → links
+        file: src/_data/links.json
+        format: json
+        fields:
+          - label: Links
+            name: links
+            widget: list
+            summary: "{{fields.name}} → {{fields.url}}"
+            hint: "Wherever this exact word or name appears in the CV or a project text, it becomes this link. Capitals must match."
+            fields:
+              - { label: Word or name, name: name, widget: string }
+              - { label: URL, name: url, widget: string, pattern: ['^https?://', "Start with https://"] }
+
+  # ---------------------------------------------------------- Appearance
+  # Has a live preview on the right while you edit.
+  - name: appearance
+    label: Appearance
+    files:
+      - name: theme
+        label: Theme (colours & font)
+        file: src/_data/theme.json
+        format: json
+        fields:
+          - { label: Background, name: background, widget: color, allowInput: true }
+          - { label: Text, name: text, widget: color, allowInput: true }
+          - { label: "Secondary text (tags, dates)", name: muted, widget: color, allowInput: true }
+          - { label: "Lines (rules between sections)", name: lines, widget: color, allowInput: true }
+          - { label: Image strokes, name: stroke, widget: color, allowInput: true }
+          - label: Stroke width (pt)
+            name: strokeWidth
+            widget: number
+            value_type: float
+            min: 0
+            max: 6
+            step: 0.25
+            hint: "1 = 1pt, like InDesign. 0 = no stroke."
+          - { label: "Highlight (links, hover, active page)", name: highlight, widget: color, allowInput: true }
+          - label: Text font
+            name: textFont
+            widget: file
+            required: false
+            choose_url: false
+            media_folder: /src/fonts/uploads
+            public_folder: /fonts/uploads
+            hint: "Drop a .woff2, .woff, .otf or .ttf file. Used for all text except the big titles, which stay in Segmentor-03. Remove it to go back to Segmentor."
+          - { label: Font name (for your reference), name: textFontName, widget: string, required: false }

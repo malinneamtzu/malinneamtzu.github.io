@@ -1,0 +1,36 @@
+{
+  "title": "Poschta",
+  "date": "",
+  "year": "",
+  "tags": [
+    "Typeface family",
+    "Specimen"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Poschta, a typeface family in Light, Book and Bold."
+  ],
+  "links": [],
+  "cover": "/assets/poschta/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/poschta/poschta-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/poschta/poschta-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/poschta/poschta-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/poschta/poschta-04.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": "Add date, year and a real description."
+}

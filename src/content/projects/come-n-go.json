@@ -1,0 +1,45 @@
+{
+  "title": "The Come N Go Mini-Tour",
+  "date": "2026-08",
+  "year": "2026",
+  "tags": [
+    "Tour poster",
+    "Illustration"
+  ],
+  "client": "The Come N Go",
+  "role": "",
+  "intro": [
+    "Poster and visuals for The Come N Go’s 25-year anniversary mini-tour through Switzerland and Italy, August 2026: Krabowski in La Chaux-de-Fonds, Sedel in Lucerne, Facciamo la Corte in Muzzano and Cuneo."
+  ],
+  "links": [
+    {
+      "label": "Instagram post",
+      "url": "https://www.instagram.com/p/DcNv5YLiFJy/"
+    }
+  ],
+  "cover": "/assets/come-n-go/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/come-n-go/come-n-go-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/come-n-go/come-n-go-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/come-n-go/come-n-go-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/come-n-go/come-n-go-04.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/come-n-go/come-n-go-05.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "instagram",
+  "notes": ""
+}

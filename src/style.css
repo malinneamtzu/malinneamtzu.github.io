@@ -24,7 +24,8 @@
   --pad: clamp(8px, 1vw, 16px);       /* page edge: thin, like the PDF */
   --gap: clamp(6px, 0.7vw, 12px);     /* between images */
 
-  --font: "Segmentor", ui-monospace, monospace;
+  --font: "Segmentor", ui-monospace, monospace;   /* titles: always Segmentor */
+  --font-text: var(--font);                        /* everything else; can be swapped in /admin → Theme */
   --text-xs: 11px;
   --text-s: 13px;
   --text-m: 16px;
@@ -46,7 +47,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font);
+  font-family: var(--font-text);
   font-size: var(--text-m);
   line-height: 1.45;
 }
@@ -58,8 +59,9 @@ a:hover { color: var(--accent); }
 
 :focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 
-/* Text that moves with the mouse / tilt. */
+/* Text that moves with the mouse / tilt. Always Segmentor. */
 .seg {
+  font-family: var(--font);
   font-variation-settings:
     "AAAA" var(--aaaa), "BBBB" var(--bbbb), "CCCC" var(--cccc), "DDDD" var(--dddd);
 }
@@ -198,6 +200,8 @@ main { padding: var(--pad); }
 .project-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .gallery { display: grid; gap: var(--gap); }
+.gallery figure { margin: 0; }
+.gallery figcaption { margin-top: 0.4rem; font-size: var(--text-xs); color: var(--muted); }
 .gallery img { width: 100%; outline: var(--stroke) solid var(--stroke-color); outline-offset: calc(var(--stroke) * -1); }
 
 .project-pager {

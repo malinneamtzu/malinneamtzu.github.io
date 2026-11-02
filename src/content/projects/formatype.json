@@ -1,0 +1,57 @@
+{
+  "title": "Formatype Workshop",
+  "date": "2020-02",
+  "year": "2020",
+  "tags": [
+    "Workshop",
+    "Lettering",
+    "Posters"
+  ],
+  "client": "Hot Lagoon, Bucharest",
+  "role": "Workshop organiser and lead, with Andrei Reg",
+  "intro": [
+    "Formatype was a workshop exploring letter shapes with both rigid and elastic materials in a 5×5 cm space. I guided each participant to complete a set of 26 letters, which became individual specimen posters and one collective poster."
+  ],
+  "links": [],
+  "cover": "/assets/formatype/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/formatype/formatype-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-02.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-03.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-04.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-05.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-06.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-07.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-08.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/formatype/formatype-09.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": ""
+}

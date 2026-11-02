@@ -1,0 +1,28 @@
+{
+  "title": "Cocoscript",
+  "date": "",
+  "year": "",
+  "tags": [
+    "Script typeface",
+    "Specimen"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Cocoscript, an all-caps script typeface."
+  ],
+  "links": [],
+  "cover": "/assets/cocoscript/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/cocoscript/cocoscript-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/cocoscript/cocoscript-02.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf",
+  "notes": "Add date, year and a real description."
+}

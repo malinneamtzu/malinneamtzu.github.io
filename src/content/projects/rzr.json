@@ -1,0 +1,33 @@
+{
+  "title": "RZR",
+  "date": "2020-04",
+  "year": "2020",
+  "tags": [
+    "Display typeface",
+    "MTypes"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "RZR, a sharp display typeface, started in 2018 and released in 2020 on MTypes."
+  ],
+  "links": [
+    {
+      "label": "MTypes on Instagram",
+      "url": "https://www.instagram.com/themtyp.es/"
+    }
+  ],
+  "cover": "/assets/rzr/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/rzr/rzr-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/rzr/rzr-02.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf + instagram",
+  "notes": ""
+}

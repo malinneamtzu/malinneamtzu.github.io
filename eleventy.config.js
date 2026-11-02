@@ -1,15 +1,20 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
-import links from "./src/_data/links.js";
+import fs from "node:fs";
 
 export default function (eleventyConfig) {
   // Files copied to the site as they are.
   eleventyConfig.addPassthroughCopy("src/style.css");
   eleventyConfig.addPassthroughCopy("src/script.js");
   eleventyConfig.addPassthroughCopy("src/fonts/*.woff2");
+  eleventyConfig.addPassthroughCopy("src/fonts/uploads");   // fonts dropped in via /admin
+  eleventyConfig.addPassthroughCopy("src/admin");           // the dashboard
+  eleventyConfig.addWatchTarget("src/content/");
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
-  // src/assets/ is NOT copied: images only reach the site through the
-  // image plugin below, which makes smaller versions of each one.
+  // Original images are copied too, so the dashboard (/admin) can show
+  // them. Pages themselves use the smaller versions made by the image
+  // plugin below, so visitors never download these originals.
+  eleventyConfig.addPassthroughCopy("src/assets");
 
   // Every <img> in the built HTML becomes a <picture> with resized WebP and
   // JPEG versions in _site/img/. Add `eleventy:ignore` to an <img> to skip it.
@@ -41,7 +46,13 @@ export default function (eleventyConfig) {
   // Turns every name listed in src/_data/links.js into a link. Text that is
   // already inside a link is left alone; longer names are matched first, so
   // "Royal Academy of Art (KABK)" wins over "Royal Academy of Art".
+  // The list is read fresh on every build, so edits from /admin apply.
   eleventyConfig.addFilter("autolink", (html) => {
+    const links = Object.fromEntries(
+      JSON.parse(fs.readFileSync("src/_data/links.json", "utf8")).links
+        .filter((l) => l && l.name && l.url)
+        .map((l) => [l.name, l.url])
+    );
     const names = Object.keys(links).sort((a, b) => b.length - a.length);
     const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     // Split into [text, <a…>…</a>, text, …] so existing links are skipped.

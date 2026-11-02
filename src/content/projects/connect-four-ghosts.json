@@ -1,0 +1,29 @@
+{
+  "title": "Connect Four Ghosts",
+  "date": "2022-02",
+  "year": "2022",
+  "tags": [
+    "Exhibition poster",
+    "Collaboration"
+  ],
+  "client": "HGB Leipzig",
+  "role": "",
+  "intro": [
+    "Exhibition poster for “connect four ghosts”, made with Elia Preuss. The title typeface is by Elia Preuss; the secondary typeface is one we made in a team project for Adobe in 2018."
+  ],
+  "links": [
+    {
+      "label": "Instagram post",
+      "url": "https://www.instagram.com/p/CbS0u5fs03f/"
+    }
+  ],
+  "cover": "/assets/connect-four-ghosts/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/connect-four-ghosts/connect-four-ghosts-01.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "instagram",
+  "notes": "Client guessed from the poster (HGB Leipzig). Confirm."
+}

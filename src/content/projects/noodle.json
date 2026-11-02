@@ -1,0 +1,28 @@
+{
+  "title": "Noodle",
+  "date": "2019-06",
+  "year": "2019",
+  "tags": [
+    "Display typeface",
+    "Specimen poster"
+  ],
+  "client": "",
+  "role": "",
+  "intro": [
+    "Noodle, a display typeface. The specimen poster was made for Leonhard Laupichler’s diploma project; its mirrored composition ended up resembling a dragon’s face."
+  ],
+  "links": [],
+  "cover": "/assets/noodle/cover.jpg",
+  "gallery": [
+    {
+      "image": "/assets/noodle/noodle-01.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/assets/noodle/noodle-02.jpg",
+      "caption": ""
+    }
+  ],
+  "source": "pdf + instagram",
+  "notes": ""
+}

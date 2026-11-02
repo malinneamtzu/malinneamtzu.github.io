@@ -20,6 +20,21 @@
   {# Start downloading the font right away, so the name does not flash. #}
   <link rel="preload" href="/fonts/Segmentor.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/style.css">
+  {# Colours, stroke and text font chosen in /admin → Theme (src/_data/theme.json).
+     They override the defaults at the top of style.css. #}
+  <style>
+    {% if theme.textFont %}@font-face { font-family: "TextFont"; src: url("{{ theme.textFont }}"); font-display: swap; }{% endif %}
+    :root {
+      --bg: {{ theme.background or "#000000" }};
+      --fg: {{ theme.text or "#d9d9d9" }};
+      --muted: {{ theme.muted or "#8a8a8a" }};
+      --line: {{ theme.lines or "#5c5c5c" }};
+      --stroke-color: {{ theme.stroke or "#999999" }};
+      --stroke: calc({{ theme.strokeWidth | default(1) }} * 1.333px);
+      --accent: {{ theme.highlight or "#e01ee0" }};
+      {% if theme.textFont %}--font-text: "TextFont", "Segmentor", ui-monospace, monospace;{% endif %}
+    }
+  </style>
 </head>
 <body class="{{ bodyClass }}">
   <header class="site-header">

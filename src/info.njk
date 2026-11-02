@@ -12,7 +12,7 @@ permalink: /info/
 
 <div class="info">
   <div class="info-top">
-    <section class="info-bio seg">
+    <section class="info-bio">
       {% for para in site.bio %}<p>{{ para }}</p>{% endfor %}
     </section>
 
@@ -34,7 +34,7 @@ permalink: /info/
 
   {# CV: sections and entries come from src/_data/cv.js #}
   <div class="cv" id="cv">
-    {% for section in cv %}
+    {% for section in cv.sections %}
     <section>
       <h2>{{ section.title }}</h2>
       <ul class="cv-list">
