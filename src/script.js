@@ -3,7 +3,7 @@
 //   1. Segmentor follows the mouse (desktop) or the tilt of the phone.
 //      Only the big name on the splash uses it (class .seg).
 //   2. The splash name is sized to fill the full width.
-//   3. Projects list: the hovered row's cover follows the pointer.
+//   3. Projects list: the hovered row's cover fills the background.
 //   4. Type page: size and axis sliders, style buttons.
 //   5. Intro: the name runs through its shapes once per visit.
 // ===========================================================================
@@ -95,12 +95,25 @@ function fitName() {
   nameEl.style.fontSize = (100 * nameEl.clientWidth * 0.97) / textWidth + "px";
 }
 
-// --- 3. Projects list: cover follows the pointer -----------------------------
-if (document.querySelector(".index") && !isTouch) {
-  window.addEventListener("mousemove", (e) => {
-    root.style.setProperty("--mx", e.clientX + "px");
-    root.style.setProperty("--my", e.clientY + "px");
-  });
+// --- 3. Projects list: big cover behind the list ---------------------------
+// Hovering (or tabbing to) a row shows that project's cover full-screen in
+// the background; leaving the list fades back to black.
+const indexBg = document.querySelector(".index-bg");
+if (indexBg && !isTouch) {
+  const covers = new Map([...indexBg.querySelectorAll("img")].map((img) => [img.dataset.for, img]));
+  let active = null;
+  const show = (id) => {
+    const next = covers.get(id) || null;
+    if (next === active) return;
+    if (active) active.classList.remove("is-active");
+    if (next) next.classList.add("is-active");
+    active = next;
+  };
+  for (const row of document.querySelectorAll(".index-row")) {
+    row.addEventListener("mouseenter", () => show(row.dataset.id));
+    row.addEventListener("focus", () => show(row.dataset.id));
+  }
+  document.querySelector(".index").addEventListener("mouseleave", () => show(null));
 }
 
 // --- 4. Type tester ------------------------------------------------------------

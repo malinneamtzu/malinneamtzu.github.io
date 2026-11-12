@@ -5,19 +5,27 @@ bodyClass: is-work
 permalink: /work/
 ---
 {# All projects as one list, newest first (sorted in _data/projects.js):
-   project, client, year. On a computer the cover appears next to the
-   pointer while hovering a row (style.css "Index", script.js §3). #}
+   project, client, year. On a computer, hovering a row fills the whole
+   background with that project's cover (like ueno.work): the covers wait,
+   invisible, in .index-bg behind the page, and script.js §3 shows the one
+   that belongs to the hovered row. The list itself uses "difference"
+   blending, so the text inverts against the image and stays readable. #}
+<div class="index-bg" aria-hidden="true">
+  {% for p in projects %}{% if p.cover %}
+  <img src="{{ p.cover }}" alt="" sizes="100vw" data-for="{{ p.id }}">
+  {% endif %}{% endfor %}
+</div>
+
 <ol class="index">
   <li class="index-head" aria-hidden="true">
     <span>Project</span><span>Client</span><span>Year</span>
   </li>
   {% for p in projects %}
   <li>
-    <a class="index-row" href="/work/{{ p.id }}/">
+    <a class="index-row" href="/work/{{ p.id }}/" data-id="{{ p.id }}">
       <span class="index-title">{{ p.title }}</span>
       <span class="index-client">{{ p.client | plain }}</span>
       <span class="index-year">{{ p.year }}</span>
-      {% if p.cover %}<img class="index-thumb" src="{{ p.cover }}" alt="" sizes="320px">{% endif %}
     </a>
   </li>
   {% endfor %}

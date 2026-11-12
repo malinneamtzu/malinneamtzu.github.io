@@ -151,19 +151,36 @@ body.is-splash {
   .index-year { grid-column: 2; grid-row: 1; }
 }
 
-/* The cover of the row under the pointer. script.js keeps --mx / --my at the
-   pointer position. Only on devices with a real mouse. */
-.index-thumb { display: none; }
+/* Full-screen cover behind the list while a row is hovered (computers only).
+   All covers are stacked in .index-bg, invisible; script.js adds .is-active
+   to the hovered project's cover, which fades in. z-index -1 puts the layer
+   behind the text but above the black page background. */
+.index-bg { display: none; }
 @media (hover: hover) {
-  .index-row:hover .index-thumb {
+  .index-bg {
     display: block;
     position: fixed;
-    left: calc(var(--mx, 50vw) + 24px);
-    top: calc(var(--my, 50vh) - 80px);
-    width: clamp(180px, 18vw, 300px);
+    inset: 0;
+    z-index: -1;
     pointer-events: none;
-    z-index: 5;
   }
+  .index-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .index-bg img.is-active { opacity: 1; }
+
+  /* "difference" blending: light text over a light image turns dark and
+     vice versa, so the list stays readable on any cover. Over plain black
+     it looks exactly as before. */
+  .is-work .site-header,
+  .is-work .index,
+  .is-work .site-footer { mix-blend-mode: difference; }
 }
 
 /* --- Project page ------------------------------------------------------------ */
