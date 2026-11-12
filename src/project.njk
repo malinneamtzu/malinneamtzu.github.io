@@ -33,7 +33,12 @@ eleventyComputed:
   <div class="gallery">
     {% for g in p.gallery %}
     <figure>
+      {% if g.image.endsWith(".mp4") %}
+      {# Videos play silently on a loop, like a moving image. #}
+      <video src="{{ g.image }}" autoplay muted loop playsinline preload="metadata" aria-label="{{ (g.caption | plain) or (p.title + ', video ' + loop.index) }}"></video>
+      {% else %}
       <img src="{{ g.image }}" alt="{{ (g.caption | plain) or (p.title + ', image ' + loop.index) }}"{% if loop.first %} loading="eager"{% endif %}>
+      {% endif %}
       {% if g.caption %}<figcaption>— {{ g.caption | mdInline | safe }}</figcaption>{% endif %}
     </figure>
     {% endfor %}

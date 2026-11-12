@@ -19,6 +19,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/content/");
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
+  // Videos in project galleries (.mp4) are used as they are.
+  eleventyConfig.addPassthroughCopy("src/assets/**/*.mp4");
   if (isServe) {
     // The dashboard only runs on your own computer (npm start + npm run cms),
     // so it and the original images it shows are left out of the live site.
