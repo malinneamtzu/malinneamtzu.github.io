@@ -47,6 +47,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addGlobalData("year", new Date().getFullYear());
+  // A number that changes with every build, added to the style.css and
+  // script.js links (?v=…) so browsers fetch the new files instead of
+  // reusing an old copy they saved ("cache busting").
+  eleventyConfig.addGlobalData("buildTime", Date.now());
 
   // Previous / next project, for the links at the bottom of a project page.
   eleventyConfig.addFilter("neighbour", (list, id, step) => {
