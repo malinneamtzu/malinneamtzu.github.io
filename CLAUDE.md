@@ -10,13 +10,13 @@ Mălin (repo owner, type and graphic designer, Type and Media graduate) is a rel
 - **Teach, don't just fix.** When a bug comes up, explain the cause and how to spot it next time (e.g. which DevTools panel shows it).
 - **Keep changes small** so they can be followed in `git diff`, and **show the result**: run the site locally and check it (desktop and a ~390px phone width) before calling something done.
 - **Never invent content.** Project texts, dates and clients come from Mălin, the portfolio PDF or Mălin's Instagram. When unsure, write it in the project's `notes` field (see below) and ask.
-- **Mălin edits content through the dashboard (`/admin`)** and those edits arrive as commits on the deploy branch. Always `git pull` before starting work, and keep content in the JSON files the dashboard edits (never move it back into code), so both ways keep working.
-- **Ask before anything goes live** (pushing to `main`, changing Netlify or domain settings).
+- **Mălin edits content through the dashboard (`/admin`)**, which runs only locally and writes the JSON files directly. Always `git pull` and check `git status` before starting work, and keep content in the JSON files the dashboard edits (never move it back into code), so both ways keep working.
+- **Ask before anything goes live** (pushing to `main`, changing GitHub Pages or domain settings).
 - Mălin's pronouns are not recorded here; write about Mălin in the first person on the site, and use "they" or the name elsewhere unless told otherwise.
 
 ## Overview
 
-Portfolio website of Mălin Neamțu, live at https://malinneamtzu.com. Built with **Eleventy 3** (Nunjucks templates) into plain static HTML, deployed on **Netlify**. No tests or linter.
+Portfolio website of Mălin Neamțu, live at https://malinneamtzu.com/wwwork/. Built with **Eleventy 3** (Nunjucks templates) into plain static HTML, deployed on **GitHub Pages** by a GitHub Actions workflow. No tests or linter.
 
 Design: a masonry grid of project covers (layout inspired by eloileco.xyz) styled after Mălin's 2026 portfolio PDF: black pages, light grey text, 1pt outlines around images, narrow margins, small letter-spaced capitals, magenta links and the "— " dash before titles. Titles (`.seg`: the name, project titles, timeline years) are always **Segmentor-03**, Mălin's own variable typeface, and react to the mouse (desktop) or phone tilt (mobile). All other text is Segmentor-03 too unless another text font is uploaded in the dashboard (Theme). Colours and stroke also come from the dashboard. The Info page keeps the background video from the original 2026 splash site, dimmed behind the bio and CV.
 
@@ -29,12 +29,14 @@ npm run build    # outputs the finished site to _site/ (gitignored)
 npm run cms      # local dashboard backend; with npm start running, open http://localhost:8080/admin/
 ```
 
-## Deploying (Netlify, same workflow as the TM2425 site)
+## Deploying (GitHub Pages under malinneamtzu.com/wwwork/)
 
-- Netlify is connected to the GitHub repo `malinneamtzu/malinneamtzu.github.io`. On every push it runs `npm run build` and publishes `_site/` (settings in `netlify.toml`).
-- Pushes to `main` go to the live site. Other branches get a deploy preview URL. Work on a branch, check the preview, then merge.
-- `netlify.toml` also holds redirects (old `/links.html` → `/info/`) and cache headers.
-- The domain malinneamtzu.com: until the DNS is switched to Netlify, it is still served by GitHub Pages from the old `main` branch (plain HTML at the repo root). GitHub Pages does not run the Eleventy build, so **do not merge `portfolio` into `main` before the domain points to Netlify**, or the live site breaks.
+- Repo: `malinneamtzu/wwwork` (private; branch `main`). Moved off Netlify on 2026-11-12 to stop using Netlify credits. The old repo `malinneamtzu.github.io` (local remote `github-io`, local branch `old-site-main`) still serves the root malinneamtzu.com with the January 2026 splash page and owns the custom domain; every other Pages repo of the account appears at `malinneamtzu.com/<repo>/`, which is why this one is at `/wwwork/` (same as `ioana-georgescu-website`).
+- `.github/workflows/deploy.yml` runs `npm ci && npm run build` on every push to `main` and publishes `_site/` (Pages source = "GitHub Actions"). Progress and errors: the repo's Actions tab. Resized images are cached between runs.
+- **Path prefix**: `npm run build` uses `pathPrefix: "/wwwork/"`; `npm start` (`ELEVENTY_RUN_MODE=serve`) uses `/`, so local dev and the dashboard stay at the root of localhost:8080. Templates keep writing root links (`/work/`); `HtmlBasePlugin` adds the prefix to href/src/srcset/poster in the built HTML. It does **not** touch `data-*` attributes, inline `<style>` or JS strings: use the `| url` filter there (see `info.njk` video, theme font in `base.njk`). `style.css` uses relative `url("fonts/…")`. `site.json` `url` includes `/wwwork` (used for og:url/og:image/canonical).
+- The live build leaves out `src/admin` and `src/assets` (originals); they are copied only in serve mode.
+- To test a production build locally: `npm run build`, then serve a folder containing a `wwwork` symlink to `_site` (e.g. `python3 -m http.server`) and open `/wwwork/`. Stop `npm start` first: both write `_site/`.
+- No redirects or custom headers (GitHub Pages has none); the old `netlify.toml` was removed. The Netlify site, if still connected to the old repo, no longer receives pushes; deleting it is Mălin's call.
 
 ## Architecture
 
@@ -68,8 +70,8 @@ npm run cms      # local dashboard backend; with npm start running, open http://
 
 Decap CMS 3 (`src/admin/index.html` loads it from unpkg, pinned version; `src/admin/config.yml` defines every editable field). Sections: **Projects** (folder collection over `src/content/projects/`), **Site** (Info page & site texts, CV), **Appearance** (Theme, with a live preview template registered in `index.html`).
 
-- **Live site**: backend `github`, repo `malinneamtzu/malinneamtzu.github.io`, `branch: portfolio` (switch to `main` after the merge). Sign-in goes through Netlify's built-in GitHub OAuth provider (`https://api.netlify.com/auth`), so only GitHub accounts with write access to the repo can log in and save. One-time setup: a GitHub OAuth App (callback `https://api.netlify.com/auth/done`) whose client ID/secret are added in Netlify → Site configuration → Access & security → OAuth → GitHub. Each Publish is a commit; Netlify rebuilds.
-- **Locally**: `npm start` + `npm run cms` (decap-server on :8081, `local_backend: true`), open `/admin/`, click Login (no password locally). Edits write straight to the files.
+- **Local only** (since the move to GitHub Pages there is no online login): `npm start` + `npm run cms`, open http://localhost:8080/admin/, click Login. "Save to website" writes the files; then commit and push to `main` to publish. The `github` backend in `config.yml` (repo `malinneamtzu/wwwork`) is only a fallback the local dashboard ignores. An online dashboard would need an OAuth provider (e.g. a Netlify site kept only for its GitHub login, or a small OAuth proxy).
+- `npm run cms` is decap-server on :8081 (`local_backend: true`); no password locally.
 - In `config.yml`, quote any label containing a comma (`label: "a, b"`); inside `{ … }` an unquoted comma breaks the YAML and the fields silently show up empty.
 - **Text font field** is a custom widget `fontdrop` (registered in `src/admin/index.html`): real drag-and-drop or click, checks the file is a readable font (FontFace API), renames it to lowercase-dashes, hands it to Decap's `onPersistMedia` (committed together with the entry on save) and stores `/fonts/uploads/<name>`. New fonts preview at once via blob URLs kept in `window.fontPreviews`. Decap's stock file widget had no drag-and-drop and could not preview unpublished fonts.
 - **Button wording**: a custom locale `site` (`locale: site` in config.yml, `CMS.registerLocale` in index.html) renames Publish → "Save to website", Published → "Saved ✓", Unsaved changes → "Not saved yet". It merges over Decap's English, so only the changed strings are listed.
@@ -86,7 +88,7 @@ Preferably through the dashboard. By hand: create `src/content/projects/<id>.jso
 
 ## Gotchas
 
-- Image paths are case-sensitive on Netlify (Linux) even though macOS is not.
+- Image paths are case-sensitive on GitHub Pages/Actions (Linux) even though macOS is not.
 - Text fields are Markdown (HTML allowed): `intro` is one string, blank line = new paragraph (old array form is still accepted by the loader). A literal `*`, `_` or `[` may need a backslash.
 - The dashboard link button asks for the URL in a small browser prompt box.
 - In Nunjucks, filters bind tighter than `+`: write `(a + 1) | filter`.

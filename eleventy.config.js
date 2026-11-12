@@ -1,5 +1,14 @@
+import { HtmlBasePlugin } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownIt from "markdown-it";
+
+// The live site is at malinneamtzu.com/wwwork/ (GitHub Pages, repo "wwwork").
+// `npm run build` writes every link with /wwwork/ in front; `npm start`
+// keeps the site at the root of localhost:8080 so the dashboard works as
+// before. Eleventy's built-in "HTML base" plugin adds the prefix to every
+// href/src in the built HTML, so templates keep writing "/work/" etc.
+const isServe = process.env.ELEVENTY_RUN_MODE === "serve";
+export const PATH_PREFIX = isServe ? "/" : "/wwwork/";
 
 export default function (eleventyConfig) {
   // Files copied to the site as they are.
@@ -7,14 +16,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/script.js");
   eleventyConfig.addPassthroughCopy("src/fonts/*.woff2");
   eleventyConfig.addPassthroughCopy("src/fonts/uploads");   // fonts dropped in via /admin
-  eleventyConfig.addPassthroughCopy("src/admin");           // the dashboard
   eleventyConfig.addWatchTarget("src/content/");
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
-  // Original images are copied too, so the dashboard (/admin) can show
-  // them. Pages themselves use the smaller versions made by the image
-  // plugin below, so visitors never download these originals.
-  eleventyConfig.addPassthroughCopy("src/assets");
+  if (isServe) {
+    // The dashboard only runs on your own computer (npm start + npm run cms),
+    // so it and the original images it shows are left out of the live site.
+    // Pages use the smaller versions made by the image plugin below.
+    eleventyConfig.addPassthroughCopy("src/admin");
+    eleventyConfig.addPassthroughCopy("src/assets");
+  }
 
   // Every <img> in the built HTML becomes a <picture> with resized WebP and
   // JPEG versions in _site/img/. Add `eleventy:ignore` to an <img> to skip it.
@@ -28,6 +39,9 @@ export default function (eleventyConfig) {
       imgAttributes: { loading: "lazy", decoding: "async", sizes: "100vw" },
     },
   });
+
+  // Puts /wwwork/ in front of every root link in the built HTML (see top).
+  eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addGlobalData("year", new Date().getFullYear());
 
@@ -77,6 +91,7 @@ export default function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: PATH_PREFIX,
     dir: { input: "src", output: "_site" },
     templateFormats: ["njk"],
   };

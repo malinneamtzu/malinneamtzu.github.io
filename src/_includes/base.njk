@@ -23,7 +23,7 @@
   {# Colours, stroke and text font chosen in /admin → Theme (src/_data/theme.json).
      They override the defaults at the top of style.css. #}
   <style>
-    {% if theme.textFont %}@font-face { font-family: "TextFont"; src: url("{{ theme.textFont }}"); font-display: swap; }{% endif %}
+    {% if theme.textFont %}@font-face { font-family: "TextFont"; src: url("{{ theme.textFont | url }}"); font-display: swap; }{% endif %}
     :root {
       --bg: {{ theme.background or "#000000" }};
       --fg: {{ theme.text or "#d9d9d9" }};

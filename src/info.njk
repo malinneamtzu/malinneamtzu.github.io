@@ -7,8 +7,8 @@ permalink: /info/
 {# The video background from the original site, kept for the Info page. #}
 <video class="video-bg" autoplay muted loop playsinline preload="metadata"
   poster="/media/bg-desktop-poster.jpg"
-  data-src-desktop="/media/bg-desktop.mp4" data-src-mobile="/media/bg-mobile.mp4"
-  data-poster-mobile="/media/bg-mobile-poster.jpg"></video>
+  data-src-desktop="{{ '/media/bg-desktop.mp4' | url }}" data-src-mobile="{{ '/media/bg-mobile.mp4' | url }}"
+  data-poster-mobile="{{ '/media/bg-mobile-poster.jpg' | url }}"></video>
 
 <div class="info">
   <div class="info-top">

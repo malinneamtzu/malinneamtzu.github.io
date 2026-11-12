@@ -6,3 +6,6 @@ node_modules/
 _site/
 .cache/
 .netlify/
+
+# Large working folder with source material, kept out of git.
+_projects-resources/

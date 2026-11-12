@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Segmentor";
-  src: url("/fonts/Segmentor.woff2") format("woff2");
+  src: url("fonts/Segmentor.woff2") format("woff2");
   font-display: swap; /* show fallback text while the font loads */
 }
 
