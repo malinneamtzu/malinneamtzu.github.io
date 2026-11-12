@@ -30,17 +30,26 @@ eleventyComputed:
     </div>
   </div>
 
+  {# Gallery in rows (see "gallery" in _data/projects.js). In a row every
+     image gets a share of the width equal to its width/height ratio (--r),
+     so all images in the row have the same height. #}
   <div class="gallery">
-    {% for g in p.gallery %}
-    <figure>
-      {% if g.image.endsWith(".mp4") %}
-      {# Videos play silently on a loop, like a moving image. #}
-      <video src="{{ g.image }}" autoplay muted loop playsinline preload="metadata" aria-label="{{ (g.caption | plain) or (p.title + ', video ' + loop.index) }}"></video>
-      {% else %}
-      <img src="{{ g.image }}" alt="{{ (g.caption | plain) or (p.title + ', image ' + loop.index) }}"{% if loop.first %} loading="eager"{% endif %}>
-      {% endif %}
-      {% if g.caption %}<figcaption>— {{ g.caption | mdInline | safe }}</figcaption>{% endif %}
-    </figure>
+    {% for row in p.rows %}
+    {% if row.section %}<h2 class="gallery-section">— {{ row.section }}</h2>{% endif %}
+    {% set rowRatio = 0 %}{% for g in row.items %}{% set rowRatio = rowRatio + g.ratio %}{% endfor %}
+    <div class="gallery-row" data-count="{{ row.items.length }}">
+      {% for g in row.items %}
+      <figure style="--r: {{ g.ratio | round(4) }}">
+        {% if g.image.endsWith(".mp4") %}
+        {# Videos play silently on a loop, like a moving image. #}
+        <video src="{{ g.image }}" autoplay muted loop playsinline preload="metadata" aria-label="{{ (g.caption | plain) or (p.title + ', video') }}"></video>
+        {% else %}
+        <img src="{{ g.image }}" alt="{{ (g.caption | plain) or (p.title + ', image') }}" sizes="(min-width: 700px) {{ (100 * g.ratio / rowRatio) | round(1) }}vw, {{ 100 if row.items.length == 1 else 50 }}vw">
+        {% endif %}
+        {% if g.caption %}<figcaption>{{ g.caption | mdInline | safe }}</figcaption>{% endif %}
+      </figure>
+      {% endfor %}
+    </div>
     {% endfor %}
   </div>
 

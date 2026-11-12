@@ -103,10 +103,12 @@ collections:
         widget: list
         required: false
         hint: "Drag the handles to reorder. Add, replace or remove images."
-        summary: "{{fields.image}}"
+        summary: "{{fields.row}} {{fields.image}}"
         fields:
           - { label: Image, name: image, widget: image, choose_url: false }
           - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: Caption, name: caption, required: false }
+          - { label: Row, name: row, widget: string, required: false, hint: "Images next to each other with the same Row word (e.g. 2021-a) sit side by side at equal height. Empty = full width." }
+          - { label: Section label, name: section, widget: string, required: false, hint: "Small title above this row, e.g. Posters 2021." }
       - label: Private notes (not shown on the site)
         name: notes
         widget: text

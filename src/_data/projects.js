@@ -15,13 +15,18 @@
 //   intro    the text. Blank line = new paragraph; links as [words](https://…)
 //   links    list of { label, url }
 //   cover    the card image
-//   gallery  list of { image, caption } shown on the project page, in order
+//   gallery  list of { image, caption, row, section } shown on the project page,
+//            in order. Consecutive images with the same `row` (any word or
+//            number) sit side by side at equal height, filling the width.
+//            Without `row` an image gets a row of its own. `section` puts a
+//            small label above the row that image is in (e.g. "Posters 2021").
 //   source, notes  private: where it came from / things to check
 // ---------------------------------------------------------------------------
 
 import fs from "node:fs";
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
+import sizeOf from "image-size";
 
 const DIR = "src/content/projects";
 
@@ -38,6 +43,25 @@ export default async function () {
     p.summary = p.intro.split(/\n\s*\n/)[0].replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[*_]/g, "").trim();
     p.links ||= [];
     p.gallery = (p.gallery || []).filter((g) => g && g.image);
+
+    // Gallery rows: width/height of each image (videos count as 9:16 unless
+    // they say otherwise), grouped by their `row` value. In a row, each
+    // image's share of the width is its ratio, so all end up the same height.
+    for (const g of p.gallery) {
+      g.ratio = 1;
+      const file = path.join("src", g.image);
+      if (/\.mp4$/i.test(g.image)) g.ratio = g.videoRatio || 9 / 16;
+      else if (fs.existsSync(file)) {
+        try { const d = sizeOf(file); g.ratio = d.width / d.height; } catch { /* keep 1 */ }
+      }
+    }
+    p.rows = [];
+    for (const g of p.gallery) {
+      const last = p.rows.at(-1);
+      const key = g.row ? String(g.row) : null;
+      if (last && key && last.key === key) { last.items.push(g); last.section ||= g.section || ""; }
+      else p.rows.push({ key, section: g.section || "", items: [g] });
+    }
 
     // Height/width ratio of the cover, so the masonry grid can be laid out
     // before images load. Image paths start with /assets/… inside src/.

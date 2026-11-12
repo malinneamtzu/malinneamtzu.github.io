@@ -14,292 +14,810 @@
   "cover": "/assets/club-guesthouse/cover.jpg",
   "gallery": [
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-01.jpg",
+      "image": "/assets/club-guesthouse/club-guesthouse-001.jpg",
       "caption": ""
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-02.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-002.jpg",
+      "caption": "",
+      "row": "2021a-1",
+      "section": "Posters 2021"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-03.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-003.jpg",
+      "caption": "",
+      "row": "2021a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-04.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-004.jpg",
+      "caption": "",
+      "row": "2021a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-05.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-005.jpg",
+      "caption": "",
+      "row": "2021a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-06.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-006.jpg",
+      "caption": "",
+      "row": "2021a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-07.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-007.jpg",
+      "caption": "",
+      "row": "2021a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-08.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-008.jpg",
+      "caption": "",
+      "row": "2021b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-09.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-009.jpg",
+      "caption": "",
+      "row": "2021b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-10.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-010.jpg",
+      "caption": "",
+      "row": "2021b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-11.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-011.jpg",
+      "caption": "",
+      "row": "2021b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-12.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-012.jpg",
+      "caption": "",
+      "row": "2021c-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-13.jpg",
-      "caption": "Autumn/winter 2026–27 season"
+      "image": "/assets/club-guesthouse/club-guesthouse-013.jpg",
+      "caption": "",
+      "row": "2021c-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-14.jpg",
-      "caption": "Club posts, 2026"
+      "image": "/assets/club-guesthouse/club-guesthouse-014.jpg",
+      "caption": "",
+      "row": "2021c-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-15.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-015.jpg",
+      "caption": "",
+      "row": "2021c-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-16.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-016.jpg",
+      "caption": "",
+      "row": "2022-1",
+      "section": "Posters 2022"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-17.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-017.jpg",
+      "caption": "",
+      "row": "2022-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-18.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-018.jpg",
+      "caption": "",
+      "row": "2022-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-19.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-019.jpg",
+      "caption": "",
+      "row": "2022-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-20.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-020.jpg",
+      "caption": "",
+      "row": "2022-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-21.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-021.jpg",
+      "caption": "",
+      "row": "2022-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-22.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-022.jpg",
+      "caption": "",
+      "row": "2022-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-23.jpg",
-      "caption": "15th anniversary tour, 2025"
+      "image": "/assets/club-guesthouse/club-guesthouse-023.jpg",
+      "caption": "",
+      "row": "2022-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-24.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-024.jpg",
+      "caption": "",
+      "row": "2022-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-25.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-025.jpg",
+      "caption": "",
+      "row": "2022-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-26.jpg",
-      "caption": "Club posts, 2025"
+      "image": "/assets/club-guesthouse/club-guesthouse-026.jpg",
+      "caption": "",
+      "row": "2023a-1",
+      "section": "Posters, January–June 2023"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-27.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-027.jpg",
+      "caption": "",
+      "row": "2023a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-28.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-028.jpg",
+      "caption": "",
+      "row": "2023a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-29.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-029.jpg",
+      "caption": "",
+      "row": "2023a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-30.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-030.jpg",
+      "caption": "",
+      "row": "2023a-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-31.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-031.jpg",
+      "caption": "",
+      "row": "2023a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-32.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-032.jpg",
+      "caption": "",
+      "row": "2023a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-33.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-033.jpg",
+      "caption": "",
+      "row": "2023a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-34.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-034.jpg",
+      "caption": "",
+      "row": "2023a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-35.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-035.jpg",
+      "caption": "",
+      "row": "2023a-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-36.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-036.jpg",
+      "caption": "",
+      "row": "2023a-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-37.jpg",
-      "caption": "Club posts, 2024–25"
+      "image": "/assets/club-guesthouse/club-guesthouse-037.jpg",
+      "caption": "",
+      "row": "2023a-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-38.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-038.jpg",
+      "caption": "",
+      "row": "2023a-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-39.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-039.jpg",
+      "caption": "",
+      "row": "2023a-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-40.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-040.jpg",
+      "caption": "",
+      "row": "2023a-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-41.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-041.jpg",
+      "caption": "",
+      "row": "2023b-1",
+      "section": "Posters, season 2023–24"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-42.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-042.jpg",
+      "caption": "",
+      "row": "2023b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-43.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-043.jpg",
+      "caption": "",
+      "row": "2023b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-44.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-044.jpg",
+      "caption": "",
+      "row": "2023b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-45.jpg",
-      "caption": "Club posts, 2023–24"
+      "image": "/assets/club-guesthouse/club-guesthouse-045.jpg",
+      "caption": "",
+      "row": "2023b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-46.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-046.jpg",
+      "caption": "",
+      "row": "2023b-1"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-47.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-047.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-48.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-048.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-49.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-049.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-50.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-050.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-51.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-051.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-52.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-052.jpg",
+      "caption": "",
+      "row": "2023b-2"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-53.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-053.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-54.jpg",
-      "caption": "Club posts, 2023"
+      "image": "/assets/club-guesthouse/club-guesthouse-054.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-55.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-055.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-56.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-056.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-57.jpg",
-      "caption": "Club posts, 2022"
+      "image": "/assets/club-guesthouse/club-guesthouse-057.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-58.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-058.jpg",
+      "caption": "",
+      "row": "2023b-3"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-59.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-059.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-60.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-060.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-61.jpg",
-      "caption": "Club posts, 2021"
+      "image": "/assets/club-guesthouse/club-guesthouse-061.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-62.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-062.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-63.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-063.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-64.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-064.jpg",
+      "caption": "",
+      "row": "2023b-4"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-65.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-065.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-66.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-066.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-67.jpg",
-      "caption": "Merch, 2025"
+      "image": "/assets/club-guesthouse/club-guesthouse-067.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-68.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-068.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-69.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-069.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-70.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-070.jpg",
+      "caption": "",
+      "row": "2023b-5"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-71.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-071.jpg",
+      "caption": "",
+      "row": "2023b-6"
     },
     {
-      "image": "/assets/club-guesthouse/club-guesthouse-72.jpg",
-      "caption": ""
+      "image": "/assets/club-guesthouse/club-guesthouse-072.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-073.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-074.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-075.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-076.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-077.jpg",
+      "caption": "",
+      "row": "2023b-6"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-078.jpg",
+      "caption": "",
+      "row": "2024-1",
+      "section": "Posters, season 2024–25"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-079.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-080.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-081.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-082.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-083.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-084.jpg",
+      "caption": "",
+      "row": "2024-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-085.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-086.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-087.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-088.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-089.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-090.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-091.jpg",
+      "caption": "",
+      "row": "2024-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-092.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-093.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-094.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-095.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-096.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-097.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-098.jpg",
+      "caption": "",
+      "row": "2024-3"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-099.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-100.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-101.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-102.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-103.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-104.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-105.jpg",
+      "caption": "",
+      "row": "2024-4"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-106.jpg",
+      "caption": "",
+      "row": "tour-1",
+      "section": "15th anniversary tour, 2025"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-107.jpg",
+      "caption": "",
+      "row": "tour-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-108.jpg",
+      "caption": "",
+      "row": "tour-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-109.jpg",
+      "caption": "",
+      "row": "formats-1",
+      "section": "Design system 2025: one event in every format"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-110.jpg",
+      "caption": "",
+      "row": "formats-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-111.jpg",
+      "caption": "",
+      "row": "formats-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-112.jpg",
+      "caption": "",
+      "row": "formats-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-113.jpg",
+      "caption": "",
+      "row": "formats-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-114.jpg",
+      "caption": "",
+      "row": "artists-1",
+      "section": "Artist posts and stories"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-115.jpg",
+      "caption": "",
+      "row": "artists-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-116.jpg",
+      "caption": "",
+      "row": "artists-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-117.jpg",
+      "caption": "",
+      "row": "artists-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-118.jpg",
+      "caption": "",
+      "row": "artists-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-119.jpg",
+      "caption": "",
+      "row": "artists-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-120.jpg",
+      "caption": "",
+      "row": "artists-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-121.jpg",
+      "caption": "",
+      "row": "artists-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-122.jpg",
+      "caption": "",
+      "row": "artists-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-123.jpg",
+      "caption": "",
+      "row": "artists-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-124.jpg",
+      "caption": "",
+      "row": "carousel-1",
+      "section": "Artist carousel"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-125.jpg",
+      "caption": "",
+      "row": "carousel-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-126.jpg",
+      "caption": "",
+      "row": "carousel-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-127.jpg",
+      "caption": "",
+      "row": "carousel-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-128.jpg",
+      "caption": "",
+      "row": "carousel-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-129.jpg",
+      "caption": "",
+      "row": "carousel-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-130.jpg",
+      "caption": "",
+      "row": "2025-1",
+      "section": "Posters, autumn 2025"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-131.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-132.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-133.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-134.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-135.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-136.jpg",
+      "caption": "",
+      "row": "2025-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-137.jpg",
+      "caption": "",
+      "row": "2026-1",
+      "section": "Season autumn/winter 2026–27"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-138.jpg",
+      "caption": "",
+      "row": "2026-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-139.jpg",
+      "caption": "",
+      "row": "2026-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-140.jpg",
+      "caption": "",
+      "row": "2026-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-141.jpg",
+      "caption": "",
+      "row": "2026-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-142.jpg",
+      "caption": "",
+      "row": "2026-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-143.jpg",
+      "caption": "",
+      "row": "2026-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-144.jpg",
+      "caption": "",
+      "row": "2026-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-145.jpg",
+      "caption": "",
+      "row": "2026-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-146.jpg",
+      "caption": "",
+      "row": "2026-2"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-147.jpg",
+      "caption": "",
+      "row": "merch-a-1",
+      "section": "Merch"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-148.jpg",
+      "caption": "",
+      "row": "merch-a-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-149.jpg",
+      "caption": "",
+      "row": "merch-a-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-150.jpg",
+      "caption": "",
+      "row": "merch-b-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-151.jpg",
+      "caption": "",
+      "row": "merch-b-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-152.jpg",
+      "caption": "",
+      "row": "merch-b-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-153.jpg",
+      "caption": "",
+      "row": "merch-c-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-154.jpg",
+      "caption": "",
+      "row": "merch-c-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-155.jpg",
+      "caption": "",
+      "row": "merch-c-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-156.jpg",
+      "caption": "",
+      "row": "merch-c-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-157.jpg",
+      "caption": "",
+      "row": "merch-d-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-158.jpg",
+      "caption": "",
+      "row": "merch-d-1"
+    },
+    {
+      "image": "/assets/club-guesthouse/club-guesthouse-159.jpg",
+      "caption": "",
+      "row": "merch-d-1"
     }
   ],
   "source": "pdf",
