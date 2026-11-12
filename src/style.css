@@ -1,8 +1,8 @@
 /* ==========================================================================
    Mălin Neamțu: portfolio
-   One stylesheet. The look follows the 2026 portfolio PDF: black pages, light
-   grey text, thin 1px outlines around images, narrow margins, small
-   letter-spaced capitals, magenta links. Every letter is set in Segmentor-03.
+   One stylesheet, kept minimal: two colours (black and #fafafa, set in
+   /admin → Theme), Segmentor-03 for all text, thin rules, no decoration.
+   Only the big name on the splash moves (class .seg).
    Tokens (colours, sizes) live in :root so they are easy to change.
    ========================================================================== */
 
@@ -14,22 +14,21 @@
 
 :root {
   --bg: #000000;
-  --fg: #d9d9d9;
-  --muted: #8a8a8a;
-  --line: rgba(255, 255, 255, 0.35);  /* thin rules between sections */
-  --stroke: 1.333px;                  /* image outlines: 1pt, as in InDesign (1pt = 1.333 CSS px) */
-  --stroke-color: rgba(255, 255, 255, 0.6);
-  --accent: #e01ee0;                  /* the magenta of the PDF links */
+  --fg: #fafafa;
+  --muted: #fafafa;
+  --line: #fafafa;
+  --stroke: 0px;                      /* image outlines; 0 = none */
+  --stroke-color: #fafafa;
+  --accent: #fafafa;
 
-  --pad: clamp(8px, 1vw, 16px);       /* page edge: thin, like the PDF */
-  --gap: clamp(6px, 0.7vw, 12px);     /* between images */
+  --pad: clamp(12px, 1.6vw, 24px);    /* page edge */
+  --gap: clamp(8px, 1vw, 16px);       /* between images */
 
-  --font: "Segmentor", ui-monospace, monospace;   /* titles: always Segmentor */
+  --font: "Segmentor", ui-monospace, monospace;   /* the name: always Segmentor */
   --font-text: var(--font);                        /* everything else; can be swapped in /admin → Theme */
-  --text-xs: 11px;
   --text-s: 13px;
-  --text-m: 16px;
-  --tracking: 0.22em;                 /* the spaced-out capitals: H E N K A N */
+  --text-m: 15px;
+  --text-l: clamp(22px, 2.4vw, 34px);
 
   /* The four Segmentor axes. script.js changes these as the mouse moves or
      the phone tilts; every element with class .seg follows them. */
@@ -49,131 +48,137 @@ body {
   color: var(--fg);
   font-family: var(--font-text);
   font-size: var(--text-m);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 img { display: block; max-width: 100%; height: auto; }
 
+/* Links: same colour as the text; a thin underline appears on hover. */
 a { color: inherit; text-decoration: none; }
-a:hover { color: var(--accent); }
+a:hover,
+a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+/* Links inside running text are always underlined, so they can be found. */
+.project-text a,
+.project-meta dd a,
+.contact-bio p a,
+.cv-list .what a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 
-:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+:focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
 
-/* Text that moves with the mouse / tilt. Always Segmentor. */
+h1, h2 { font-weight: normal; }
+
+.plain-list { list-style: none; margin: 0; padding: 0; }
+
+/* Text that moves with the mouse / tilt. */
 .seg {
   font-family: var(--font);
   font-variation-settings:
     "AAAA" var(--aaaa), "BBBB" var(--bbbb), "CCCC" var(--cccc), "DDDD" var(--dddd);
 }
 
-/* Small spaced capitals, used for labels everywhere (like the PDF headers). */
-.site-bar,
-.card-title,
-.project-meta dt,
-.project-pager,
-.info h2,
-.site-footer {
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking);
-}
-
-/* --- Header -------------------------------------------------------------- */
+/* --- Header (every page except the splash) -------------------------------- */
 
 .site-header {
-  padding: var(--pad) var(--pad) 0;
-  position: relative;
-  z-index: 2;
-}
-
-/* Big name across the full width. script.js picks the exact font-size so it
-   fills the line; the vw value is the starting guess without JavaScript. */
-.site-name {
-  display: block;
-  font-size: 13vw;
-  line-height: 0.85;
-  white-space: nowrap;
-  overflow: hidden;
-  padding-bottom: 0.18em;
-  margin-bottom: -0.12em;
-}
-.site-name:hover { color: var(--fg); }
-
-.site-bar {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  margin-top: 1.6rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--line);
+  padding: var(--pad);
 }
-.site-tagline { color: var(--muted); }
-@media (max-width: 600px) { .site-location { display: none; } }
 .site-nav { display: flex; gap: 1.5rem; align-items: baseline; }
-.site-nav a[aria-current="page"] { color: var(--accent); }
+
+main { padding: 0 var(--pad); }
+
+/* --- Splash ------------------------------------------------------------------ */
+
+body.is-splash {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.splash-header { display: flex; justify-content: flex-end; padding: var(--pad); }
+.is-splash main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--pad);
+}
+/* script.js sets the exact font-size so the name fills the width;
+   the vw value is the starting guess without JavaScript. */
+.splash-name {
+  margin: 0;
+  width: 100%;
+  font-size: 13vw;
+  line-height: 1;
+  white-space: nowrap;
+  padding-bottom: 0.15em; /* room for the comma of ț */
+}
 
 /* Only shown on iPhone/iPad, where tilting needs one tap of permission. */
 .motion-btn {
   font: inherit;
-  text-transform: inherit;
-  letter-spacing: inherit;
-  color: var(--accent);
+  color: inherit;
   background: none;
-  border: 1px solid currentColor;
-  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--line);
+  padding: 0.1rem 0.5rem;
   cursor: pointer;
 }
 
-main { padding: var(--pad); }
+/* --- Index (Projects) ------------------------------------------------------- */
 
-/* --- Home grid ----------------------------------------------------------- */
-
-/* Without JavaScript: an ordinary grid. */
-.grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.index { list-style: none; margin: 0; padding: 0; }
+.index-head,
+.index-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--gap);
-  align-items: start;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.index-head { font-size: var(--text-s); }
+.index-year,
+.index-head span:last-child { text-align: right; }
+.index-row:hover { text-decoration: none; }
+.index-row:hover .index-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+
+/* Phones: title and year on one line, client underneath. */
+@media (max-width: 700px) {
+  .index-head { display: none; }
+  .index-row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.1rem; }
+  .index-client { grid-row: 2; font-size: var(--text-s); }
+  .index-year { grid-column: 2; grid-row: 1; }
 }
 
-/* With JavaScript: script.js adds .is-masonry and wraps the cards in columns. */
-.grid.is-masonry { display: flex; gap: var(--gap); align-items: flex-start; }
-.grid-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: calc(var(--gap) * 2); }
-
-.card-link { display: block; }
-.card img {
-  width: 100%;
-  outline: var(--stroke) solid var(--stroke-color);
-  outline-offset: calc(var(--stroke) * -1);
+/* The cover of the row under the pointer. script.js keeps --mx / --my at the
+   pointer position. Only on devices with a real mouse. */
+.index-thumb { display: none; }
+@media (hover: hover) {
+  .index-row:hover .index-thumb {
+    display: block;
+    position: fixed;
+    left: calc(var(--mx, 50vw) + 24px);
+    top: calc(var(--my, 50vh) - 80px);
+    width: clamp(180px, 18vw, 300px);
+    pointer-events: none;
+    z-index: 5;
+  }
 }
 
-.card-title,
-.card-tags { display: block; line-height: 1.35; }
-.card-title { margin-top: 0.45rem; }
-.card-title::before { content: "— "; }
-.card-link:hover .card-title { color: var(--accent); }
-.card-tags { font-size: var(--text-xs); color: var(--muted); }
-
-/* --- Project page -------------------------------------------------------- */
+/* --- Project page ------------------------------------------------------------ */
 
 .project-title {
-  margin: 0.4rem 0 2rem;
-  font-weight: normal;
-  font-size: clamp(44px, 10vw, 180px);
-  line-height: 0.9;
+  margin: 2rem 0 1.5rem;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1;
   overflow-wrap: anywhere;
 }
 
 .project-info {
   display: grid;
   gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 2.5rem;
 }
 @media (min-width: 900px) {
   .project-info { grid-template-columns: 1fr 2fr; gap: var(--gap); }
@@ -183,22 +188,20 @@ main { padding: var(--pad); }
   margin: 0;
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: 0.35rem 1.2rem;
+  gap: 0.3rem 1.2rem;
   font-size: var(--text-s);
   align-content: start;
 }
-.project-meta dt { color: var(--muted); padding-top: 0.15em; }
 .project-meta dd { margin: 0; }
 
-.project-text { max-width: 46em; font-size: clamp(15px, 1.25vw, 19px); line-height: 1.45; }
+.project-text { max-width: 44em; }
 .project-text p { margin: 0 0 1em; }
 
 .project-links { list-style: none; padding: 0; margin: 0; font-size: var(--text-s); }
-.project-links a { color: var(--accent); }
 
 .gallery { display: grid; gap: var(--gap); }
 .gallery figure { margin: 0; }
-.gallery figcaption { margin-top: 0.4rem; font-size: var(--text-xs); color: var(--muted); }
+.gallery figcaption { margin-top: 0.4rem; font-size: var(--text-s); }
 .gallery img, .gallery video { width: 100%; outline: var(--stroke) solid var(--stroke-color); outline-offset: calc(var(--stroke) * -1); }
 .gallery video { display: block; width: auto; max-width: 100%; max-height: 90vh; }
 
@@ -206,211 +209,102 @@ main { padding: var(--pad); }
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 0.6rem;
+  margin-top: 3rem;
+  padding-top: 0.55rem;
   border-top: 1px solid var(--line);
+  font-size: var(--text-s);
 }
 
-/* --- Year buttons ---------------------------------------------------------
-   Every year on the site opens the timeline at that year. */
-.year-btn {
-  display: inline-block;
-  padding: 0 0.3em;
-  border: 1px solid var(--line);
-  line-height: 1.35;
-  color: var(--fg);
-}
-.year-btn:hover { border-color: var(--accent); color: var(--accent); }
+/* --- Type ---------------------------------------------------------------------- */
 
-/* --- Timeline ---------------------------------------------------------------- */
+.tester-list { list-style: none; margin: 0; padding: 0; }
+.tester { border-top: 1px solid var(--line); padding: 0.55rem 0 2.5rem; }
+.tester:last-child { border-bottom: 1px solid var(--line); }
 
-.timeline-years {
-  position: sticky;
-  top: 0;
-  z-index: 3;
+.tester-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0.6rem 0;
-  margin-bottom: 1rem;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
+  align-items: center;
+  gap: 0.5rem 1.5rem;
   font-size: var(--text-s);
 }
-.timeline-year {
-  display: grid;
-  gap: var(--gap);
-  padding: 1rem 0 2rem;
-  border-bottom: 1px solid var(--line);
-  scroll-margin-top: 3.5rem; /* so the sticky year bar does not cover it */
-}
-@media (min-width: 900px) {
-  .timeline-year { grid-template-columns: 17rem minmax(0, 1fr); }
-}
-.timeline-label {
-  margin: 0;
-  font-weight: normal;
-  font-size: clamp(56px, 5.5vw, 90px);
-  line-height: 0.9;
-}
-.timeline-year:target .timeline-label { color: var(--accent); }
-.timeline-row {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0.5rem;
-  display: flex;
-  gap: var(--gap);
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-}
-.timeline-row li { flex: 0 0 auto; width: clamp(150px, 16vw, 240px); scroll-snap-align: start; }
-.timeline-row img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  outline: var(--stroke) solid var(--stroke-color);
-  outline-offset: calc(var(--stroke) * -1);
-}
-.timeline-row a:hover .card-title { color: var(--accent); }
-.timeline-row .card-title { display: block; margin-top: 0.45rem; }
-
-/* --- Splash ---------------------------------------------------------------- */
-
-body.is-splash { overflow: hidden; height: 100vh; height: 100dvh; }
-.is-splash main { padding: 0; }
-.is-splash .site-footer { display: none; }
-.is-splash .site-header { pointer-events: none; z-index: 10; }
-.is-splash .site-header a,
-.is-splash .site-header button { pointer-events: auto; }
-
-/* Without JavaScript: a simple wrap of covers. */
-.splash-stage { display: flex; flex-wrap: wrap; gap: var(--gap); padding: var(--pad); }
-.splash-item img { width: 140px; }
-
-/* With JavaScript (script.js adds .is-live): a 3D stage filling the screen. */
-.splash.is-live {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  isolation: isolate;   /* keeps the 3D covers below the header and menu */
-  overflow: hidden;
-  perspective: 1100px;
-  touch-action: none;   /* the page handles swipes itself */
-  cursor: grab;
-  user-select: none;
-}
-.splash.is-live:active { cursor: grabbing; }
-.is-live .splash-stage {
-  position: absolute;
-  left: 50%;
-  top: 57%;
-  width: 0;
-  height: 0;
+.tester-name { margin: 0; font-size: var(--text-m); flex: 1 1 10rem; }
+.tester-styles { display: flex; gap: 0.75rem; }
+.tester-styles button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
   padding: 0;
-  transform-style: preserve-3d;
+  cursor: pointer;
 }
-.is-live .splash-item {
-  position: absolute;
-  width: var(--splash-size, 128px);
-  left: calc(var(--splash-size, 128px) / -2);
-  top: calc(var(--splash-size, 128px) / -2);
-  will-change: transform, opacity;
-}
-.is-live .splash-item img {
-  width: 100%;
-  outline: var(--stroke) solid var(--stroke-color);
-  outline-offset: calc(var(--stroke) * -1);
-  -webkit-user-drag: none;
-  transition: outline-color 0.15s;
-}
-.is-live .splash-item:hover img,
-.is-live .splash-item:focus-visible img { outline-color: var(--accent); }
-@media (max-width: 700px) { .splash { --splash-size: 92px; } }
-
-.splash-caption,
-.splash-hint {
-  position: fixed;
-  left: var(--pad);
-  right: var(--pad);
-  z-index: 10;
+.tester-styles button[aria-pressed="true"],
+.tester-styles button:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.tester-size,
+.tester-axes label { display: flex; align-items: center; gap: 0.5rem; }
+.tester-axes { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; flex-basis: 100%; }
+.tester-axes:empty { display: none; }
+.tester input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 7rem;
+  height: 14px;
   margin: 0;
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking);
-  pointer-events: none;
+  background: transparent;
+  cursor: pointer;
 }
-.splash-caption { bottom: 3rem; text-align: center; color: var(--fg); min-height: 1.4em; }
-.splash-hint {
-  bottom: var(--pad);
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+/* Slider in the two colours: a 1px line and a small round knob. */
+.tester input[type="range"]::-webkit-slider-runnable-track { height: 1px; background: var(--fg); }
+.tester input[type="range"]::-moz-range-track { height: 1px; background: var(--fg); }
+.tester input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px; height: 11px; margin-top: -5px;
+  border: 0; border-radius: 50%; background: var(--fg);
 }
-.splash-hint a { pointer-events: auto; color: var(--fg); }
-.splash-hint a:hover { color: var(--accent); }
-.hint-touch { display: none; }
-@media (pointer: coarse) { .hint-touch { display: inline; } .hint-desktop { display: none; } }
-.splash:not(.is-live) .splash-caption,
-.splash:not(.is-live) .splash-hint { position: static; }
+.tester input[type="range"]::-moz-range-thumb { width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--fg); }
 
-/* --- Info page ------------------------------------------------------------- */
-
-.video-bg {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.55; /* keeps the CV readable on top */
+.tester-sample {
+  margin: 1.5rem 0 0;
+  font-size: var(--size, 72px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  outline: none;
+  cursor: text;
 }
-.info,
-.is-info .site-footer { position: relative; z-index: 1; }
 
-.info { padding: 1rem 0 3rem; }
+/* --- Contact ----------------------------------------------------------------- */
 
-.info-top {
+.contact {
   display: grid;
   gap: 2.5rem;
-  margin-bottom: 4rem;
+  margin: 2rem 0 4rem;
 }
-@media (min-width: 900px) {
-  .info-top { grid-template-columns: 2fr 1fr 1fr; gap: var(--gap); }
-}
-.info-bio { font-size: clamp(22px, 2.6vw, 40px); line-height: 1.25; }
-.info-bio p { margin: 0 0 1em; }
+@media (min-width: 900px) { .contact { grid-template-columns: 1fr 1fr; gap: var(--gap); } }
+.contact-email { font-size: var(--text-l); margin: 0 0 1rem; line-height: 1.2; overflow-wrap: anywhere; }
+.contact-bio { max-width: 40em; }
+.contact-bio p { margin: 0 0 1em; }
+.contact-bio .plain-list { margin-top: 1.5rem; }
 
-.info h2 {
-  margin: 0 0 0.75rem;
-  padding-bottom: 0.4rem;
-  font-weight: normal;
+.cv { display: grid; gap: 3rem var(--gap); margin-bottom: 3rem; }
+@media (min-width: 900px) { .cv { grid-template-columns: 1fr 1fr; } }
+.cv h2 {
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.55rem;
+  font-size: var(--text-m);
   border-bottom: 1px solid var(--line);
 }
-.info ul { list-style: none; margin: 0; padding: 0; }
-.info li { margin-bottom: 0.35rem; }
-
-/* CV: one block per section, "when" in a narrow column. */
-.cv { display: grid; gap: 3rem var(--gap); }
-@media (min-width: 900px) { .cv { grid-template-columns: 1fr 1fr; } }
+.cv-list { list-style: none; margin: 0; padding: 0; }
 .cv-list li {
   display: grid;
-  grid-template-columns: 11em 1fr;
+  grid-template-columns: 9em 1fr;
   gap: 1rem;
   font-size: var(--text-s);
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
-.cv-list .when { color: var(--muted); }
-.cv-list .what a,
-.project-text a:not(.year-btn),
-.project-meta dd a:not(.year-btn) { color: var(--accent); }
 
 /* --- 404 ----------------------------------------------------------------- */
 
-.not-found { min-height: 50vh; }
-.not-found .seg { font-size: clamp(32px, 6vw, 96px); line-height: 1; margin: 1rem 0; }
+.not-found { min-height: 50vh; padding-top: 2rem; }
 
 /* --- Footer -------------------------------------------------------------- */
 
@@ -418,96 +312,25 @@ body.is-splash { overflow: hidden; height: 100vh; height: 100dvh; }
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 var(--pad);
-  padding: 0.6rem 0 var(--pad);
+  margin: 4rem var(--pad) 0;
+  padding: 0.55rem 0 var(--pad);
   border-top: 1px solid var(--line);
-  color: var(--muted);
+  font-size: var(--text-s);
 }
 
 /* ==========================================================================
-   Motion: small ins and outs. All timing lives here.
+   Motion: only a soft fade between pages.
    ========================================================================== */
 
-:root {
-  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);   /* fast start, soft landing */
-  --t-quick: 0.25s;
-  --t-slow: 0.8s;
-}
-
-/* Page changes: the header stays put, the page below fades and slides.
-   Works in Chrome, Edge and Safari 18+; other browsers just switch pages. */
 @view-transition { navigation: auto; }
-.site-header { view-transition-name: header; }
-::view-transition-old(root) { animation: page-out 0.22s ease-in both; }
-::view-transition-new(root) { animation: page-in 0.5s var(--ease-out) both; }
-@keyframes page-out { to { opacity: 0; transform: translateY(-10px); } }
-@keyframes page-in { from { opacity: 0; transform: translateY(16px); } }
+::view-transition-old(root) { animation: page-out 0.18s ease-in both; }
+::view-transition-new(root) { animation: page-in 0.3s ease-out both; }
+@keyframes page-out { to { opacity: 0; } }
+@keyframes page-in { from { opacity: 0; } }
 
-/* Reveal on scroll: script.js adds .reveal, then .is-in when the element
-   comes into view. --d is a small per-element delay so rows ripple in. */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
-  transition-delay: var(--d, 0s);
-}
-.reveal.is-in { opacity: 1; transform: none; }
-
-/* Images: lift a little and take the highlight colour on hover. */
-.card img,
-.timeline-row img,
-.gallery img {
-  transition: transform var(--t-quick) var(--ease-out), outline-color var(--t-quick);
-}
-.card-link:hover img,
-.timeline-row a:hover img { transform: translateY(-4px); outline-color: var(--accent); }
-
-/* Titles under images: the dash grows when hovered. */
-.card-title::before { display: inline-block; transition: transform var(--t-quick) var(--ease-out); }
-.card-link:hover .card-title::before,
-.timeline-row a:hover .card-title::before { transform: translateX(4px); }
-
-/* Links in text: an underline that draws itself in. */
-.cv-list .what a,
-.project-text a:not(.year-btn),
-.project-meta dd a:not(.year-btn),
-.info-bio a,
-.project-links a,
-.site-nav a {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size var(--t-quick) var(--ease-out), color var(--t-quick);
-}
-.cv-list .what a:hover,
-.project-text a:hover,
-.project-meta dd a:hover,
-.info-bio a:hover,
-.project-links a:hover,
-.site-nav a:hover,
-.site-nav a[aria-current="page"] { background-size: 100% 1px; text-decoration: none; }
-.info-bio a { color: var(--accent); }
-
-/* Year buttons fill in. */
-.year-btn { transition: background-color var(--t-quick), color var(--t-quick), border-color var(--t-quick); }
-.year-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-
-/* Pager: the arrows nudge outwards. */
-.project-pager a { transition: transform var(--t-quick) var(--ease-out), color var(--t-quick); }
-.project-pager a:first-child:hover { transform: translateX(-4px); }
-.project-pager a:last-child:hover { transform: translateX(4px); }
-
-/* Splash caption: each new title slides up. */
-.splash-caption.is-changing { animation: caption-in 0.35s var(--ease-out); }
-@keyframes caption-in { from { opacity: 0; transform: translateY(6px); } }
-
-/* The timeline year you jumped to pulses once. */
-.timeline-year:target .timeline-label { animation: year-flash 1.2s var(--ease-out); }
-@keyframes year-flash { 0% { opacity: 0; transform: translateX(-12px); } }
-
-/* Everything above switches off for people who ask for less motion. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
     animation: none !important;
     transition: none !important;
   }
-  .reveal { opacity: 1; transform: none; }
 }

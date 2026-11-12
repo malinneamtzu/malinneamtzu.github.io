@@ -66,7 +66,7 @@ collections:
         name: year
         widget: string
         required: false
-        hint: "What visitors see, e.g. 2023, 2021–2025 or 2020–present. Each year becomes a button to the timeline."
+        hint: "What visitors see, e.g. 2023, 2021–2025 or 2020–present."
       - label: Tags
         name: tags
         widget: list
@@ -92,7 +92,7 @@ collections:
         fields:
           - { label: Label, name: label, widget: string }
           - { label: URL, name: url, widget: string, pattern: ['^https?://', "Start with https://"] }
-      - label: Cover image (grid and splash)
+      - label: Cover image (shown when hovering the project list)
         name: cover
         widget: image
         required: false
@@ -120,7 +120,7 @@ collections:
       preview: false
     files:
       - name: site
-        label: Info page & site texts
+        label: Contact page & site texts
         file: src/_data/site.json
         format: json
         fields:
@@ -130,7 +130,7 @@ collections:
           - { label: Email, name: email, widget: string }
           - { label: Site address, name: url, widget: string }
           - { label: "Description (search engines and link previews)", name: description, widget: text }
-          - label: Bio (Info page)
+          - label: Bio (Contact page)
             name: bio
             widget: markdown
             buttons: [link, bold, italic]
@@ -138,14 +138,14 @@ collections:
             modes: [rich_text, raw]
             minimal: true
             hint: "Press Enter for a new paragraph. Select words and press the link button to add a link."
-          - label: Links (Info page)
+          - label: Links (Contact page)
             name: links
             widget: list
             summary: "{{fields.label}}"
             fields:
               - { label: Label, name: label, widget: string }
               - { label: URL, name: url, widget: string }
-          - label: Contact / social (Info page)
+          - label: Contact / social (Contact page)
             name: social
             widget: list
             summary: "{{fields.label}}"
@@ -172,6 +172,41 @@ collections:
                 fields:
                   - { label: When, name: when, widget: string, hint: "e.g. 2025 or 2020 — present" }
                   - { widget: markdown, buttons: [link, bold, italic], editor_components: [], modes: [rich_text, raw], minimal: true, label: What, name: what, hint: "Select words and press the link button to add a link." }
+
+  # ---------------------------------------------------------- Type
+  - name: type
+    label: Type
+    files:
+      - name: fonts
+        label: Typefaces (Type page)
+        file: src/_data/fonts.json
+        format: json
+        fields:
+          - label: Typefaces
+            name: fonts
+            widget: list
+            summary: "{{fields.name}}"
+            hint: "Drag to change the order on the Type page."
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: "Project page (id, e.g. segmentor; empty = no link)", name: project, widget: string, required: false }
+              - { label: Sample text, name: sample, widget: string, hint: "Use only letters the font has." }
+              - label: Styles
+                name: styles
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Style name, name: name, widget: string }
+                  - { label: "Font file (.woff2 in src/fonts/type/)", name: file, widget: string, hint: "e.g. /fonts/type/poschta-bold.woff2" }
+                  - label: Axes (variable fonts only)
+                    name: axes
+                    widget: list
+                    required: false
+                    summary: "{{fields.tag}} {{fields.min}}–{{fields.max}}"
+                    fields:
+                      - { label: Tag, name: tag, widget: string }
+                      - { label: Min, name: min, widget: number, value_type: float }
+                      - { label: Max, name: max, widget: number, value_type: float }
 
   # ---------------------------------------------------------- Appearance
   # Has a live preview on the right while you edit.

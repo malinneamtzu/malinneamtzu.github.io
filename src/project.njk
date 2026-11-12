@@ -11,11 +11,11 @@ eleventyComputed:
   description: "{{ p.summary }}"
 ---
 <article class="project">
-  <h1 class="project-title seg">{{ p.title }}</h1>
+  <h1 class="project-title">{{ p.title }}</h1>
 
   <div class="project-info">
     <dl class="project-meta">
-      {% if p.year %}<dt>Year</dt><dd>{{ p.year | yearLinks | safe }}</dd>{% endif %}
+      {% if p.year %}<dt>Year</dt><dd>{{ p.year }}</dd>{% endif %}
       {% if p.client %}<dt>Client</dt><dd>{{ p.client | mdInline | safe }}</dd>{% endif %}
       {% if p.role %}<dt>Role</dt><dd>{{ p.role | mdInline | safe }}</dd>{% endif %}
       <dt>Field</dt><dd>{{ p.tags | join(", ") }}</dd>
@@ -48,7 +48,7 @@ eleventyComputed:
   {% set next = projects | neighbour(p.id, 1) %}
   <nav class="project-pager">
     <a href="/work/{{ prev.id }}/">« {{ prev.title }}</a>
-    <a href="/work/">All work</a>
+    <a href="/work/">All projects</a>
     <a href="/work/{{ next.id }}/">{{ next.title }} »</a>
   </nav>
 </article>

@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Type
+bodyClass: is-type
+permalink: /type/
+---
+{# Typefaces with a small tester. The list, styles and sample texts come from
+   src/_data/fonts.json (font files in src/fonts/type/). Click the sample to
+   type your own text; the slider sets the size, and variable fonts get one
+   slider per axis (script.js §4). #}
+<style>
+  {% for f in fonts.fonts %}{% set fi = loop.index %}{% for s in f.styles %}
+  @font-face { font-family: "T{{ fi }}-{{ loop.index }}"; src: url("{{ s.file | url }}") format("woff2"); font-display: swap; }
+  {% endfor %}{% endfor %}
+</style>
+
+<ul class="tester-list">
+  {% for f in fonts.fonts %}{% set fi = loop.index %}
+  <li class="tester" data-tester>
+    <div class="tester-bar">
+      <h2 class="tester-name">{% if f.project %}<a href="/work/{{ f.project }}/">{{ f.name }}</a>{% else %}{{ f.name }}{% endif %}</h2>
+      {% if f.styles.length > 1 %}
+      <div class="tester-styles" role="group" aria-label="{{ f.name }} styles">
+        {% for s in f.styles %}<button type="button" data-family="T{{ fi }}-{{ loop.index }}" data-axes='{{ (s.axes or []) | dump }}'{% if loop.first %} aria-pressed="true"{% endif %}>{{ s.name }}</button>{% endfor %}
+      </div>
+      {% endif %}
+      <label class="tester-size">Size <input type="range" min="16" max="240" value="72" data-size></label>
+      <div class="tester-axes" data-axes-box></div>
+    </div>
+    <p class="tester-sample" contenteditable="true" spellcheck="false"
+       data-family="T{{ fi }}-1" data-axes='{{ (f.styles[0].axes or []) | dump }}'
+       style="font-family: 'T{{ fi }}-1', var(--font)">{{ f.sample }}</p>
+  </li>
+  {% endfor %}
+</ul>

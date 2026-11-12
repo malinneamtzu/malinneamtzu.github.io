@@ -1,24 +1,24 @@
 ---
 layout: base.njk
-title: Work
+title: Projects
 bodyClass: is-work
 permalink: /work/
 ---
-{# All projects, newest first (sorted in _data/projects.js).
-   Without JavaScript this is a simple CSS grid; script.js rearranges the
-   cards into masonry columns (each card goes into the shortest column, so
-   the date order still reads left to right). The years under each card are
-   separate links to the timeline, so they sit outside the card's main link. #}
-<ul class="grid" data-masonry>
+{# All projects as one list, newest first (sorted in _data/projects.js):
+   project, client, year. On a computer the cover appears next to the
+   pointer while hovering a row (style.css "Index", script.js §3). #}
+<ol class="index">
+  <li class="index-head" aria-hidden="true">
+    <span>Project</span><span>Client</span><span>Year</span>
+  </li>
   {% for p in projects %}
-  <li class="card" data-ratio="{{ p.ratio }}">
-    <a class="card-link" href="/work/{{ p.id }}/">
-      {% if p.cover %}
-      <img src="{{ p.cover }}" alt="{{ p.title }}" sizes="(min-width: 1200px) 25vw, (min-width: 800px) 33vw, 50vw"{% if loop.index <= 4 %} loading="eager"{% endif %}>
-      {% endif %}
-      <span class="card-title">{{ p.title }}</span>
+  <li>
+    <a class="index-row" href="/work/{{ p.id }}/">
+      <span class="index-title">{{ p.title }}</span>
+      <span class="index-client">{{ p.client | plain }}</span>
+      <span class="index-year">{{ p.year }}</span>
+      {% if p.cover %}<img class="index-thumb" src="{{ p.cover }}" alt="" sizes="320px">{% endif %}
     </a>
-    <span class="card-tags">{{ p.tags | join(" | ") }}{% if p.year %} — {{ p.year | yearLinks | safe }}{% endif %}</span>
   </li>
   {% endfor %}
-</ul>
+</ol>

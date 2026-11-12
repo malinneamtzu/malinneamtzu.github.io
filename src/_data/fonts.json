@@ -1,0 +1,216 @@
+{
+  "fonts": [
+    {
+      "name": "Segmentor",
+      "project": "segmentor",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Variable",
+          "file": "/fonts/Segmentor.woff2",
+          "axes": [
+            {
+              "tag": "AAAA",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "BBBB",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "CCCC",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "DDDD",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "EEEE",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "FFFF",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "GGGG",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "HHHH",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "IIII",
+              "min": 0.0,
+              "max": 1000.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hecvba",
+      "project": "hecvba",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/hecvba-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Poschta",
+      "project": "poschta",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Light",
+          "file": "/fonts/type/poschta-light.woff2"
+        },
+        {
+          "name": "Book",
+          "file": "/fonts/type/poschta-book.woff2"
+        },
+        {
+          "name": "Bold",
+          "file": "/fonts/type/poschta-bold.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Lubke",
+      "project": "lubke",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/lubke-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "RZR",
+      "project": "rzr",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/rzr-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Henkan Grotesk",
+      "project": "henkan-grotesk",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Variable",
+          "file": "/fonts/type/henkan-grotesk-variable.woff2",
+          "axes": [
+            {
+              "tag": "aaaa",
+              "min": 0.0,
+              "max": 100.0
+            },
+            {
+              "tag": "bbbb",
+              "min": 0.0,
+              "max": 100.0
+            },
+            {
+              "tag": "cccc",
+              "min": 0.0,
+              "max": 100.0
+            }
+          ]
+        },
+        {
+          "name": "Regular",
+          "file": "/fonts/type/henkan-grotesk-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Noodle",
+      "project": "noodle",
+      "sample": "SPHINX OF BLACK QUARTZ, JUDGE MY VOW",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/noodle-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Skuba",
+      "project": "skuba",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/skuba-regular.woff2"
+        },
+        {
+          "name": "V2",
+          "file": "/fonts/type/skuba-v2.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Clazic",
+      "project": "clazic",
+      "sample": "Sphinx of black quartz, judge my vow",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/clazic-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Cocoscript",
+      "project": "cocoscript",
+      "sample": "SPHINX OF BLACK QUARTZ, JUDGE MY VOW",
+      "styles": [
+        {
+          "name": "Standard",
+          "file": "/fonts/type/cocoscript-standard.woff2"
+        }
+      ]
+    },
+    {
+      "name": "SHENTZU",
+      "project": "",
+      "sample": "ACDEFGHILNOSTUVZhilmnou",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/shentzu-regular.woff2"
+        }
+      ]
+    },
+    {
+      "name": "Stickman",
+      "project": "",
+      "sample": "abcdefghijklmnopqrstuvwxyz",
+      "styles": [
+        {
+          "name": "Regular",
+          "file": "/fonts/type/stickman-regular.woff2"
+        }
+      ]
+    }
+  ]
+}

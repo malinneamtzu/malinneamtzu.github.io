@@ -2,23 +2,6 @@
 layout: base.njk
 bodyClass: is-splash
 ---
-{# Splash: every project cover floats in 3D (see "Splash" in script.js).
-   At rest the covers form a sphere that turns with the mouse or the tilt of
-   the phone. Scrolling or dragging breaks the sphere open into a field of
-   images you fly through; scrolling back closes it again. Click a cover to
-   open the project. Without JavaScript, this is a plain list of links. #}
-<div class="splash" data-splash>
-  <div class="splash-stage">
-    {% for p in projects %}{% if p.cover %}
-    <a class="splash-item" href="/work/{{ p.id }}/" data-title="{{ p.title }}" data-year="{{ p.year }}">
-      <img src="{{ p.cover }}" alt="{{ p.title }}" sizes="200px" loading="eager">
-    </a>
-    {% endif %}{% endfor %}
-  </div>
-  <p class="splash-caption" aria-live="polite"></p>
-  <p class="splash-hint">
-    <span class="hint-desktop">Move to turn — scroll or drag to fly through — click to open</span>
-    <span class="hint-touch">Tilt to turn — swipe to fly through — tap to open</span>
-    <a href="/work/">All work</a>
-  </p>
-</div>
+{# Splash: just the name in Segmentor, as big as the screen allows.
+   It follows the mouse (desktop) or the tilt of the phone; see script.js. #}
+<h1 class="splash-name seg">{{ site.name }}</h1>

@@ -26,38 +26,49 @@
     {% if theme.textFont %}@font-face { font-family: "TextFont"; src: url("{{ theme.textFont | url }}"); font-display: swap; }{% endif %}
     :root {
       --bg: {{ theme.background or "#000000" }};
-      --fg: {{ theme.text or "#d9d9d9" }};
-      --muted: {{ theme.muted or "#8a8a8a" }};
-      --line: {{ theme.lines or "#5c5c5c" }};
-      --stroke-color: {{ theme.stroke or "#999999" }};
-      --stroke: calc({{ theme.strokeWidth | default(1) }} * 1.333px);
-      --accent: {{ theme.highlight or "#e01ee0" }};
+      --fg: {{ theme.text or "#fafafa" }};
+      --muted: {{ theme.muted or "#fafafa" }};
+      --line: {{ theme.lines or "#fafafa" }};
+      --stroke-color: {{ theme.stroke or "#fafafa" }};
+      --stroke: calc({{ theme.strokeWidth | default(0) }} * 1.333px);
+      --accent: {{ theme.highlight or "#fafafa" }};
       {% if theme.textFont %}--font-text: "TextFont", "Segmentor", ui-monospace, monospace;{% endif %}
     }
   </style>
 </head>
 <body class="{{ bodyClass }}">
-  <header class="site-header">
-    <a class="site-name seg" href="/" aria-label="{{ site.name }}, home">{{ site.name }}</a>
-    <div class="site-bar">
-      <span class="site-tagline">{{ site.tagline }}<span class="site-location">, {{ site.location }}</span></span>
-      <nav class="site-nav">
-        <a href="/work/"{% if page.url.startsWith("/work/") %} aria-current="page"{% endif %}>Work</a>
-        <a href="/timeline/"{% if page.url == "/timeline/" %} aria-current="page"{% endif %}>Timeline</a>
-        <a href="/info/"{% if page.url == "/info/" %} aria-current="page"{% endif %}>Info</a>
-        <button class="motion-btn" type="button" hidden>Tilt to play</button>
-      </nav>
-    </div>
+  {% set nav = [
+    { label: "Projects", url: "/work/" },
+    { label: "Type", url: "/type/" },
+    { label: "Contact", url: "/contact/" }
+  ] %}
+  {% if bodyClass == "is-splash" %}
+  {# Splash: only the big name, which follows the mouse / tilt. #}
+  <header class="splash-header">
+    <nav class="site-nav">
+      {% for n in nav %}<a href="{{ n.url }}">{{ n.label }}</a>{% endfor %}
+      <button class="motion-btn" type="button" hidden>Tilt to play</button>
+    </nav>
   </header>
+  {% else %}
+  <header class="site-header">
+    <a class="site-home" href="/">{{ site.name }}</a>
+    <nav class="site-nav">
+      {% for n in nav %}<a href="{{ n.url }}"{% if page.url.startsWith(n.url) %} aria-current="page"{% endif %}>{{ n.label }}</a>{% endfor %}
+    </nav>
+  </header>
+  {% endif %}
 
   <main>
     {{ content | safe }}
   </main>
 
+  {% if bodyClass != "is-splash" %}
   <footer class="site-footer">
-    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
     <span>© {{ year }} {{ site.name }}</span>
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
   </footer>
+  {% endif %}
 
   <script src="/script.js"></script>
 </body>
