@@ -97,23 +97,47 @@ body.is-splash {
   display: flex;
   flex-direction: column;
 }
-/* Name top left, email + social links stacked top right. */
+/* Name top left, "Contact" top right. */
 .splash-header { align-items: flex-start; }
-.splash-contact { text-align: right; }
+.contact-menu { position: relative; text-align: right; }
+.contact-menu summary { cursor: pointer; list-style: none; }
+.contact-menu summary::-webkit-details-marker { display: none; }
+.contact-menu summary:hover,
+.contact-menu[open] summary { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+/* The list hangs under "Contact", right-aligned, over the page. */
+.contact-menu ul {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.4rem);
+  z-index: 2;
+  white-space: nowrap;
+  background: var(--bg);
+}
+
 .is-splash main {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: 0 var(--pad) var(--pad);
 }
-/* The three big links. min(): as big as fits both the width and the height
-   (three lines must fit on a short phone screen too). */
-.splash-menu { text-align: center; }
+/* The three big links on one line: Projects on the left margin, Type in
+   the exact middle, About on the right margin. A grid of three columns,
+   1fr | auto | 1fr, keeps the middle word centred however long the
+   outer words are. */
+.splash-menu { width: 100%; }
+.splash-menu ul {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 1rem;
+}
+.splash-menu li:first-child { justify-self: start; }
+.splash-menu li:last-child { justify-self: end; }
 .splash-menu a {
   display: inline-block;
-  font-size: min(15vw, 21dvh);
-  line-height: 1.05;
+  font-size: clamp(28px, 7vw, 120px);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 /* Underline on hover (mouse), keyboard focus, and on tap (phones:
    script.js adds .is-tapped when a finger touches the link). */
@@ -127,6 +151,7 @@ body.is-splash {
 .splash-menu a:focus-visible { outline: none; }
 
 /* Only shown on iPhone/iPad, where tilting needs one tap of permission. */
+.splash-header .motion-btn { position: absolute; left: 50%; transform: translateX(-50%); }
 .motion-btn {
   font: inherit;
   color: inherit;
@@ -308,7 +333,7 @@ body.is-splash {
 .tester-sample {
   margin: 1.5rem 0 0;
   font-size: var(--size, min(72px, 13vw)); /* smaller on phones until the slider is moved */
-  line-height: 1.1;
+  line-height: 1.15;
   overflow-wrap: anywhere;
   outline: none;
   cursor: text;
@@ -317,8 +342,6 @@ body.is-splash {
 /* --- About ------------------------------------------------------------------- */
 
 .about { margin: 2rem 0 4rem; }
-.about-bio { font-size: var(--text-l); line-height: 1.2; }
-.about-bio p { margin: 0 0 1.5rem; }
 
 .cv { display: grid; gap: 3rem var(--gap); margin-bottom: 3rem; }
 @media (min-width: 900px) { .cv { grid-template-columns: 1fr 1fr; } }

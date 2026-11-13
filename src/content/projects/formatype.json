@@ -51,63 +51,78 @@
     },
     {
       "image": "/assets/formatype/formatype-10.jpg",
-      "caption": "The collective specimen poster"
+      "caption": "The collective specimen poster",
+      "row": "r10"
     },
     {
       "image": "/assets/formatype/formatype-11.jpg",
-      "caption": "Individual specimen posters"
+      "caption": "Individual specimen posters",
+      "row": "r10"
     },
     {
       "image": "/assets/formatype/formatype-12.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r10"
     },
     {
       "image": "/assets/formatype/formatype-13.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/formatype/formatype-14.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/formatype/formatype-15.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/formatype/formatype-16.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/formatype/formatype-17.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/formatype/formatype-18.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r12"
     },
     {
       "image": "/assets/formatype/formatype-19.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r12"
     },
     {
       "image": "/assets/formatype/formatype-20.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r13"
     },
     {
       "image": "/assets/formatype/formatype-21.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r13"
     },
     {
       "image": "/assets/formatype/formatype-22.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r13"
     },
     {
       "image": "/assets/formatype/formatype-23.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r13"
     },
     {
       "image": "/assets/formatype/formatype-24.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r13"
     },
     {
       "image": "/assets/formatype/formatype-25.jpg",
@@ -115,31 +130,38 @@
     },
     {
       "image": "/assets/formatype/formatype-26.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r15"
     },
     {
       "image": "/assets/formatype/formatype-27.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r15"
     },
     {
       "image": "/assets/formatype/formatype-28.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r15"
     },
     {
       "image": "/assets/formatype/formatype-29.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r16"
     },
     {
       "image": "/assets/formatype/formatype-30.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r16"
     },
     {
       "image": "/assets/formatype/formatype-31.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r16"
     },
     {
       "image": "/assets/formatype/formatype-32.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r16"
     }
   ],
   "source": "pdf",

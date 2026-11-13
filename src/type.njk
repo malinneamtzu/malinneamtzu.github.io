@@ -24,7 +24,7 @@ permalink: /type/
         {% for s in f.styles %}<button type="button" data-family="T{{ fi }}-{{ loop.index }}" data-axes='{{ (s.axes or []) | dump }}'{% if loop.first %} aria-pressed="true"{% endif %}>{{ s.name }}</button>{% endfor %}
       </div>
       {% endif %}
-      <label class="tester-size">Size <input type="range" min="16" max="240" value="72" data-size></label>
+      <label class="tester-size">Size <input type="range" min="16" max="400" value="72" data-size></label>
       <div class="tester-axes" data-axes-box></div>
     </div>
     <p class="tester-sample" contenteditable="true" spellcheck="false"

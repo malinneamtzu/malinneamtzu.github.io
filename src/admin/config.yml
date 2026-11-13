@@ -133,7 +133,7 @@ collections:
           - { label: Email, name: email, widget: string }
           - { label: Site address, name: url, widget: string }
           - { label: "Description (search engines and link previews)", name: description, widget: text }
-          - label: Description (About page)
+          - label: "Bio (not shown at the moment)"
             name: bio
             widget: markdown
             buttons: [link, bold, italic]

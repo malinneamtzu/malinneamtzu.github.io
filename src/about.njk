@@ -4,13 +4,9 @@ title: About
 bodyClass: is-about
 permalink: /about/
 ---
-{# About: one line about me (site.json → bio), links, then the CV
-   (src/_data/cv.json). Email and social links are on the splash page,
-   top right. #}
+{# About: links, then the CV (src/_data/cv.json). Email and social links
+   are on the splash page, under "Contact" top right. #}
 <div class="about">
-  <section class="about-bio">
-    {{ site.bio | md | safe }}
-  </section>
   <ul class="plain-list about-links">
     {% for l in site.links %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
   </ul>

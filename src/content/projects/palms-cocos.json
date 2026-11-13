@@ -48,103 +48,128 @@
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-06.jpg",
-      "caption": "Illustrations"
+      "caption": "Illustrations",
+      "row": "r6"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-07.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r6"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-08.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r6"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-09.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-10.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-11.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-12.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-13.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-14.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r8"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-15.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r8"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-16.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r9"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-17.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r9"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-18.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r9"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-19.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r9"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-20.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r9"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-21.jpg",
-      "caption": "Capsule collection"
+      "caption": "Capsule collection",
+      "row": "r10"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-22.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r10"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-23.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r10"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-24.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r10"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-25.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-26.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-27.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-28.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r11"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-29.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r12"
     },
     {
       "image": "/assets/palms-cocos/palms-cocos-30.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r12"
     }
   ],
   "source": "pdf",

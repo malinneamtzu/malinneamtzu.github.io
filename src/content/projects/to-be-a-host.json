@@ -23,31 +23,38 @@
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-02.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-03.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-04.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-05.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-06.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-07.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     },
     {
       "image": "/assets/to-be-a-host/to-be-a-host-08.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     }
   ],
   "source": "instagram",

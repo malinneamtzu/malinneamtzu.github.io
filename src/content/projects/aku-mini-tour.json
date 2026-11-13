@@ -23,27 +23,28 @@
     },
     {
       "image": "/assets/aku-mini-tour/aku-mini-tour-02.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/aku-mini-tour/aku-mini-tour-03.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/aku-mini-tour/aku-mini-tour-04.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     },
     {
       "image": "/assets/aku-mini-tour/aku-mini-tour-05.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     },
     {
       "image": "/assets/aku-mini-tour/aku-mini-tour-06.jpg",
-      "caption": ""
-    },
-    {
-      "image": "/assets/aku-mini-tour/aku-mini-tour-07.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r3"
     }
   ],
   "source": "instagram",

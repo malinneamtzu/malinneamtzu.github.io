@@ -31,39 +31,48 @@
     },
     {
       "image": "/assets/oyo9/oyo9-05.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r5"
     },
     {
       "image": "/assets/oyo9/oyo9-06.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r5"
     },
     {
       "image": "/assets/oyo9/oyo9-07.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r5"
     },
     {
       "image": "/assets/oyo9/oyo9-08.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r6"
     },
     {
       "image": "/assets/oyo9/oyo9-09.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r6"
     },
     {
       "image": "/assets/oyo9/oyo9-10.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/oyo9/oyo9-11.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/oyo9/oyo9-12.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     },
     {
       "image": "/assets/oyo9/oyo9-13.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r7"
     }
   ],
   "source": "pdf + instagram",

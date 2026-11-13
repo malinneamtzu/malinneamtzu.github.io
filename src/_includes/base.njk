@@ -39,14 +39,19 @@
 <body class="{{ bodyClass }}">
   {# The menu (Projects · Type · About) is listed in src/_data/nav.json. #}
   {% if bodyClass == "is-splash" %}
-  {# Splash: name top left, contact top right; the big menu is in index.njk. #}
+  {# Splash: name top left, Contact dropdown top right; the big menu is in index.njk. #}
   <header class="site-header splash-header">
     <a class="site-home" href="/">{{ site.name }}</a>
-    <ul class="plain-list splash-contact">
-      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-      {% for l in site.social %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
-      <li><button class="motion-btn" type="button" hidden>Tilt to play</button></li>
-    </ul>
+    {# "Contact" opens a small list (a <details> element: a built-in
+       open/close box, no JavaScript needed). #}
+    <details class="contact-menu">
+      <summary>Contact</summary>
+      <ul class="plain-list">
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        {% for l in site.social %}<li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+      </ul>
+    </details>
+    <button class="motion-btn" type="button" hidden>Tilt to play</button>
   </header>
   {% else %}
   <header class="site-header">

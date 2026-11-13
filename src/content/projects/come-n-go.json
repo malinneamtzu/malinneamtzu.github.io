@@ -23,19 +23,23 @@
     },
     {
       "image": "/assets/come-n-go/come-n-go-02.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/come-n-go/come-n-go-03.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/come-n-go/come-n-go-04.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/come-n-go/come-n-go-05.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     }
   ],
   "source": "instagram",

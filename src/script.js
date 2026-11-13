@@ -2,9 +2,10 @@
 // script.js: the few things that move.
 //   1. Segmentor follows the mouse (desktop) or the tilt of the phone.
 //      Only the big menu on the splash uses it (class .seg).
-//   2. Splash menu: underline a link while a finger is on it.
+//   2. Splash: underline a menu link while a finger is on it; close the
+//      Contact list when clicking elsewhere.
 //   3. Projects list: the hovered row's cover fills the background.
-//   4. Type page: size and axis sliders, style buttons.
+//   4. Type page: each name fills the width; size and axis sliders, styles.
 //   5. Intro: the menu runs through its shapes once per visit.
 // ===========================================================================
 
@@ -83,6 +84,12 @@ for (const a of document.querySelectorAll(".splash-menu a")) {
   for (const ev of ["touchend", "touchcancel"])
     a.addEventListener(ev, () => setTimeout(() => a.classList.remove("is-tapped"), 400));
 }
+const contactMenu = document.querySelector(".contact-menu");
+if (contactMenu) {
+  document.addEventListener("click", (e) => {
+    if (!contactMenu.contains(e.target)) contactMenu.open = false;
+  });
+}
 
 // --- 3. Projects list: big cover behind the list ---------------------------
 // Hovering (or tabbing to) a row shows that project's cover full-screen in
@@ -106,6 +113,7 @@ if (indexBg && !isTouch) {
 }
 
 // --- 4. Type tester ------------------------------------------------------------
+const fitters = [];
 // Each font row has a size slider, optional style buttons, and for variable
 // fonts one slider per axis (read from data-axes, written by fonts.json).
 for (const box of document.querySelectorAll("[data-tester]")) {
@@ -113,7 +121,34 @@ for (const box of document.querySelectorAll("[data-tester]")) {
   const size = box.querySelector("[data-size]");
   const axesBox = box.querySelector("[data-axes-box]");
 
-  size.addEventListener("input", () => sample.style.setProperty("--size", size.value + "px"));
+  // Default size: as big as fits the width on one line. Measured on an
+  // invisible copy of the text at 100px, then scaled. Stops once you move
+  // the size slider yourself.
+  let userSized = false;
+  const fit = async () => {
+    if (userSized) return;
+    const family = sample.style.fontFamily.split(",")[0].replace(/['"]/g, "");
+    try { await document.fonts.load(`100px "${family}"`, sample.textContent); } catch (e) { /* measure anyway */ }
+    const probe = document.createElement("span");
+    probe.textContent = sample.textContent;
+    Object.assign(probe.style, {
+      position: "absolute", visibility: "hidden", whiteSpace: "nowrap", fontSize: "100px",
+      fontFamily: sample.style.fontFamily, fontVariationSettings: sample.style.fontVariationSettings,
+    });
+    document.body.append(probe);
+    const w = probe.getBoundingClientRect().width;
+    probe.remove();
+    if (!w) return;
+    const px = Math.floor((100 * sample.clientWidth * 0.97) / w);
+    sample.style.setProperty("--size", px + "px");
+    size.max = Math.max(400, px);
+    size.value = px;
+  };
+  fitters.push(fit);
+  size.addEventListener("input", () => {
+    userSized = true;
+    sample.style.setProperty("--size", size.value + "px");
+  });
 
   const buildAxes = (axes) => {
     axesBox.replaceChildren();
@@ -138,6 +173,7 @@ for (const box of document.querySelectorAll("[data-tester]")) {
   const useStyle = (family, axes) => {
     sample.style.fontFamily = `'${family}', var(--font)`;
     buildAxes(axes);
+    fit();
   };
   useStyle(sample.dataset.family, JSON.parse(sample.dataset.axes || "[]"));
 
@@ -172,3 +208,4 @@ function introSweep() {
 
 // --- Start ------------------------------------------------------------------------
 introSweep();
+window.addEventListener("resize", () => fitters.forEach((f) => f()));
