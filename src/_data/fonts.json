@@ -290,10 +290,6 @@
         {
           "name": "Segment 100",
           "file": "/fonts/type/kenjo-segment-100.woff2"
-        },
-        {
-          "name": "Segment 50 Outline",
-          "file": "/fonts/type/kenjo-segment-50-outline.woff2"
         }
       ]
     },

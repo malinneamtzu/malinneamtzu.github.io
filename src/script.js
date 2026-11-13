@@ -91,23 +91,28 @@ document.addEventListener("click", (e) => {
     if (!d.contains(e.target)) d.open = false;
 });
 
-// Phones: each word of the stacked menu as wide as the space between the
-// margins. Measured at 100px at the default shape, then scaled; 0.92 leaves
-// room for the letters to widen when the phone tilts.
+// Phones: the stacked menu words all get one size, chosen so the longest
+// word fills the space between the margins. Measured at 100px at the
+// default shape, then scaled; 0.92 leaves room for the letters to widen
+// when the phone tilts.
 const phone = window.matchMedia("(max-width: 700px)");
 function fitMenu() {
-  for (const a of document.querySelectorAll(".splash-menu a")) {
-    if (!phone.matches) { a.style.fontSize = ""; continue; }
+  const links = [...document.querySelectorAll(".splash-menu a")];
+  if (!links.length) return;
+  if (!phone.matches) { links.forEach((a) => (a.style.fontSize = "")); return; }
+  let widest = 0;
+  for (const a of links) {
     const probe = document.createElement("span");
     probe.textContent = a.textContent;
     Object.assign(probe.style, { position: "fixed", left: "0", top: "0", visibility: "hidden",
       whiteSpace: "nowrap", fontFamily: getComputedStyle(a).fontFamily, fontSize: "100px",
       fontVariationSettings: "normal" });
     document.body.append(probe);
-    const w = probe.getBoundingClientRect().width;
+    widest = Math.max(widest, probe.getBoundingClientRect().width);
     probe.remove();
-    if (w) a.style.fontSize = (100 * a.parentElement.clientWidth * 0.92) / w + "px";
   }
+  const room = document.querySelector(".splash-menu ul").clientWidth;
+  if (widest) links.forEach((a) => (a.style.fontSize = (100 * room * 0.92) / widest + "px"));
 }
 
 // --- 3. Projects list: big cover behind the list ---------------------------

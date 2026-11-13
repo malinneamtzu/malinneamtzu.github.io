@@ -3,17 +3,10 @@ layout: base.njk
 bodyClass: is-splash
 ---
 {# Splash: three big links in Segmentor. Desktop: one line (Projects left,
-   Type centred, About right); phones: stacked, each as wide as the screen.
+   Type centred, About right); phones: stacked, all three the same size, the longest word as wide as
+   the space between the margins.
    They follow the mouse (desktop) or the tilt of the phone (script.js §1)
-   and get underlined on hover / tap. Behind them loops the background:
-   an animated WebP image (made from bg-desktop.mp4 / bg-mobile.mp4, about
-   a sixth of their size, and it never shows a play button). <picture>
-   lets the browser take the portrait file when the screen is upright.
-   eleventy:ignore keeps the image plugin from turning it into a still. #}
-<picture class="splash-bg" aria-hidden="true">
-  <source media="(orientation: portrait)" srcset="/media/bg-mobile.webp">
-  <img src="/media/bg-desktop.webp" alt="" eleventy:ignore>
-</picture>
+   and get underlined on hover / tap. #}
 
 <nav class="splash-menu" aria-label="Main">
   <ul class="plain-list">
