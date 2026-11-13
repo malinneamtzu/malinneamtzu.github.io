@@ -2,7 +2,7 @@
 // script.js: the few things that move.
 //   1. Segmentor follows the mouse (desktop) or the tilt of the phone.
 //      Only the big menu on the splash uses it (class .seg).
-//   2. Splash: background video, phone word sizes, tap underline;
+//   2. Splash: phone word sizes, tap underline;
 //      dropdowns (Contact, Type options) close when clicking elsewhere.
 //   3. Projects list: the hovered row's cover fills the background.
 //   4. Type page: the text always fits the width; options dropdown with
@@ -90,22 +90,6 @@ document.addEventListener("click", (e) => {
   for (const d of document.querySelectorAll("details.dropdown[open]"))
     if (!d.contains(e.target)) d.open = false;
 });
-
-// Background video: landscape file on wide screens, portrait on tall ones.
-const video = document.querySelector(".splash-video");
-if (video) {
-  const portrait = window.matchMedia("(orientation: portrait)");
-  const pick = () => {
-    const k = portrait.matches ? "portrait" : "landscape";
-    if (video.dataset.current === k) return;
-    video.dataset.current = k;
-    video.poster = video.dataset[k + "Poster"];
-    video.src = video.dataset[k];
-    video.play().catch(() => { /* autoplay refused: the poster stays */ });
-  };
-  pick();
-  portrait.addEventListener("change", pick);
-}
 
 // Phones: each word of the stacked menu as wide as the space between the
 // margins. Measured at 100px at the default shape, then scaled; 0.92 leaves

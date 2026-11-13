@@ -88,6 +88,17 @@ h1, h2 { font-weight: normal; }
 
 main { padding: 0 var(--pad); }
 
+/* Every page is at least as tall as the window, and <main> takes the
+   spare room, so the footer sits at the bottom even on short pages
+   (a "sticky footer" made with flexbox). */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }
+
 /* --- Splash ------------------------------------------------------------------ */
 
 body.is-splash {
@@ -146,9 +157,9 @@ body.is-splash {
 }
 .splash-menu a:focus-visible { outline: none; }
 
-/* Background video (landscape on wide screens, portrait on tall ones;
-   script.js picks the file). Fixed behind everything, cropped to fill. */
-.splash-video {
+/* Background loop (landscape on wide screens, portrait on tall ones).
+   Fixed behind everything, cropped to fill. */
+.splash-bg img {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -179,7 +190,7 @@ body.is-splash {
 
 /* --- Index (Projects) ------------------------------------------------------- */
 
-.index { list-style: none; margin: 0; padding: 0; }
+.index { list-style: none; margin: clamp(1.5rem, 7vh, 5rem) 0 0; padding: 0; }
 .index-head,
 .index-row {
   display: grid;

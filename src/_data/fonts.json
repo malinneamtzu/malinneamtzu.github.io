@@ -6,8 +6,8 @@
       "sample": "Segmentor",
       "styles": [
         {
-          "name": "Variable",
-          "file": "/fonts/Segmentor.woff2",
+          "name": "Segmentor-01",
+          "file": "/fonts/type/segmentor-01.woff2",
           "axes": [
             {
               "tag": "AAAA",
@@ -55,6 +55,245 @@
               "max": 1000.0
             }
           ]
+        },
+        {
+          "name": "Segmentor-02",
+          "file": "/fonts/type/segmentor-02.woff2",
+          "axes": [
+            {
+              "tag": "AAAA",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "BBBB",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "CCCC",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "DDDD",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "EEEE",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "FFFF",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "GGGG",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "HHHH",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "IIII",
+              "min": 0.0,
+              "max": 1000.0
+            }
+          ]
+        },
+        {
+          "name": "Segmentor-03",
+          "file": "/fonts/type/segmentor-03.woff2",
+          "axes": [
+            {
+              "tag": "AAAA",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "BBBB",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "CCCC",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "DDDD",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "EEEE",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "FFFF",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "GGGG",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "HHHH",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "IIII",
+              "min": 0.0,
+              "max": 1000.0
+            }
+          ]
+        },
+        {
+          "name": "Segmentor-04",
+          "file": "/fonts/type/segmentor-04.woff2",
+          "axes": [
+            {
+              "tag": "AAAA",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "BBBB",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "CCCC",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "DDDD",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "EEEE",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "FFFF",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "GGGG",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "HHHH",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "IIII",
+              "min": 0.0,
+              "max": 1000.0
+            }
+          ]
+        },
+        {
+          "name": "Segmentor-05",
+          "file": "/fonts/type/segmentor-05.woff2",
+          "axes": [
+            {
+              "tag": "AAAA",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "BBBB",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "CCCC",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "DDDD",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "EEEE",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "FFFF",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "GGGG",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "HHHH",
+              "min": 0.0,
+              "max": 1000.0
+            },
+            {
+              "tag": "IIII",
+              "min": 0.0,
+              "max": 1000.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kenjo",
+      "project": "kenjo",
+      "sample": "Kenjo",
+      "styles": [
+        {
+          "name": "Regular Contrast",
+          "file": "/fonts/type/kenjo-regular-contrast.woff2"
+        },
+        {
+          "name": "Low Contrast",
+          "file": "/fonts/type/kenjo-low-contrast.woff2"
+        },
+        {
+          "name": "High Contrast",
+          "file": "/fonts/type/kenjo-high-contrast.woff2"
+        },
+        {
+          "name": "Italic",
+          "file": "/fonts/type/kenjo-italic.woff2"
+        },
+        {
+          "name": "Informal",
+          "file": "/fonts/type/kenjo-informal.woff2"
+        },
+        {
+          "name": "Segment 100",
+          "file": "/fonts/type/kenjo-segment-100.woff2"
+        },
+        {
+          "name": "Segment 50 Outline",
+          "file": "/fonts/type/kenjo-segment-50-outline.woff2"
         }
       ]
     },
@@ -161,6 +400,14 @@
         {
           "name": "V2",
           "file": "/fonts/type/skuba-v2.woff2"
+        },
+        {
+          "name": "Light",
+          "file": "/fonts/type/skuba-light.woff2"
+        },
+        {
+          "name": "Bold",
+          "file": "/fonts/type/skuba-bold.woff2"
         }
       ]
     },

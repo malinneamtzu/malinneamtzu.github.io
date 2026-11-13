@@ -5,12 +5,15 @@ bodyClass: is-splash
 {# Splash: three big links in Segmentor. Desktop: one line (Projects left,
    Type centred, About right); phones: stacked, each as wide as the screen.
    They follow the mouse (desktop) or the tilt of the phone (script.js §1)
-   and get underlined on hover / tap. Behind them loops the background
-   video: script.js §2 picks the landscape or the portrait file. The
-   addresses use `| url` because the base plugin does not touch data-*. #}
-<video class="splash-video" autoplay muted loop playsinline aria-hidden="true"
-  data-landscape="{{ '/media/bg-desktop.mp4' | url }}" data-landscape-poster="{{ '/media/bg-desktop-poster.jpg' | url }}"
-  data-portrait="{{ '/media/bg-mobile.mp4' | url }}" data-portrait-poster="{{ '/media/bg-mobile-poster.jpg' | url }}"></video>
+   and get underlined on hover / tap. Behind them loops the background:
+   an animated WebP image (made from bg-desktop.mp4 / bg-mobile.mp4, about
+   a sixth of their size, and it never shows a play button). <picture>
+   lets the browser take the portrait file when the screen is upright.
+   eleventy:ignore keeps the image plugin from turning it into a still. #}
+<picture class="splash-bg" aria-hidden="true">
+  <source media="(orientation: portrait)" srcset="/media/bg-mobile.webp">
+  <img src="/media/bg-desktop.webp" alt="" eleventy:ignore>
+</picture>
 
 <nav class="splash-menu" aria-label="Main">
   <ul class="plain-list">
