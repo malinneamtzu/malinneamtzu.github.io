@@ -56,6 +56,7 @@ collections:
       preview: false
     fields:
       - { label: Title, name: title, widget: string }
+      - { label: Typeface, name: typeface, widget: boolean, required: false, default: false, hint: "On = a typeface: hidden from the Projects list (shown on the Type page)." }
       - label: Sort date
         name: date
         widget: string
@@ -122,7 +123,7 @@ collections:
       preview: false
     files:
       - name: site
-        label: Contact page & site texts
+        label: About page & site texts
         file: src/_data/site.json
         format: json
         fields:
@@ -132,7 +133,7 @@ collections:
           - { label: Email, name: email, widget: string }
           - { label: Site address, name: url, widget: string }
           - { label: "Description (search engines and link previews)", name: description, widget: text }
-          - label: Bio (Contact page)
+          - label: Description (About page)
             name: bio
             widget: markdown
             buttons: [link, bold, italic]
@@ -140,14 +141,14 @@ collections:
             modes: [rich_text, raw]
             minimal: true
             hint: "Press Enter for a new paragraph. Select words and press the link button to add a link."
-          - label: Links (Contact page)
+          - label: Links (About page)
             name: links
             widget: list
             summary: "{{fields.label}}"
             fields:
               - { label: Label, name: label, widget: string }
               - { label: URL, name: url, widget: string }
-          - label: Contact / social (Contact page)
+          - label: Social links (splash page, top right)
             name: social
             widget: list
             summary: "{{fields.label}}"

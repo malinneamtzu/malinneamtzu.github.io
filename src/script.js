@@ -1,11 +1,11 @@
 // ===========================================================================
 // script.js: the few things that move.
 //   1. Segmentor follows the mouse (desktop) or the tilt of the phone.
-//      Only the big name on the splash uses it (class .seg).
-//   2. The splash name is sized to fill the full width.
+//      Only the big menu on the splash uses it (class .seg).
+//   2. Splash menu: underline a link while a finger is on it.
 //   3. Projects list: the hovered row's cover fills the background.
 //   4. Type page: size and axis sliders, style buttons.
-//   5. Intro: the name runs through its shapes once per visit.
+//   5. Intro: the menu runs through its shapes once per visit.
 // ===========================================================================
 
 const root = document.documentElement;
@@ -76,23 +76,12 @@ if (hasSeg && !isTouch) {
   }
 }
 
-// --- 2. Fit the splash name to the width --------------------------------------
-// Measures the name at the default shape (all axes 0) and scales the font
-// size so it fills the line. Runs again when the window is resized.
-const nameEl = document.querySelector(".splash-name");
-
-function fitName() {
-  if (!nameEl) return;
-  const probe = nameEl.cloneNode(true);
-  Object.assign(probe.style, {
-    position: "absolute", visibility: "hidden", width: "auto",
-    fontSize: "100px", fontVariationSettings: "normal",
-  });
-  document.body.appendChild(probe);
-  const textWidth = probe.scrollWidth;
-  probe.remove();
-  // 0.97 leaves room for the letters to grow wider while they move
-  nameEl.style.fontSize = (100 * nameEl.clientWidth * 0.97) / textWidth + "px";
+// --- 2. Tap underline on the splash menu ----------------------------------
+// Phones have no hover, so the underline appears while the link is touched.
+for (const a of document.querySelectorAll(".splash-menu a")) {
+  a.addEventListener("touchstart", () => a.classList.add("is-tapped"), { passive: true });
+  for (const ev of ["touchend", "touchcancel"])
+    a.addEventListener(ev, () => setTimeout(() => a.classList.remove("is-tapped"), 400));
 }
 
 // --- 3. Projects list: big cover behind the list ---------------------------
@@ -162,10 +151,10 @@ for (const box of document.querySelectorAll("[data-tester]")) {
 }
 
 // --- 5. Intro sweep -----------------------------------------------------------------
-// First visit of the splash: the name runs through the four Segmentor
+// First visit of the splash: the menu runs through the four Segmentor
 // shapes once, then the mouse or tilt takes over.
 function introSweep() {
-  if (!nameEl || reducedMotion || sessionStorage.getItem("introDone")) return;
+  if (!hasSeg || reducedMotion || sessionStorage.getItem("introDone")) return;
   sessionStorage.setItem("introDone", "1");
   const DURATION = 1800, t0 = performance.now();
   let stopped = false;
@@ -183,6 +172,3 @@ function introSweep() {
 
 // --- Start ------------------------------------------------------------------------
 introSweep();
-fitName();
-document.fonts.ready.then(fitName);
-window.addEventListener("resize", fitName);

@@ -9,9 +9,12 @@ permalink: /work/
    background with that project's cover (like ueno.work): the covers wait,
    invisible, in .index-bg behind the page, and script.js §3 shows the one
    that belongs to the hovered row. The list itself uses "difference"
-   blending, so the text inverts against the image and stays readable. #}
+   blending, so the text inverts against the image and stays readable.
+   Typefaces ("typeface": true in their JSON) are left out: they belong
+   on the Type page. #}
+{% set listed = projects | rejectattr("typeface") %}
 <div class="index-bg" aria-hidden="true">
-  {% for p in projects %}{% if p.cover %}
+  {% for p in listed %}{% if p.cover %}
   <img src="{{ p.cover }}" alt="" sizes="100vw" data-for="{{ p.id }}">
   {% endif %}{% endfor %}
 </div>
@@ -20,7 +23,7 @@ permalink: /work/
   <li class="index-head" aria-hidden="true">
     <span>Project</span><span>Client</span><span>Year</span>
   </li>
-  {% for p in projects %}
+  {% for p in listed %}
   <li>
     <a class="index-row" href="/work/{{ p.id }}/" data-id="{{ p.id }}">
       <span class="index-title">{{ p.title }}</span>

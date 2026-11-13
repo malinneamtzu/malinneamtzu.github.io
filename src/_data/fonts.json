@@ -3,7 +3,7 @@
     {
       "name": "Segmentor",
       "project": "segmentor",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Segmentor",
       "styles": [
         {
           "name": "Variable",
@@ -61,7 +61,7 @@
     {
       "name": "Hecvba",
       "project": "hecvba",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Hecvba",
       "styles": [
         {
           "name": "Regular",
@@ -72,7 +72,7 @@
     {
       "name": "Poschta",
       "project": "poschta",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Poschta",
       "styles": [
         {
           "name": "Light",
@@ -91,7 +91,7 @@
     {
       "name": "Lubke",
       "project": "lubke",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Lubke",
       "styles": [
         {
           "name": "Regular",
@@ -102,7 +102,7 @@
     {
       "name": "RZR",
       "project": "rzr",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "RZR",
       "styles": [
         {
           "name": "Regular",
@@ -113,7 +113,7 @@
     {
       "name": "Henkan Grotesk",
       "project": "henkan-grotesk",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Henkan Grotesk",
       "styles": [
         {
           "name": "Variable",
@@ -145,7 +145,7 @@
     {
       "name": "Noodle",
       "project": "noodle",
-      "sample": "SPHINX OF BLACK QUARTZ, JUDGE MY VOW",
+      "sample": "NOODLE",
       "styles": [
         {
           "name": "Regular",
@@ -156,7 +156,7 @@
     {
       "name": "Skuba",
       "project": "skuba",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Skuba",
       "styles": [
         {
           "name": "Regular",
@@ -171,7 +171,7 @@
     {
       "name": "Clazic",
       "project": "clazic",
-      "sample": "Sphinx of black quartz, judge my vow",
+      "sample": "Clazic",
       "styles": [
         {
           "name": "Regular",
@@ -182,7 +182,7 @@
     {
       "name": "Cocoscript",
       "project": "cocoscript",
-      "sample": "SPHINX OF BLACK QUARTZ, JUDGE MY VOW",
+      "sample": "COCOSCRIPT",
       "styles": [
         {
           "name": "Standard",
@@ -193,7 +193,7 @@
     {
       "name": "SHENTZU",
       "project": "",
-      "sample": "ACDEFGHILNOSTUVZhilmnou",
+      "sample": "SHENTZU",
       "styles": [
         {
           "name": "Regular",
@@ -204,7 +204,7 @@
     {
       "name": "Stickman",
       "project": "",
-      "sample": "abcdefghijklmnopqrstuvwxyz",
+      "sample": "stickman",
       "styles": [
         {
           "name": "Regular",

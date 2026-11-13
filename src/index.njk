@@ -2,6 +2,12 @@
 layout: base.njk
 bodyClass: is-splash
 ---
-{# Splash: just the name in Segmentor, as big as the screen allows.
-   It follows the mouse (desktop) or the tilt of the phone; see script.js. #}
-<h1 class="splash-name seg">{{ site.name }}</h1>
+{# Splash: three big links in Segmentor, in the middle of the screen.
+   They follow the mouse (desktop) or the tilt of the phone (script.js §1)
+   and get underlined on hover / tap. Name and contact are in the header
+   (base.njk). #}
+<nav class="splash-menu" aria-label="Main">
+  <ul class="plain-list">
+    {% for n in nav %}<li><a class="seg" href="{{ n.url }}">{{ n.label }}</a></li>{% endfor %}
+  </ul>
+</nav>

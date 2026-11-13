@@ -53,11 +53,13 @@ eleventyComputed:
     {% endfor %}
   </div>
 
-  {% set prev = projects | neighbour(p.id, -1) %}
-  {% set next = projects | neighbour(p.id, 1) %}
+  {# Previous / next: typefaces page through typefaces, projects through projects. #}
+  {% if p.typeface %}{% set group = projects | selectattr("typeface") %}{% else %}{% set group = projects | rejectattr("typeface") %}{% endif %}
+  {% set prev = group | neighbour(p.id, -1) %}
+  {% set next = group | neighbour(p.id, 1) %}
   <nav class="project-pager">
     <a href="/work/{{ prev.id }}/">« {{ prev.title }}</a>
-    <a href="/work/">All projects</a>
+    {% if p.typeface %}<a href="/type/">All typefaces</a>{% else %}<a href="/work/">All projects</a>{% endif %}
     <a href="/work/{{ next.id }}/">{{ next.title }} »</a>
   </nav>
 </article>

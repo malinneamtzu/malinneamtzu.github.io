@@ -2,7 +2,7 @@
    Mălin Neamțu: portfolio
    One stylesheet, kept minimal: two colours (black and #fafafa, set in
    /admin → Theme), Segmentor-03 for all text, thin rules, no decoration.
-   Only the big name on the splash moves (class .seg).
+   Only the big menu on the splash moves (class .seg).
    Tokens (colours, sizes) live in :root so they are easy to change.
    ========================================================================== */
 
@@ -60,7 +60,6 @@ a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 
 /* Links inside running text are always underlined, so they can be found. */
 .project-text a,
 .project-meta dd a,
-.contact-bio p a,
 .cv-list .what a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 
 :focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
@@ -98,23 +97,34 @@ body.is-splash {
   display: flex;
   flex-direction: column;
 }
-.splash-header { display: flex; justify-content: flex-end; padding: var(--pad); }
+/* Name top left, email + social links stacked top right. */
+.splash-header { align-items: flex-start; }
+.splash-contact { text-align: right; }
 .is-splash main {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 0 var(--pad);
+  justify-content: center;
+  padding: 0 var(--pad) var(--pad);
 }
-/* script.js sets the exact font-size so the name fills the width;
-   the vw value is the starting guess without JavaScript. */
-.splash-name {
-  margin: 0;
-  width: 100%;
-  font-size: 13vw;
-  line-height: 1;
-  white-space: nowrap;
-  padding-bottom: 0.15em; /* room for the comma of ț */
+/* The three big links. min(): as big as fits both the width and the height
+   (three lines must fit on a short phone screen too). */
+.splash-menu { text-align: center; }
+.splash-menu a {
+  display: inline-block;
+  font-size: min(15vw, 21dvh);
+  line-height: 1.05;
 }
+/* Underline on hover (mouse), keyboard focus, and on tap (phones:
+   script.js adds .is-tapped when a finger touches the link). */
+.splash-menu a:hover,
+.splash-menu a:focus-visible,
+.splash-menu a.is-tapped {
+  text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.1em;
+}
+.splash-menu a:focus-visible { outline: none; }
 
 /* Only shown on iPhone/iPad, where tilting needs one tap of permission. */
 .motion-btn {
@@ -225,6 +235,7 @@ body.is-splash {
 .gallery figcaption { margin-top: 0.4rem; font-size: var(--text-s); }
 .gallery img, .gallery video { display: block; width: 100%; height: auto; outline: var(--stroke) solid var(--stroke-color); outline-offset: calc(var(--stroke) * -1); }
 /* A lone tall image or video should not be taller than the screen. */
+.gallery-row[data-count="1"] { justify-content: center; }
 .gallery-row[data-count="1"] figure { flex: none; max-width: 100%; width: min(100%, calc(88vh * var(--r))); }
 
 /* Phones: long rows wrap into lines of three (or two for rows of four). */
@@ -296,25 +307,18 @@ body.is-splash {
 
 .tester-sample {
   margin: 1.5rem 0 0;
-  font-size: var(--size, 72px);
+  font-size: var(--size, min(72px, 13vw)); /* smaller on phones until the slider is moved */
   line-height: 1.1;
   overflow-wrap: anywhere;
   outline: none;
   cursor: text;
 }
 
-/* --- Contact ----------------------------------------------------------------- */
+/* --- About ------------------------------------------------------------------- */
 
-.contact {
-  display: grid;
-  gap: 2.5rem;
-  margin: 2rem 0 4rem;
-}
-@media (min-width: 900px) { .contact { grid-template-columns: 1fr 1fr; gap: var(--gap); } }
-.contact-email { font-size: var(--text-l); margin: 0 0 1rem; line-height: 1.2; overflow-wrap: anywhere; }
-.contact-bio { max-width: 40em; }
-.contact-bio p { margin: 0 0 1em; }
-.contact-bio .plain-list { margin-top: 1.5rem; }
+.about { margin: 2rem 0 4rem; }
+.about-bio { font-size: var(--text-l); line-height: 1.2; }
+.about-bio p { margin: 0 0 1.5rem; }
 
 .cv { display: grid; gap: 3rem var(--gap); margin-bottom: 3rem; }
 @media (min-width: 900px) { .cv { grid-template-columns: 1fr 1fr; } }

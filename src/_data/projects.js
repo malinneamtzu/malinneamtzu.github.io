@@ -6,6 +6,8 @@
 //
 // Fields in each file
 //   title    shown on cards and as the big project title
+//   typeface true = a typeface: left out of the Projects list (it is shown
+//            on the Type page); its page still exists at /work/<id>/
 //   date     "YYYY" or "YYYY-MM": ONLY used for sorting (newest first).
 //            A bare year counts as December, i.e. ongoing work.
 //            Leave empty and the project goes to the end ("Undated").
