@@ -116,6 +116,10 @@
       "sample": "Henkan Grotesk",
       "styles": [
         {
+          "name": "Regular",
+          "file": "/fonts/type/henkan-grotesk-regular.woff2"
+        },
+        {
           "name": "Variable",
           "file": "/fonts/type/henkan-grotesk-variable.woff2",
           "axes": [
@@ -135,10 +139,6 @@
               "max": 100.0
             }
           ]
-        },
-        {
-          "name": "Regular",
-          "file": "/fonts/type/henkan-grotesk-regular.woff2"
         }
       ]
     },
@@ -158,10 +158,6 @@
       "project": "skuba",
       "sample": "Skuba",
       "styles": [
-        {
-          "name": "Regular",
-          "file": "/fonts/type/skuba-regular.woff2"
-        },
         {
           "name": "V2",
           "file": "/fonts/type/skuba-v2.woff2"

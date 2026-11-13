@@ -100,10 +100,6 @@ body.is-splash {
 /* Name top left, "Contact" top right. */
 .splash-header { align-items: flex-start; }
 .contact-menu { position: relative; text-align: right; }
-.contact-menu summary { cursor: pointer; list-style: none; }
-.contact-menu summary::-webkit-details-marker { display: none; }
-.contact-menu summary:hover,
-.contact-menu[open] summary { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 /* The list hangs under "Contact", right-aligned, over the page. */
 .contact-menu ul {
   position: absolute;
@@ -149,6 +145,26 @@ body.is-splash {
   text-underline-offset: 0.1em;
 }
 .splash-menu a:focus-visible { outline: none; }
+
+/* Background video (landscape on wide screens, portrait on tall ones;
+   script.js picks the file). Fixed behind everything, cropped to fill. */
+.splash-video {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Phones: the three words one above the other, each as wide as the space
+   between the margins (script.js §2 sets each word's size). */
+@media (max-width: 700px) {
+  .splash-menu ul { grid-template-columns: 1fr; gap: 0; }
+  .splash-menu li { justify-self: stretch !important; }
+  .splash-menu a { display: block; font-size: 22vw; line-height: 1.05; }
+}
 
 /* Only shown on iPhone/iPad, where tilting needs one tap of permission. */
 .splash-header .motion-btn { position: absolute; left: 50%; transform: translateX(-50%); }
@@ -290,12 +306,33 @@ body.is-splash {
 
 .tester-bar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
   font-size: var(--text-s);
 }
-.tester-name { margin: 0; font-size: var(--text-m); flex: 1 1 10rem; }
+.tester-name { margin: 0; font-size: var(--text-m); }
+
+/* "Options": a dropdown (<details>) with size, styles and axes. The panel
+   hangs under the word, right-aligned, over the sample. */
+.tester-options { position: relative; }
+.dropdown summary { cursor: pointer; list-style: none; }
+.dropdown summary::-webkit-details-marker { display: none; }
+.dropdown summary:hover,
+.dropdown[open] summary { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.tester-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 3;
+  display: grid;
+  gap: 0.6rem;
+  width: max-content;
+  max-width: calc(100vw - 2 * var(--pad));
+  padding: 0.8rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
 .tester-styles { display: flex; gap: 0.75rem; }
 .tester-styles button {
   font: inherit;
@@ -308,8 +345,8 @@ body.is-splash {
 .tester-styles button[aria-pressed="true"],
 .tester-styles button:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 .tester-size,
-.tester-axes label { display: flex; align-items: center; gap: 0.5rem; }
-.tester-axes { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; flex-basis: 100%; }
+.tester-axes label { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.tester-axes { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.6rem 1.5rem; min-width: min(22rem, 80vw); }
 .tester-axes:empty { display: none; }
 .tester input[type="range"] {
   -webkit-appearance: none;
@@ -330,11 +367,17 @@ body.is-splash {
 }
 .tester input[type="range"]::-moz-range-thumb { width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--fg); }
 
+/* The sample stays on one line (white-space: pre keeps only the line
+   breaks you type with Return); script.js shrinks it to fit the width.
+   The padding leaves room for fonts whose letters reach above or below
+   their stated height (e.g. Cocoscript). */
 .tester-sample {
-  margin: 1.5rem 0 0;
-  font-size: var(--size, min(72px, 13vw)); /* smaller on phones until the slider is moved */
+  margin: 0.5rem 0 0;
+  padding: 0.18em 0 0.12em;
+  font-size: var(--size, min(72px, 13vw));
   line-height: 1.15;
-  overflow-wrap: anywhere;
+  white-space: pre;
+  overflow: hidden;
   outline: none;
   cursor: text;
 }

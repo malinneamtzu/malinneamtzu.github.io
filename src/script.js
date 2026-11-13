@@ -2,10 +2,11 @@
 // script.js: the few things that move.
 //   1. Segmentor follows the mouse (desktop) or the tilt of the phone.
 //      Only the big menu on the splash uses it (class .seg).
-//   2. Splash: underline a menu link while a finger is on it; close the
-//      Contact list when clicking elsewhere.
+//   2. Splash: background video, phone word sizes, tap underline;
+//      dropdowns (Contact, Type options) close when clicking elsewhere.
 //   3. Projects list: the hovered row's cover fills the background.
-//   4. Type page: each name fills the width; size and axis sliders, styles.
+//   4. Type page: the text always fits the width; options dropdown with
+//      size (a maximum), styles and axis sliders.
 //   5. Intro: the menu runs through its shapes once per visit.
 // ===========================================================================
 
@@ -84,11 +85,45 @@ for (const a of document.querySelectorAll(".splash-menu a")) {
   for (const ev of ["touchend", "touchcancel"])
     a.addEventListener(ev, () => setTimeout(() => a.classList.remove("is-tapped"), 400));
 }
-const contactMenu = document.querySelector(".contact-menu");
-if (contactMenu) {
-  document.addEventListener("click", (e) => {
-    if (!contactMenu.contains(e.target)) contactMenu.open = false;
-  });
+// Dropdowns (<details class="dropdown">): a click outside closes them.
+document.addEventListener("click", (e) => {
+  for (const d of document.querySelectorAll("details.dropdown[open]"))
+    if (!d.contains(e.target)) d.open = false;
+});
+
+// Background video: landscape file on wide screens, portrait on tall ones.
+const video = document.querySelector(".splash-video");
+if (video) {
+  const portrait = window.matchMedia("(orientation: portrait)");
+  const pick = () => {
+    const k = portrait.matches ? "portrait" : "landscape";
+    if (video.dataset.current === k) return;
+    video.dataset.current = k;
+    video.poster = video.dataset[k + "Poster"];
+    video.src = video.dataset[k];
+    video.play().catch(() => { /* autoplay refused: the poster stays */ });
+  };
+  pick();
+  portrait.addEventListener("change", pick);
+}
+
+// Phones: each word of the stacked menu as wide as the space between the
+// margins. Measured at 100px at the default shape, then scaled; 0.92 leaves
+// room for the letters to widen when the phone tilts.
+const phone = window.matchMedia("(max-width: 700px)");
+function fitMenu() {
+  for (const a of document.querySelectorAll(".splash-menu a")) {
+    if (!phone.matches) { a.style.fontSize = ""; continue; }
+    const probe = document.createElement("span");
+    probe.textContent = a.textContent;
+    Object.assign(probe.style, { position: "fixed", left: "0", top: "0", visibility: "hidden",
+      whiteSpace: "nowrap", fontFamily: getComputedStyle(a).fontFamily, fontSize: "100px",
+      fontVariationSettings: "normal" });
+    document.body.append(probe);
+    const w = probe.getBoundingClientRect().width;
+    probe.remove();
+    if (w) a.style.fontSize = (100 * a.parentElement.clientWidth * 0.92) / w + "px";
+  }
 }
 
 // --- 3. Projects list: big cover behind the list ---------------------------
@@ -121,34 +156,36 @@ for (const box of document.querySelectorAll("[data-tester]")) {
   const size = box.querySelector("[data-size]");
   const axesBox = box.querySelector("[data-axes-box]");
 
-  // Default size: as big as fits the width on one line. Measured on an
-  // invisible copy of the text at 100px, then scaled. Stops once you move
-  // the size slider yourself.
+  // Plain text only, so pasted text does not bring its own fonts along
+  // (older browsers without "plaintext-only" keep normal editing).
+  try { sample.contentEditable = "plaintext-only"; } catch (e) { /* keep "true" */ }
+
+  // Size: the largest that keeps the longest line inside the width. It is
+  // measured on an invisible copy at 100px and scaled. The size slider
+  // (in Options) sets a maximum; untouched, the text simply fills the width.
+  // Runs on every keystroke, so a long word shrinks as you type.
   let userSized = false;
   const fit = async () => {
-    if (userSized) return;
     const family = sample.style.fontFamily.split(",")[0].replace(/['"]/g, "");
     try { await document.fonts.load(`100px "${family}"`, sample.textContent); } catch (e) { /* measure anyway */ }
-    const probe = document.createElement("span");
-    probe.textContent = sample.textContent;
+    const probe = sample.cloneNode(true);
+    probe.removeAttribute("contenteditable");
     Object.assign(probe.style, {
-      position: "absolute", visibility: "hidden", whiteSpace: "nowrap", fontSize: "100px",
-      fontFamily: sample.style.fontFamily, fontVariationSettings: sample.style.fontVariationSettings,
+      position: "fixed", left: "0", top: "0", visibility: "hidden", display: "inline-block",
+      width: "auto", fontSize: "100px", whiteSpace: "pre", padding: "0", margin: "0",
     });
     document.body.append(probe);
     const w = probe.getBoundingClientRect().width;
     probe.remove();
     if (!w) return;
-    const px = Math.floor((100 * sample.clientWidth * 0.97) / w);
+    const fitPx = Math.max(8, Math.floor((100 * sample.clientWidth * 0.97) / w));
+    const px = userSized ? Math.min(+size.value, fitPx) : fitPx;
     sample.style.setProperty("--size", px + "px");
-    size.max = Math.max(400, px);
-    size.value = px;
+    if (!userSized) { size.max = Math.max(400, px); size.value = px; }
   };
+  sample.addEventListener("input", fit);
   fitters.push(fit);
-  size.addEventListener("input", () => {
-    userSized = true;
-    sample.style.setProperty("--size", size.value + "px");
-  });
+  size.addEventListener("input", () => { userSized = true; fit(); });
 
   const buildAxes = (axes) => {
     axesBox.replaceChildren();
@@ -163,7 +200,7 @@ for (const box of document.querySelectorAll("[data-tester]")) {
       const input = Object.assign(document.createElement("input"), {
         type: "range", min: a.min, max: a.max, step: "any", value: a.min,
       });
-      input.addEventListener("input", () => { values[a.tag] = input.value; apply(); });
+      input.addEventListener("input", () => { values[a.tag] = input.value; apply(); fit(); });
       label.append(a.tag, input);
       axesBox.append(label);
     }
@@ -208,4 +245,6 @@ function introSweep() {
 
 // --- Start ------------------------------------------------------------------------
 introSweep();
-window.addEventListener("resize", () => fitters.forEach((f) => f()));
+fitMenu();
+document.fonts.ready.then(fitMenu);
+window.addEventListener("resize", () => { fitMenu(); fitters.forEach((f) => f()); });

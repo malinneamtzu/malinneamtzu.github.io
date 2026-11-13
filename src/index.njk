@@ -2,10 +2,16 @@
 layout: base.njk
 bodyClass: is-splash
 ---
-{# Splash: three big links in Segmentor, in the middle of the screen.
+{# Splash: three big links in Segmentor. Desktop: one line (Projects left,
+   Type centred, About right); phones: stacked, each as wide as the screen.
    They follow the mouse (desktop) or the tilt of the phone (script.js §1)
-   and get underlined on hover / tap. Name and contact are in the header
-   (base.njk). #}
+   and get underlined on hover / tap. Behind them loops the background
+   video: script.js §2 picks the landscape or the portrait file. The
+   addresses use `| url` because the base plugin does not touch data-*. #}
+<video class="splash-video" autoplay muted loop playsinline aria-hidden="true"
+  data-landscape="{{ '/media/bg-desktop.mp4' | url }}" data-landscape-poster="{{ '/media/bg-desktop-poster.jpg' | url }}"
+  data-portrait="{{ '/media/bg-mobile.mp4' | url }}" data-portrait-poster="{{ '/media/bg-mobile-poster.jpg' | url }}"></video>
+
 <nav class="splash-menu" aria-label="Main">
   <ul class="plain-list">
     {% for n in nav %}<li><a class="seg" href="{{ n.url }}">{{ n.label }}</a></li>{% endfor %}

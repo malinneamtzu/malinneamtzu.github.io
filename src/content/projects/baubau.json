@@ -7,7 +7,7 @@
     "Drawing",
     "Music"
   ],
-  "client": "",
+  "client": "BAUBAU",
   "role": "",
   "intro": "BAUBAU, together with Anton Hoyer in Leipzig, was first recorded in 2018 and again in 2022. In 2023 we finally released “LURKING” and “FOREVER”: the original drawings and the two covers.",
   "links": [
@@ -20,56 +20,58 @@
   "gallery": [
     {
       "image": "/assets/baubau/baubau-01.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r1"
     },
     {
       "image": "/assets/baubau/baubau-02.jpg",
       "caption": "",
-      "row": "r2"
+      "row": "r1"
     },
     {
       "image": "/assets/baubau/baubau-03.jpg",
       "caption": "",
-      "row": "r2"
+      "row": "r1"
     },
     {
       "image": "/assets/baubau/baubau-04.jpg",
       "caption": "Poster for BAUBAU at Filaret 16, Bucharest, 25 March 2023",
-      "row": "r3"
+      "row": "r2"
     },
     {
       "image": "/assets/baubau/baubau-05.jpg",
       "caption": "",
-      "row": "r3"
+      "row": "r2"
     },
     {
       "image": "/assets/baubau/baubau-06.jpg",
-      "caption": ""
+      "caption": "",
+      "row": "r2"
     },
     {
       "image": "/assets/baubau/baubau-07.jpg",
       "caption": "",
-      "row": "r5"
+      "row": "r3"
     },
     {
       "image": "/assets/baubau/baubau-08.jpg",
       "caption": "",
-      "row": "r5"
+      "row": "r3"
     },
     {
       "image": "/assets/baubau/baubau-09.jpg",
       "caption": "",
-      "row": "r5"
+      "row": "r3"
     },
     {
       "image": "/assets/baubau/baubau-10.jpg",
       "caption": "",
-      "row": "r6"
+      "row": "r4"
     },
     {
       "image": "/assets/baubau/baubau-11.jpg",
       "caption": "",
-      "row": "r6"
+      "row": "r4"
     }
   ],
   "source": "instagram",
