@@ -4,12 +4,12 @@
 # The dashboard runs only on your own computer: `npm start` and
 # `npm run cms`, then open http://localhost:8080/admin/. "Save to website"
 # writes the files in this folder; commit and push them to GitHub, and the
-# site at malinneamtzu.com/wwwork/ rebuilds (about two minutes).
+# site at malinneamtzu.com rebuilds (about two minutes).
 # The github backend below is only a fallback the local dashboard ignores.
 
 backend:
   name: github
-  repo: malinneamtzu/wwwork
+  repo: malinneamtzu/malinneamtzu.github.io
   branch: main
   commit_messages:
     create: "Add {{collection}} “{{slug}}” (via dashboard)"
@@ -25,8 +25,8 @@ local_backend: true
 # Button wording ("Save to website" instead of "Publish"), set in index.html.
 locale: site
 
-site_url: https://malinneamtzu.com/wwwork
-display_url: https://malinneamtzu.com/wwwork
+site_url: https://malinneamtzu.com
+display_url: https://malinneamtzu.com
 logo_url: /favicon.svg
 
 # Where uploaded images go, and how the website refers to them.

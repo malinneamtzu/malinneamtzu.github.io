@@ -1,6 +1,6 @@
-# malinneamtzu.com/wwwork
+# malinneamtzu.com
 
-Portfolio of Mălin Neamțu, type and graphic designer. Built with [Eleventy](https://www.11ty.dev/), published on GitHub Pages at https://malinneamtzu.com/wwwork/ (built by `.github/workflows/deploy.yml` on every push to `main`).
+Portfolio of Mălin Neamțu, type and graphic designer. Built with [Eleventy](https://www.11ty.dev/), published on GitHub Pages at https://malinneamtzu.com/ (built by `.github/workflows/deploy.yml` on every push to `main`).
 
 ```sh
 npm install

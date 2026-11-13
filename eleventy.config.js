@@ -2,13 +2,14 @@ import { HtmlBasePlugin } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownIt from "markdown-it";
 
-// The live site is at malinneamtzu.com/wwwork/ (GitHub Pages, repo "wwwork").
-// `npm run build` writes every link with /wwwork/ in front; `npm start`
-// keeps the site at the root of localhost:8080 so the dashboard works as
-// before. Eleventy's built-in "HTML base" plugin adds the prefix to every
-// href/src in the built HTML, so templates keep writing "/work/" etc.
+// The live site is at the root of malinneamtzu.com (GitHub Pages, repo
+// "malinneamtzu.github.io"), so links need no prefix. PATH_PREFIX and the
+// "HTML base" plugin below are kept so a sub-folder address (e.g. a test
+// copy at malinneamtzu.com/<repo>/) only needs this one line changed:
+// templates write root links ("/work/") and the plugin adds the prefix.
+export const PATH_PREFIX = "/";
+// npm start ("serve" mode) also copies the dashboard and original images.
 const isServe = process.env.ELEVENTY_RUN_MODE === "serve";
-export const PATH_PREFIX = isServe ? "/" : "/wwwork/";
 
 export default function (eleventyConfig) {
   // Files copied to the site as they are.
@@ -43,7 +44,7 @@ export default function (eleventyConfig) {
     },
   });
 
-  // Puts /wwwork/ in front of every root link in the built HTML (see top).
+  // Puts PATH_PREFIX in front of every root link in the built HTML (see top).
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addGlobalData("year", new Date().getFullYear());

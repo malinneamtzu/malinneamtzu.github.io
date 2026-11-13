@@ -1,5 +1,5 @@
 # Builds the site with Eleventy and publishes it on GitHub Pages at
-# https://malinneamtzu.com/wwwork/ on every push to main (replaces Netlify).
+# https://malinneamtzu.com on every push to main (replaces Netlify).
 # Progress: the repo's "Actions" tab on GitHub.
 name: Deploy to GitHub Pages
 
